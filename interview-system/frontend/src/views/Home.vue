@@ -441,14 +441,12 @@ const handleShortcut = (event) => {
 const bindShortcuts = () => {
   if (shortcutBound) return
   window.addEventListener('keydown', handleShortcut, true)
-  document.addEventListener('keydown', handleShortcut, true)
   shortcutBound = true
 }
 
 const unbindShortcuts = () => {
   if (!shortcutBound) return
   window.removeEventListener('keydown', handleShortcut, true)
-  document.removeEventListener('keydown', handleShortcut, true)
   shortcutBound = false
 }
 

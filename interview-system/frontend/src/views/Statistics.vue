@@ -127,7 +127,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, onActivated, onDeactivated, nextTick } from 'vue'
 import { getStatistics } from '../api'
 import * as echarts from 'echarts/core'
 import { PieChart, BarChart, LineChart } from 'echarts/charts'
@@ -309,11 +309,25 @@ onMounted(async () => {
   window.addEventListener('resize', resizeCharts)
 })
 
+onDeactivated(() => {
+  window.removeEventListener('resize', resizeCharts)
+})
+
+onActivated(() => {
+  window.addEventListener('resize', resizeCharts)
+  if (stats.value) {
+    nextTick(() => renderCharts())
+  }
+})
+
 onBeforeUnmount(() => {
   window.removeEventListener('resize', resizeCharts)
   masteryInstance?.dispose()
   categoryMasteryInstance?.dispose()
   trendInstance?.dispose()
+  masteryInstance = null
+  categoryMasteryInstance = null
+  trendInstance = null
 })
 </script>
 

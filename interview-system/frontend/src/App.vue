@@ -56,7 +56,7 @@
     <!-- 主内容区 -->
     <main class="app-main">
       <router-view v-slot="{ Component }">
-        <keep-alive>
+        <keep-alive include="Home" :max="3">
           <component :is="Component" />
         </keep-alive>
       </router-view>

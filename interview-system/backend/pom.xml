@@ -52,11 +52,6 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Jackson CSV -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-csv</artifactId>
-        </dependency>
 
         <!-- Test -->
         <dependency>

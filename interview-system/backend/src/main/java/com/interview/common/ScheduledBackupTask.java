@@ -17,7 +17,7 @@ public class ScheduledBackupTask {
 
     private final BackupService backupService;
 
-    @Scheduled(fixedRateString = "${app.backup.interval-ms:1800000}")
+    @Scheduled(fixedDelayString = "${app.backup.interval-ms:1800000}")
     public void periodicBackup() {
         log.debug("执行定时备份...");
         backupService.exportBackup();

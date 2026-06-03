@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Result<?> handleNotFound(NotFoundException ex) {
-        return Result.paramError(ex.getMessage());
+        return Result.error(404, ex.getMessage());
     }
 
     @ExceptionHandler({IllegalArgumentException.class, BusinessException.class})

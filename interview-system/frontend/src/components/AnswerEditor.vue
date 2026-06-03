@@ -130,7 +130,7 @@
 import { computed, nextTick, ref, watch } from 'vue'
 import { ElMessageBox } from 'element-plus'
 import DOMPurify from 'dompurify'
-import MarkdownIt from 'markdown-it'
+import { md as markdown } from '../utils/markdown'
 import MarkdownView from './MarkdownView.vue'
 
 const props = defineProps({
@@ -163,13 +163,6 @@ const locallyEmittedValue = ref(null)
 const maxHistorySize = 80
 
 const editorMinHeight = computed(() => `${Math.max(props.rows * 25, 180)}px`)
-
-const markdown = new MarkdownIt({
-  html: false,
-  linkify: true,
-  breaks: true,
-  typographer: false
-})
 
 const escapeHtml = (value = '') => markdown.utils.escapeHtml(value)
 const codePlaceholder = '在这里输入代码'

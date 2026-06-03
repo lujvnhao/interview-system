@@ -14,7 +14,7 @@ spring:
 
   h2:
     console:
-      enabled: true
+      enabled: false   # 生产安全：默认关闭，开发时改为 true
       path: /h2-console
 
   jpa:

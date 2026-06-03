@@ -68,6 +68,7 @@ public class BackupService {
 
     /**
      * 导出全部题目和标签到 JSON 文件（原子写入）
+     * @throws RuntimeException 写入失败时抛出，让调用方感知
      */
     public void exportBackup() {
         synchronized (lock) {
@@ -76,10 +77,9 @@ public class BackupService {
                 QuestionsBackup qb = buildQuestionsBackup(now);
                 TagsBackup tb = buildTagsBackup(now);
                 writeBackupPair(backupDir, qb, tb);
-
                 log.info("备份已导出: {} 道题目, {} 个标签 → {}", qb.getQuestions().size(), tb.getTags().size(), backupDir);
-            } catch (Exception e) {
-                log.error("备份导出失败", e);
+            } catch (IOException e) {
+                throw new RuntimeException("备份导出失败: " + e.getMessage(), e);
             }
         }
     }

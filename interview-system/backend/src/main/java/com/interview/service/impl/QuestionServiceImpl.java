@@ -362,7 +362,7 @@ public class QuestionServiceImpl implements QuestionService {
             int increase = 6 + Math.min(10, safeInt(question.getWrongCount(), 0) * 2);
             question.setWeight(Math.min(MAX_PERSISTED_WEIGHT,
                     safeInt(question.getWeight(), DEFAULT_WEIGHT) + increase));
-            question.setFavorite(true);
+            // 不再自动收藏 — 用户可手动点击收藏按钮
         }
 
         return questionRepository.save(question);

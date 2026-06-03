@@ -176,6 +176,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .el-button--primary {
   --el-button-bg-color: var(--color-accent);
   --el-button-border-color: var(--color-accent);
+  --el-button-text-color: var(--color-ink);
   --el-button-hover-bg-color: var(--color-accent-strong);
   --el-button-hover-border-color: var(--color-accent-strong);
   --el-button-active-bg-color: var(--color-accent-strong);
@@ -183,13 +184,65 @@ button, input, textarea, select { font: inherit; color: inherit; }
   font-weight: 700 !important;
   box-shadow: 0 2px 0 rgba(168,45,37,0.2) !important;
 }
+.el-button--primary.is-text,
+.el-button--primary.is-plain {
+  --el-button-text-color: var(--color-accent);
+  color: var(--color-accent) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
 .el-button--primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(196,58,49,0.25) !important; }
+.el-button--primary.is-text:hover { box-shadow: none !important; transform: none; }
 
 .el-button--default {
   --el-button-bg-color: var(--color-surface);
   --el-button-border-color: var(--color-border);
+  --el-button-text-color: var(--color-ink);
   --el-button-hover-bg-color: var(--color-surface-soft);
   --el-button-hover-border-color: var(--color-border-strong);
+  color: var(--color-ink) !important;
+}
+
+/* All buttons need visible text on light bg */
+.el-button:not(.el-button--primary):not(.el-button--success):not(.el-button--danger):not(.el-button--warning) {
+  --el-button-text-color: var(--color-ink);
+  color: var(--color-ink) !important;
+}
+
+/* Text buttons */
+.el-button.is-text {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+.el-button.is-text:hover { background: var(--color-surface-soft) !important; }
+
+/* Success / Danger / Warning types */
+.el-button--success {
+  --el-button-bg-color: var(--color-green); --el-button-border-color: var(--color-green);
+  --el-button-text-color: #fff; color: #fff !important;
+}
+.el-button--success.is-text, .el-button--success.is-plain {
+  --el-button-text-color: var(--color-green); color: var(--color-green) !important;
+  background: transparent !important;
+}
+
+.el-button--danger {
+  --el-button-bg-color: var(--color-red); --el-button-border-color: var(--color-red);
+  --el-button-text-color: #fff; color: #fff !important;
+}
+.el-button--danger.is-text, .el-button--danger.is-plain {
+  --el-button-text-color: var(--color-red); color: var(--color-red) !important;
+  background: transparent !important;
+}
+
+.el-button--warning {
+  --el-button-bg-color: var(--color-amber); --el-button-border-color: var(--color-amber);
+  --el-button-text-color: #fff; color: #fff !important;
+}
+.el-button--warning.is-text, .el-button--warning.is-plain {
+  --el-button-text-color: var(--color-amber); color: var(--color-amber) !important;
+  background: transparent !important;
 }
 
 /* Input / Select / Textarea */

@@ -528,7 +528,7 @@ kbd {
   display: inline-flex; align-items: center; justify-content: center;
   min-width: 20px; height: 20px; padding: 0 5px;
   font-family: var(--font-mono); font-size: 10px; font-weight: 700;
-  color: var(--color-ink-muted); background: rgba(255,255,255,0.06);
+  color: var(--color-ink-muted); background: var(--color-surface-soft);
   border: 1px solid var(--color-border); border-radius: 3px;
 }
 

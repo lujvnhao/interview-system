@@ -1,0 +1,36 @@
+# ========== macOS ==========
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ========== IDE ==========
+.idea/
+*.iml
+.vscode/
+
+# ========== Java / Maven ==========
+target/
+*.class
+*.jar
+*.war
+
+# ========== Spring Boot / H2 Database ==========
+*.db
+*.trace.db
+data/
+
+# ========== Node / Frontend ==========
+node_modules/
+dist/
+
+# ========== Claude Code (local) ==========
+.claude/settings.local.json
+
+# ========== Environment ==========
+.env
+.env.local
+.env.*.local
+
+# ========== Logs ==========
+logs/
+*.log

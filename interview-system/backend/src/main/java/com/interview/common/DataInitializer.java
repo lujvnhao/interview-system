@@ -1,0 +1,195 @@
+package com.interview.common;
+
+import com.interview.entity.Question;
+import com.interview.entity.TagConfig;
+import com.interview.repository.QuestionRepository;
+import com.interview.repository.TagConfigRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+/**
+ * 数据初始化器 — 首次启动时插入默认面试题
+ * 只在题库为空时才执行，避免重复插入
+ */
+@Slf4j
+@Component
+@RequiredArgsConstructor
+public class DataInitializer implements CommandLineRunner {
+
+    private final QuestionRepository questionRepository;
+    private final TagConfigRepository tagConfigRepository;
+
+    @Override
+    public void run(String... args) {
+        initTags();
+        initQuestions();
+    }
+
+    private void initTags() {
+        if (tagConfigRepository.count() > 0) {
+            log.info("标签已有数据，跳过初始化");
+            return;
+        }
+        List<String> defaultTags = List.of(
+            "高频", "重点", "易错", "必背", "项目相关",
+            "八股文", "手撕代码", "原理题", "场景题"
+        );
+        for (String name : defaultTags) {
+            tagConfigRepository.save(TagConfig.builder().name(name).build());
+        }
+        log.info("已初始化 {} 个默认标签", defaultTags.size());
+    }
+
+    private void initQuestions() {
+        if (questionRepository.count() > 0) {
+            log.info("题库已有数据，跳过初始化");
+            return;
+        }
+
+        log.info("开始初始化默认面试题数据...");
+
+        List<Question> questions = List.of(
+            build("Java 中 == 和 equals 的区别是什么？",
+                "== 比较的是对象的引用地址，对于基本类型比较的是值；equals 默认也是比较引用地址，但 String、Integer 等重写了 equals 方法，比较的是内容。重写 equals 时必须同时重写 hashCode。",
+                "Java 基础", "高频,重点,八股文"),
+
+            build("String、StringBuilder 和 StringBuffer 有什么区别？",
+                "String 是不可变的，每次修改都会创建新对象；StringBuilder 是可变的，线程不安全但性能高；StringBuffer 是可变的，线程安全（synchronized）但性能较低。单线程场景推荐 StringBuilder。",
+                "Java 基础", "高频,重点"),
+
+            build("Java 集合框架中 List、Set、Map 的区别？",
+                "List：有序可重复，常用 ArrayList、LinkedList；Set：无序不可重复，常用 HashSet、TreeSet；Map：键值对存储，键不可重复，常用 HashMap、TreeMap、ConcurrentHashMap。",
+                "Java 基础", "高频,重点,八股文"),
+
+            build("HashMap 的底层实现原理是什么？（JDK 1.8）",
+                "JDK 1.8 中 HashMap 采用数组+链表+红黑树实现。通过 key 的 hashCode 计算桶位置，冲突时用链表存储；链表长度超过 8 且数组长度 >= 64 时转为红黑树。默认负载因子 0.75，扩容时容量翻倍并重新 hash。",
+                "Java 基础", "高频,重点,原理题"),
+
+            build("ArrayList 和 LinkedList 的区别？",
+                "ArrayList 底层是动态数组，支持 O(1) 随机访问，尾部插入 O(1)，中间插入需移动元素 O(n)；LinkedList 底层是双向链表，随机访问 O(n)，头尾插入删除 O(1)。查询多用 ArrayList，频繁头尾操作可用 LinkedList。",
+                "Java 基础", "高频,重点"),
+
+            build("什么是 JVM？它的内存区域是怎么划分的？",
+                "JVM 是 Java 虚拟机，负责运行 Java 字节码。内存区域划分：堆（存放对象实例）、方法区/元空间（存放类信息、常量）、虚拟机栈（方法调用的栈帧）、本地方法栈、程序计数器。堆和方法区是线程共享的，栈和程序计数器是线程私有的。",
+                "JVM", "高频,重点,八股文"),
+
+            build("JVM 垃圾回收算法有哪些？",
+                "标记-清除：标记存活对象后清除未标记的，产生内存碎片；标记-整理：标记后移动存活对象，清除碎片；复制：将内存分为两块，存活对象复制到另一块，适用于新生代；分代收集：新生代用复制算法，老年代用标记-整理或标记-清除。常见垃圾收集器：Serial、Parallel、CMS、G1、ZGC。",
+                "JVM", "高频,重点,原理题"),
+
+            build("什么是类加载机制？双亲委派模型是什么？",
+                "类加载机制：加载→验证→准备→解析→初始化。双亲委派模型：加载类时先委托父类加载器，父类加载器无法加载时才由子类加载器自己加载。优点：避免类的重复加载，保护核心类库不被篡改。打破双亲委派：自定义 ClassLoader 重写 findClass 或 loadClass，典型如 Tomcat 的 WebAppClassLoader。",
+                "JVM", "高频,重点,原理题"),
+
+            build("什么是 Java 多线程？创建线程有哪几种方式？",
+                "多线程是指一个进程中同时运行多个线程，提高 CPU 利用率和程序响应速度。创建方式：1) 继承 Thread 类；2) 实现 Runnable 接口；3) 实现 Callable 接口（有返回值）；4) 使用线程池（ExecutorService）。实际开发推荐使用线程池。",
+                "Java 并发", "高频,重点,八股文"),
+
+            build("synchronized 和 ReentrantLock 的区别？",
+                "synchronized 是 JVM 层面的关键字，自动加锁释放锁，不可中断，非公平锁；ReentrantLock 是 API 层面的类，需要手动 lock/unlock，可中断，支持公平锁和非公平锁，支持条件变量 Condition，支持 tryLock。性能上 JDK 6 后 synchronized 优化后差距不大。",
+                "Java 并发", "高频,重点,原理题"),
+
+            build("什么是线程池？ThreadPoolExecutor 的核心参数有哪些？",
+                "线程池是预先创建的线程集合，复用线程减少创建/销毁开销。核心参数：corePoolSize（核心线程数）、maximumPoolSize（最大线程数）、keepAliveTime（空闲线程存活时间）、unit（时间单位）、workQueue（工作队列）、threadFactory（线程工厂）、handler（拒绝策略）。拒绝策略：AbortPolicy（抛异常）、CallerRunsPolicy（调用者运行）、DiscardPolicy（丢弃）、DiscardOldestPolicy（丢弃最旧的）。",
+                "Java 并发", "高频,重点,原理题"),
+
+            build("MySQL 索引的底层数据结构是什么？为什么用 B+ 树？",
+                "MySQL InnoDB 索引使用 B+ 树。原因：1) 所有数据存在叶子节点，查询效率稳定 O(log n)；2) 叶子节点用双向链表连接，范围查询效率高；3) 非叶子节点不存数据，单节点可存更多键值，树更矮，磁盘 IO 更少。",
+                "MySQL", "高频,重点,原理题"),
+
+            build("MySQL 事务的四大特性（ACID）是什么？",
+                "原子性（Atomicity）：事务要么全部执行成功要么全部回滚；一致性（Consistency）：事务执行前后数据完整性约束不变；隔离性（Isolation）：并发事务之间相互隔离；持久性（Durability）：提交的事务对数据库的修改是永久的。InnoDB 通过 redo log 保证持久性，undo log 保证原子性，MVCC + 锁保证隔离性。",
+                "MySQL", "高频,重点,八股文"),
+
+            build("Redis 的五种基本数据类型是什么？各自的使用场景？",
+                "String：缓存、计数器、分布式锁；Hash：存储对象（如用户信息）；List：消息队列、最新列表（LPUSH + LPOP/RPOP）；Set：标签、共同好友、去重；Sorted Set：排行榜、优先队列（按 score 排序）。此外还有 Bitmap、HyperLogLog、Geo、Stream 等高级类型。",
+                "Redis", "高频,重点,八股文"),
+
+            build("什么是缓存穿透、缓存击穿、缓存雪崩？如何解决？",
+                "缓存穿透：查询不存在的数据，缓存和数据库都没有。解决：布隆过滤器、缓存空值。缓存击穿：热点 key 过期，大量请求打到数据库。解决：互斥锁、永不过期、逻辑过期。缓存雪崩：大量 key 同时过期，或 Redis 宕机。解决：过期时间加随机值、Redis 集群、限流降级、多级缓存。",
+                "Redis", "高频,重点,场景题"),
+
+            build("Spring 的 IoC 和 AOP 是什么？",
+                "IoC（控制反转）：将对象的创建和管理交给 Spring 容器，通过依赖注入（DI）解耦。AOP（面向切面编程）：将横切关注点（日志、事务、权限）从业务代码中分离，通过代理模式实现。实现方式：JDK 动态代理（基于接口）和 CGLIB 代理（基于子类）。",
+                "Spring", "高频,重点,八股文"),
+
+            build("Spring 事务的传播行为有哪些？",
+                "REQUIRED（默认）：有事务则加入，没有则新建；REQUIRES_NEW：总是新建事务，挂起当前事务；SUPPORTS：有事务则加入，没有则以非事务运行；NOT_SUPPORTED：以非事务运行，挂起当前事务；MANDATORY：必须存在事务，否则抛异常；NEVER：必须非事务运行，存在事务则抛异常；NESTED：嵌套事务，内层事务回滚不影响外层。",
+                "Spring", "高频,重点"),
+
+            build("Spring Boot 的自动配置原理是什么？",
+                "通过 @SpringBootApplication 注解包含的 @EnableAutoConfiguration，导入 AutoConfigurationImportSelector，扫描 META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports 文件，根据 @Conditional 条件注解判断是否加载对应的自动配置类。",
+                "Spring Boot", "高频,重点,原理题"),
+
+            build("MyBatis 中 #{} 和 ${} 的区别？",
+                "#{} 是预编译占位符，会将参数替换为 ?，能防止 SQL 注入；${} 是字符串替换，直接拼接 SQL，有 SQL 注入风险。#{} 会对参数加引号，${} 不会。非动态表名/列名/排序等场景一律使用 #{}。",
+                "MyBatis", "高频,重点"),
+
+            build("什么是 CAP 定理？BASE 理论是什么？",
+                "CAP：Consistency（一致性）、Availability（可用性）、Partition Tolerance（分区容错性），三者最多同时满足两个。分区容错性必须保证，通常需要在 CP 和 AP 之间取舍（ZooKeeper 是 CP，Eureka 是 AP）。BASE：Basically Available（基本可用）、Soft state（软状态）、Eventually Consistent（最终一致性），是 AP 方案的延伸。",
+                "分布式", "高频,重点,八股文"),
+
+            build("分布式锁的实现方式有哪些？",
+                "数据库：基于唯一索引或乐观锁，性能较差；Redis：SET NX + 过期时间，Redisson 提供了看门狗自动续期；ZooKeeper：基于临时顺序节点，天然支持阻塞等待和自动释放。Redis 方案性能最高但可能丢失锁，ZooKeeper 方案可靠性高但性能较低。",
+                "分布式", "高频,重点,场景题"),
+
+            build("消息队列（MQ）的作用和使用场景？",
+                "作用：解耦（系统间松耦合）、异步（提高响应速度）、削峰（应对流量高峰）。常见 MQ：RabbitMQ（功能完善、延迟低）、Kafka（高吞吐、持久化、大数据）、RocketMQ（阿里出品、事务消息）。使用场景：订单异步处理、日志收集、秒杀削峰、分布式事务。",
+                "消息队列", "高频,重点,场景题"),
+
+            build("HTTP 和 HTTPS 的区别？HTTPS 的加密过程？",
+                "HTTP 明文传输，HTTPS = HTTP + SSL/TLS 加密传输。加密过程：1) 客户端请求连接；2) 服务端返回证书（含公钥）；3) 客户端验证证书；4) 客户端生成对称密钥，用公钥加密后传服务端；5) 服务端用私钥解密获取对称密钥；6) 双方用对称密钥加密通信。",
+                "计算机网络", "高频,重点,八股文"),
+
+            build("TCP 三次握手和四次挥手的过程？",
+                "三次握手：1) 客户端 SYN=1, seq=x；2) 服务端 SYN=1, ACK=1, seq=y, ack=x+1；3) 客户端 ACK=1, seq=x+1, ack=y+1。四次挥手：1) 客户端 FIN=1；2) 服务端 ACK；3) 服务端 FIN=1, ACK；4) 客户端 ACK，等待 2MSL 后关闭。",
+                "计算机网络", "高频,重点,八股文"),
+
+            build("进程和线程的区别？",
+                "进程是资源分配的最小单位，线程是 CPU 调度的最小单位。进程拥有独立的内存空间，进程间通信复杂（IPC、管道、共享内存）；线程共享进程的内存空间，通信简单但需处理同步问题（锁）。一个进程可包含多个线程。",
+                "操作系统", "高频,重点,八股文"),
+
+            build("快速排序和归并排序的原理和时间复杂度？",
+                "快速排序：选基准值，将数组分为小于和大于基准值的两部分，递归排序。平均 O(n log n)，最坏 O(n²)（已排序），不稳定。优化：随机选基准、三数取中。归并排序：递归将数组二分再两两合并。始终 O(n log n)，稳定，需 O(n) 额外空间。",
+                "算法", "高频,重点,手撕代码"),
+
+            build("项目中遇到过的最大挑战是什么？（项目面试常见题）",
+                "本题为开放题，建议准备 1-2 个真实项目案例，包含：背景（项目规模和目标）、挑战（技术难点是什么）、行动（你怎么解决的）、结果（带来了什么效果）。示例方向：性能优化（慢 SQL 优化、缓存引入）、架构改造（单体拆微服务）、线上故障排查（OOM、死锁）。",
+                "项目面试", "高频,重点,必背"),
+
+            build("你了解的设计模式有哪些？常用的有哪些？",
+                "创建型：单例模式、工厂模式、建造者模式；结构型：代理模式、适配器模式、装饰器模式；行为型：观察者模式、策略模式、模板方法模式。Spring 中大量使用：单例（Bean 默认单例）、工厂（BeanFactory）、代理（AOP）、模板方法（JdbcTemplate）、观察者（ApplicationEvent）等。",
+                "Spring", "重点,原理题"),
+
+            build("什么是微服务？微服务的优缺点？",
+                "微服务是一种架构风格，将单体应用拆分为多个小的、独立的服务，每个服务运行在自己的进程中，通过轻量级通信机制（HTTP/RPC）协作。优点：独立部署、技术栈灵活、易于扩展、故障隔离。缺点：分布式复杂性、运维成本高、网络延迟、数据一致性问题、测试复杂。",
+                "分布式", "高频,场景题"),
+
+            build("请你简单做一下自我介绍（HR 面试常见题）",
+                "建议准备 1-2 分钟版本，包含：教育背景、技术栈亮点、项目经验（1-2个核心项目）、为什么适合这个岗位。注意：不要背书式读简历，要有逻辑、有重点、有自信。",
+                "HR 面试", "高频,必背")
+        );
+
+        questionRepository.saveAll(questions);
+        log.info("已初始化 {} 道默认面试题", questions.size());
+    }
+
+    private Question build(String question, String answer, String category, String tags) {
+        return Question.builder()
+                .question(question)
+                .answer(answer)
+                .category(category)
+                .tags(tags)
+                .mastered(false)
+                .favorite(false)
+                .weight(10)
+                .wrongCount(0)
+                .correctCount(0)
+                .reviewCount(0)
+                .build();
+    }
+}

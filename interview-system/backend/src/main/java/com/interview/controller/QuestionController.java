@@ -4,6 +4,7 @@ import com.interview.common.Result;
 import com.interview.dto.QuestionDTO;
 import com.interview.dto.ReviewResultDTO;
 import com.interview.entity.Question;
+import com.interview.service.BackupService;
 import com.interview.service.QuestionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ import java.util.Map;
 public class QuestionController {
 
     private final QuestionService questionService;
+    private final BackupService backupService;
 
     // ── CRUD ──
 
@@ -189,5 +191,29 @@ public class QuestionController {
     @GetMapping("/tags")
     public Result<List<String>> tags() {
         return Result.success(questionService.allTags());
+    }
+
+    // ── 备份与恢复 ──
+
+    /** 手动触发数据备份到 data/backup/ */
+    @PostMapping("/backup/export")
+    public Result<?> triggerBackup() {
+        backupService.exportBackup();
+        return Result.success("备份已导出到 data/backup/");
+    }
+
+    /** 从备份恢复数据（仅限数据库为空时） */
+    @PostMapping("/backup/restore")
+    public Result<?> triggerRestore() {
+        // 安全检查：仅当数据库为空时允许恢复
+        var qbOpt = backupService.loadQuestionsBackup();
+        var tbOpt = backupService.loadTagsBackup();
+
+        if (qbOpt.isEmpty() || tbOpt.isEmpty()) {
+            return Result.paramError("备份文件不存在或已损坏，无法恢复");
+        }
+
+        backupService.restoreFromBackup(qbOpt.get(), tbOpt.get());
+        return Result.success("数据已从备份恢复");
     }
 }

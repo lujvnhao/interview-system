@@ -15,9 +15,11 @@ target/
 *.war
 
 # ========== Spring Boot / H2 Database ==========
+# 排除 H2 二进制数据库文件，但保留 data/backup/ 中的 JSON 备份
 *.db
 *.trace.db
-data/
+interview-system/backend/data/*.db
+interview-system/backend/data/*.trace.db
 
 # ========== Node / Frontend ==========
 node_modules/

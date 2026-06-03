@@ -4,6 +4,7 @@ import com.interview.entity.Question;
 import com.interview.entity.TagConfig;
 import com.interview.repository.QuestionRepository;
 import com.interview.repository.TagConfigRepository;
+import com.interview.service.BackupService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -22,11 +23,45 @@ public class DataInitializer implements CommandLineRunner {
 
     private final QuestionRepository questionRepository;
     private final TagConfigRepository tagConfigRepository;
+    private final BackupService backupService;
 
     @Override
     public void run(String... args) {
+        // 如果数据库已有数据，跳过初始化
+        if (tagConfigRepository.count() > 0 && questionRepository.count() > 0) {
+            log.info("题库已有数据，跳过初始化");
+            return;
+        }
+
+        // 优先尝试从 JSON 备份恢复
+        if (tryRestoreFromBackup()) {
+            log.info("已从 JSON 备份恢复数据");
+            return;
+        }
+
+        // 回退：使用硬编码默认数据
+        log.info("未找到有效备份，使用默认数据初始化");
         initTags();
         initQuestions();
+    }
+
+    /**
+     * 尝试从 data/backup/ 目录恢复数据
+     * @return true 表示恢复成功，false 表示备份不可用
+     */
+    private boolean tryRestoreFromBackup() {
+        try {
+            var qbOpt = backupService.loadQuestionsBackup();
+            var tbOpt = backupService.loadTagsBackup();
+
+            if (qbOpt.isPresent() && tbOpt.isPresent()) {
+                backupService.restoreFromBackup(qbOpt.get(), tbOpt.get());
+                return true;
+            }
+        } catch (Exception e) {
+            log.warn("从备份恢复失败: {}", e.getMessage());
+        }
+        return false;
     }
 
     private void initTags() {

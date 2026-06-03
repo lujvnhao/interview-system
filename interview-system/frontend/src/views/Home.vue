@@ -465,22 +465,28 @@ watch(() => route.query.mode, async () => { syncModeFromRoute(); await nextQuest
   padding: 32px 30px 34px;
   margin-bottom: 24px;
   overflow: hidden;
-  background: linear-gradient(150deg, #1e1d18 0%, #222116 40%, #1a1c1a 100%);
+  background: var(--color-surface-soft);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
 }
 .question-body::after {
   content: "";
   position: absolute;
-  right: -20px; bottom: -20px;
-  width: 200px; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201,169,110,0.15));
-  transform: rotate(-15deg);
+  right: 24px; bottom: 18px;
+  width: 80px; height: 80px;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  opacity: 0.3;
 }
 .q-number {
   display: inline-block; margin-bottom: 14px;
-  font-family: var(--font-mono); font-size: 12px; font-weight: 700;
-  color: var(--color-accent-dim); letter-spacing: 0.06em;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  color: var(--color-accent); letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 10px;
+  background: var(--color-accent-soft);
+  border-radius: var(--radius-sm);
 }
 .q-text {
   position: relative; z-index: 1;
@@ -506,12 +512,12 @@ watch(() => route.query.mode, async () => { syncModeFromRoute(); await nextQuest
 .btn-mastered {
   color: var(--color-green); background: var(--color-green-soft); border-color: rgba(122,154,126,0.25);
 }
-.btn-mastered:hover { background: rgba(122,154,126,0.2); transform: translateY(-1px); }
+.btn-mastered:hover { background: #d8f0e2; transform: translateY(-1px); }
 
 .btn-failed {
   color: var(--color-red); background: var(--color-red-soft); border-color: rgba(192,114,99,0.25);
 }
-.btn-failed:hover { background: rgba(192,114,99,0.2); transform: translateY(-1px); }
+.btn-failed:hover { background: #fde8e5; transform: translateY(-1px); }
 
 .btn-fav {
   color: var(--color-ink-muted); background: var(--color-bg-elevated); border-color: var(--color-border);
@@ -537,8 +543,8 @@ kbd {
 
 .answer-actions { display: flex; justify-content: center; gap: 12px; margin-top: 20px; }
 .btn-edit-answer { color: var(--color-blue); background: var(--color-blue-soft); border-color: rgba(122,147,168,0.25); }
-.btn-edit-answer:hover { background: rgba(122,147,168,0.2); }
-.btn-next { color: #1a1a17; background: var(--color-accent); border-color: var(--color-accent); }
+.btn-edit-answer:hover { background: #e2ebf5; }
+.btn-next { color: #fff; background: var(--color-accent); border-color: var(--color-accent); }
 .btn-next:hover { background: var(--color-accent-strong); transform: translateY(-1px); }
 
 .review-meta {

@@ -85,124 +85,16 @@ onMounted(fetchData)
 </script>
 
 <style scoped>
-.page {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.page-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding-bottom: 18px;
-  margin-bottom: 18px;
-  border-bottom: 1px solid #dfe5e8;
-}
-
-.page-title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.title-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  color: #b45309;
-  font-size: 20px;
-  background: #fff4df;
-  border-radius: 8px;
-}
-
-.page-header h2 {
-  color: #1f2933;
-  font-size: 24px;
-  font-weight: 800;
-  line-height: 1.2;
-}
+.page { max-width: 1400px; margin: 0 auto; }
 
 .header-count {
-  display: inline-block;
-  margin-top: 5px;
-  color: #667085;
-  font-size: 13px;
-  font-weight: 600;
+  font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--color-amber);
 }
 
-.page-actions {
-  flex-shrink: 0;
-}
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
+.toolbar .el-input { width: 200px; }
 
-.table-card {
-  padding: 18px;
-  background: #ffffff;
-  border: 1px solid #dfe5e8;
-  border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 12px 28px rgba(16, 24, 40, 0.04);
-}
+.empty-fav { padding: 60px 20px; text-align: center; color: var(--color-ink-muted); }
 
-.data-table {
-  overflow: hidden;
-  border: 1px solid #edf1f3;
-  border-radius: 8px;
-}
-
-.pagination-row {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 16px;
-}
-
-.cell-cat {
-  display: inline-flex;
-  align-items: center;
-  min-height: 22px;
-  padding: 2px 7px;
-  color: #2563eb;
-  font-size: 11px;
-  font-weight: 700;
-  background: #eaf2ff;
-  border-radius: 6px;
-}
-
-.dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-}
-
-.dot.on {
-  background: #16a34a;
-  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.14);
-}
-
-.dot.off {
-  background: #c6d0d8;
-}
-
-@media (max-width: 760px) {
-  .page-header {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .page-actions,
-  .page-actions :deep(.el-button) {
-    width: 100%;
-  }
-
-  .table-card {
-    padding: 12px;
-  }
-
-  .pagination-row {
-    justify-content: flex-start;
-    overflow-x: auto;
-  }
-}
+@media (max-width: 640px) { .toolbar { flex-direction: column; } .toolbar .el-input, .toolbar .el-button { width: 100%; } }
 </style>

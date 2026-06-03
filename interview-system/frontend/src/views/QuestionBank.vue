@@ -442,327 +442,93 @@ onMounted(() => { fetchMeta(); fetchData() })
 </script>
 
 <style scoped>
-.bank-page {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.page-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding-bottom: 18px;
-  margin-bottom: 18px;
-  border-bottom: 1px solid #dfe5e8;
-}
-
-.page-title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.title-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  color: #0f766e;
-  font-size: 20px;
-  background: #e6f4f1;
-  border-radius: 8px;
-}
-
-.page-header h2 {
-  color: #1f2933;
-  font-size: 24px;
-  font-weight: 800;
-  line-height: 1.2;
-}
+.bank-page { max-width: 1400px; margin: 0 auto; }
 
 .header-count {
-  display: inline-block;
-  margin-top: 5px;
-  color: #667085;
-  font-size: 13px;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-accent);
+  font-weight: 700;
 }
 
 .bank-card {
-  padding: 18px;
-  background: #ffffff;
-  border: 1px solid #dfe5e8;
-  border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 12px 28px rgba(16, 24, 40, 0.04);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-sm);
 }
 
-.toolbar {
-  display: grid;
-  grid-template-columns: minmax(360px, 1fr) auto;
-  gap: 12px;
-  align-items: start;
+/* Toolbar */
+.toolbar { display: flex; flex-direction: column; gap: 14px; }
+.toolbar-filters {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
 }
-
-.toolbar-filters,
 .toolbar-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  padding-top: 14px; border-top: 1px solid var(--color-border);
 }
 
-.toolbar-actions {
-  justify-content: flex-end;
-}
+.search-input { width: 220px; }
+.filter-select { width: 120px; }
+.filter-select.narrow { width: 110px; }
+.filter-select.mini { width: 100px; }
+.filter-select.sort { width: 130px; }
+.filter-select.dir { width: 82px; }
+.icon-action { min-width: 40px; }
+.quick-filters { display: flex; gap: 4px; }
 
-.toolbar-actions :deep(.el-button + .el-button),
-.toolbar-filters :deep(.el-button + .el-button) {
-  margin-left: 0;
-}
-
-.search-input {
-  width: 260px;
-}
-
-.filter-select {
-  width: 136px;
-}
-
-.filter-select.narrow {
-  width: 118px;
-}
-
-.filter-select.mini {
-  width: 106px;
-}
-
-.filter-select.sort {
-  width: 126px;
-}
-
-.filter-select.dir {
-  width: 92px;
-}
-
-.icon-action {
-  width: 40px;
-  padding: 0 !important;
-}
-
-.quick-filters {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  align-items: center;
-}
-
-.quick-filters :deep(.el-button) {
-  height: 32px;
-  margin-left: 0;
-}
-
-.upload-inline {
-  display: inline-flex;
-}
-
-.question-table {
-  width: 100%;
-  margin-top: 16px;
-  overflow: hidden;
-  border: 1px solid #edf1f3;
-  border-radius: 8px;
-}
-
-.pagination-row {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 16px;
-}
-
+/* Table tags */
 .cell-tag {
-  display: inline-flex;
-  align-items: center;
-  min-height: 22px;
-  padding: 2px 7px;
-  margin: 1px 2px 1px 0;
-  color: #5f6f7d;
-  font-size: 11px;
-  font-weight: 700;
-  background: #f0f3f5;
-  border-radius: 6px;
+  display: inline-block;
+  padding: 1px 8px; margin: 1px 2px;
+  font-size: 11px; font-weight: 700; font-family: var(--font-ui);
+  color: var(--color-ink-muted); background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border); border-radius: var(--radius-sm);
 }
-
-.cell-tag.cat {
-  color: #2563eb;
-  background: #eaf2ff;
-}
-
-.cell-tag.hot {
-  color: #dc2626;
-  background: #fff1f0;
-}
+.cell-tag.cat { color: var(--color-blue); background: var(--color-blue-soft); border-color: rgba(122,147,168,0.2); }
+.cell-tag.hot { color: var(--color-red); background: var(--color-red-soft); border-color: rgba(192,114,99,0.2); }
 
 .dot-status {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+}
+.dot-status.on { background: var(--color-green); box-shadow: 0 0 6px rgba(122,154,126,0.4); }
+.dot-status.off { background: var(--color-ink-faint); }
+
+.favorite-icon { color: var(--color-amber); font-size: 16px; }
+.muted-icon { color: var(--color-ink-faint); font-size: 15px; }
+.err-num { color: var(--color-red); font-weight: 700; font-family: var(--font-mono); }
+
+.question-table { border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; }
+
+/* Upload */
+.upload-inline { display: inline-block; }
+
+/* Pagination row */
+.pagination-row {
+  display: flex; justify-content: center; padding-top: 18px; margin-top: 18px;
+  border-top: 1px solid var(--color-border);
 }
 
-.dot-status.on {
-  background: #16a34a;
-  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.14);
-}
+/* Dialog forms */
+.form-two-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-item { display: flex; flex-direction: column; gap: 6px; }
+.form-item.col-span { grid-column: 1 / -1; }
+.form-label { font-size: 13px; font-weight: 700; color: var(--color-ink-muted); font-family: var(--font-ui); }
+.form-label .small-hint { font-size: 11px; font-weight: 500; color: var(--color-ink-faint); }
+.detail-block { margin-top: 14px; }
+.detail-label { font-size: 12px; font-weight: 700; color: var(--color-ink-muted); margin-bottom: 6px; font-family: var(--font-ui); }
+.detail-text { font-size: 14px; color: var(--color-ink); line-height: 1.75; white-space: pre-wrap; }
+.empty-answer { color: var(--color-ink-faint); font-style: italic; }
 
-.dot-status.off {
-  background: #c6d0d8;
-}
+.tag-dialog .el-checkbox { display: flex; margin-bottom: 6px; }
 
-.favorite-icon {
-  color: #b45309;
-  font-size: 16px;
-}
-
-.muted-icon {
-  color: #b7c0c7;
-  font-size: 16px;
-}
-
-.err-num {
-  color: #dc2626;
-  font-weight: 800;
-}
-
-.detail-content {
-  line-height: 1.8;
-}
-
-.detail-field {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 8px;
-}
-
-.detail-field label {
-  flex-shrink: 0;
-  min-width: 80px;
-  color: #667085;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.detail-field span {
-  color: #344054;
-}
-
-.detail-answer {
-  flex: 1;
-  min-width: 0;
-}
-
-.detail-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-}
-
-.dialog-tip {
-  margin-bottom: 12px;
-  color: #667085;
-}
-
-.full-field {
-  width: 100%;
-}
-
-.tag-create-row {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.tag-manage-list {
-  max-height: 350px;
-  overflow-y: auto;
-}
-
-.tag-manage-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 12px;
-  margin-bottom: 6px;
-  background: #f8faf9;
-  border: 1px solid #edf1f3;
-  border-radius: 8px;
-  transition: background 0.15s ease;
-}
-
-.tag-manage-item:hover {
-  background: #f1f6f5;
-}
-
-.tag-manage-name {
-  color: #344054;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-@media (max-width: 1180px) {
-  .toolbar {
-    grid-template-columns: 1fr;
-  }
-
-  .toolbar-actions {
-    justify-content: flex-start;
-  }
-}
-
-@media (max-width: 760px) {
-  .bank-card {
-    padding: 12px;
-  }
-
-  .toolbar-filters,
-  .toolbar-actions,
-  .search-input,
-  .filter-select,
-  .filter-select.narrow,
-  .filter-select.mini,
-  .filter-select.sort,
-  .filter-select.dir {
-    width: 100%;
-  }
-
-  .toolbar-filters > *,
-  .toolbar-actions > * {
-    width: 100%;
-  }
-
-  .icon-action {
-    width: 100%;
-  }
-
-  .quick-filters {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-  }
-
-  .quick-filters :deep(.el-button) {
-    width: 100%;
-  }
-
-  .pagination-row {
-    justify-content: flex-start;
-    overflow-x: auto;
-  }
-
-  .detail-field,
-  .tag-create-row {
-    flex-direction: column;
-  }
+@media (max-width: 860px) {
+  .search-input { width: 100%; }
+  .filter-select { flex: 1; min-width: 100px; }
+  .toolbar-actions { flex-direction: column; }
+  .toolbar-actions .el-button { width: 100%; }
+  .form-two-cols { grid-template-columns: 1fr; }
+  .bank-card { padding: 14px; }
 }
 </style>

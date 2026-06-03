@@ -260,7 +260,7 @@ onMounted(() => {
   gap: 16px;
   padding-bottom: 18px;
   margin-bottom: 18px;
-  border-bottom: 1px solid #dfe5e8;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .page-title {
@@ -275,14 +275,14 @@ onMounted(() => {
   justify-content: center;
   width: 40px;
   height: 40px;
-  color: #0f766e;
+  color: var(--color-accent);
   font-size: 20px;
-  background: #e6f4f1;
+  background: var(--color-accent-glow);
   border-radius: 8px;
 }
 
 .page-title h2 {
-  color: #1f2933;
+  color: var(--color-ink-strong);
   font-size: 24px;
   font-weight: 800;
   line-height: 1.2;
@@ -291,7 +291,7 @@ onMounted(() => {
 .header-desc {
   display: inline-block;
   margin-top: 5px;
-  color: #667085;
+  color: var(--color-ink-muted);
   font-size: 13px;
   font-weight: 600;
 }
@@ -313,9 +313,9 @@ onMounted(() => {
 .summary-card {
   min-width: 0;
   padding: 16px;
-  background: #ffffff;
-  border: 1px solid #dfe5e8;
-  border-top: 3px solid #0f766e;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-accent);
   border-radius: 8px;
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
 }
@@ -323,7 +323,7 @@ onMounted(() => {
 .summary-value {
   display: block;
   overflow: hidden;
-  color: #1f2933;
+  color: var(--color-ink-strong);
   font-size: 24px;
   font-weight: 800;
   line-height: 1.2;
@@ -334,15 +334,15 @@ onMounted(() => {
 .summary-label {
   display: block;
   margin-top: 8px;
-  color: #667085;
+  color: var(--color-ink-muted);
   font-size: 13px;
   font-weight: 700;
 }
 
 .table-card {
   padding: 18px;
-  background: #ffffff;
-  border: 1px solid #dfe5e8;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 12px 28px rgba(16, 24, 40, 0.04);
 }
@@ -356,14 +356,14 @@ onMounted(() => {
 }
 
 .table-head h3 {
-  color: #1f2933;
+  color: var(--color-ink-strong);
   font-size: 16px;
   font-weight: 800;
 }
 
 .table-head p {
   margin-top: 4px;
-  color: #667085;
+  color: var(--color-ink-muted);
   font-size: 12px;
   font-weight: 600;
 }
@@ -377,7 +377,7 @@ onMounted(() => {
   color: #0f766e !important;
   font-family: 'SF Mono', 'Menlo', monospace;
   font-size: 12px !important;
-  background: #e6f4f1;
+  background: var(--color-accent-glow);
   border-radius: 6px;
   word-break: break-all;
 }
@@ -396,7 +396,7 @@ onMounted(() => {
 .backup-name-main strong,
 .time-cell strong {
   display: block;
-  color: #1f2933;
+  color: var(--color-ink-strong);
   font-size: 13px;
   font-weight: 800;
 }
@@ -408,7 +408,7 @@ onMounted(() => {
   display: block;
   margin-top: 3px;
   overflow: hidden;
-  color: #667085;
+  color: var(--color-ink-muted);
   font-size: 12px;
   font-weight: 600;
   text-overflow: ellipsis;
@@ -423,14 +423,14 @@ onMounted(() => {
 .file-cell strong {
   display: block;
   margin-top: 4px;
-  color: #0f766e;
+  color: var(--color-accent);
   font-size: 12px;
   font-weight: 800;
 }
 
 .table-card :deep(.el-table) {
   overflow: hidden;
-  border: 1px solid #edf1f3;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
 }
 

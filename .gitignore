@@ -33,6 +33,11 @@ dist/
 .env.local
 .env.*.local
 
+# ========== Temporary / Misc ==========
+*.docx
+*.tmp
+*_import.json
+
 # ========== Logs ==========
 logs/
 *.log

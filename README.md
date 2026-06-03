@@ -284,6 +284,44 @@ cd interview-system/frontend && npm install && npm run dev
 ]
 ```
 
+### 9. 数据备份与 GitHub 同步 🔄
+
+系统内置 **JSON 自动备份机制**，每次数据变更后可通过脚本将备份同步到 GitHub，实现数据版本管理。
+
+#### 自动备份
+
+| 触发方式 | 说明 |
+|----------|------|
+| **关闭备份** | 应用正常关闭时（Ctrl+C），自动导出到 `data/backup/` |
+| **定时备份** | 每 30 分钟自动导出一次（防止意外崩溃丢失数据） |
+| **手动备份** | 调用 `POST /api/questions/backup/export` 即时触发 |
+
+备份文件：
+- `data/backup/questions.json` — 全部题目（含掌握状态、复习记录、权重等）
+- `data/backup/tags.json` — 全部标签配置
+
+#### 从备份恢复
+
+- **自动恢复**：删除数据库文件后重启应用，自动从 JSON 备份恢复数据
+- **手动恢复**：调用 `POST /api/questions/backup/restore`
+
+#### 同步到 GitHub
+
+```bash
+# 确保应用已关闭（触发最终备份），然后运行：
+./sync-to-github.sh
+
+# 自定义 commit 信息
+./sync-to-github.sh "feat: 新增 10 道 Redis 面试题"
+```
+
+该脚本会自动：
+1. 检测 `data/backup/` 目录是否有变更
+2. 有变更则 `git add` → `git commit` → `git push`
+3. 无变更则跳过
+
+> **最佳实践**：每次学习/编辑题库后，关闭应用 → 运行 `./sync-to-github.sh` → 数据即同步到 GitHub。
+
 ---
 
 ## 📡 API 接口文档
@@ -362,6 +400,13 @@ cd interview-system/frontend && npm install && npm run dev
 | `DELETE` | `/tags/name/{name}` | 按名称删除标签 |
 | `POST` | `/tags/batch-add` | 批量给题目添加标签（Body: `{"questionIds": [...], "tagName": "..."}`） |
 | `GET` | `/tags/empty-tag-questions` | 获取所有未打标签的题目 |
+
+### 备份管理 `/api/questions`
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| `POST` | `/questions/backup/export` | 手动触发导出备份到 `data/backup/` |
+| `POST` | `/questions/backup/restore` | 从备份 JSON 恢复数据到数据库 |
 
 ### 统一响应格式
 

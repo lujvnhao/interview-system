@@ -6,9 +6,31 @@ const api = axios.create({
   timeout: 15000
 })
 
-// 响应拦截器
+// ── 请求去重：防止同一请求并发重复发送 ──
+const pendingRequests = new Map()
+
+const requestKey = (config) => {
+  const { method, url, params, data } = config
+  return [method, url, JSON.stringify(params), JSON.stringify(data)].join('&')
+}
+
+api.interceptors.request.use(config => {
+  const key = requestKey(config)
+  if (pendingRequests.has(key)) {
+    const cancel = pendingRequests.get(key)
+    cancel('重复请求已取消')
+    pendingRequests.delete(key)
+  }
+  config.cancelToken = new axios.CancelToken(cancel => {
+    pendingRequests.set(key, cancel)
+  })
+  return config
+})
+
 api.interceptors.response.use(
   response => {
+    const key = requestKey(response.config)
+    pendingRequests.delete(key)
     const data = response.data
     if (data.code === 200) {
       return data
@@ -18,6 +40,13 @@ api.interceptors.response.use(
     }
   },
   error => {
+    if (error.config) {
+      const key = requestKey(error.config)
+      pendingRequests.delete(key)
+    }
+    if (axios.isCancel(error)) {
+      return Promise.resolve()  // 被取消的请求静默处理
+    }
     const msg = error.response?.data?.message || error.message || '网络错误'
     ElMessage.error(msg)
     return Promise.reject(error)

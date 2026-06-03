@@ -303,15 +303,6 @@ const nextQuestion = async () => {
   try {
     const params = { mode: mode.value }
     if (filterCategory.value) params.category = filterCategory.value
-    if (mode.value === 'dueToday') {
-      const dueParams = { page: 1, size: 1 }
-      if (filterCategory.value) dueParams.category = filterCategory.value
-      const dueRes = await getDueTodayQuestions(dueParams)
-      if (!dueRes.data?.totalElements) {
-        currentQuestion.value = null
-        return
-      }
-    }
     const res = await getRandomQuestion(params)
     currentQuestion.value = res.data
   } catch (e) {

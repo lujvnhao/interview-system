@@ -16,7 +16,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "question_bank")
+@Table(name = "question_bank", indexes = {
+        @Index(name = "idx_category", columnList = "category"),
+        @Index(name = "idx_mastered", columnList = "mastered"),
+        @Index(name = "idx_favorite", columnList = "favorite"),
+        @Index(name = "idx_wrong_count", columnList = "wrongCount"),
+        @Index(name = "idx_last_review_time", columnList = "lastReviewTime"),
+        @Index(name = "idx_mastered_wrong", columnList = "mastered,wrongCount")
+})
 public class Question {
 
     @Id

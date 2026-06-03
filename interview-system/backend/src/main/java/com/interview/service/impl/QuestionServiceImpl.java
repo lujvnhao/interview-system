@@ -1,13 +1,18 @@
 package com.interview.service.impl;
 
+import com.interview.common.exception.BusinessException;
+import com.interview.common.exception.NotFoundException;
 import com.interview.dto.QuestionDTO;
 import com.interview.dto.ReviewResultDTO;
 import com.interview.entity.Question;
 import com.interview.repository.QuestionRepository;
 import com.interview.service.QuestionService;
+import com.interview.vo.CategoryMasteryItem;
 import com.interview.vo.RecentReviewItem;
 import com.interview.vo.ReviewOverviewVO;
 import com.interview.vo.StatisticsVO;
+import com.interview.vo.TrendItem;
+import com.interview.vo.WeakCategoryItem;
 import com.interview.vo.WrongRankItem;
 import jakarta.persistence.criteria.Predicate;
 import lombok.RequiredArgsConstructor;
@@ -67,7 +72,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Transactional
     public Question update(Long id, QuestionDTO dto) {
         Question question = questionRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("题目不存在: " + id));
+                .orElseThrow(() -> new NotFoundException("题目", id));
         question.setQuestion(dto.getQuestion().trim());
         question.setAnswer(dto.getAnswer() != null ? dto.getAnswer().trim() : null);
         question.setCategory(dto.getCategory() != null ? dto.getCategory().trim() : "未分类");
@@ -93,7 +98,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public Question getById(Long id) {
         return questionRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("题目不存在: " + id));
+                .orElseThrow(() -> new NotFoundException("题目", id));
     }
 
     @Override
@@ -158,37 +163,41 @@ public class QuestionServiceImpl implements QuestionService {
     public Question randomQuestion(String mode, String category) {
         List<Question> pool;
         LocalDateTime now = LocalDateTime.now();
+        boolean hasCategory = category != null && !category.isBlank() && !"全部".equals(category);
 
         switch (mode != null ? mode : "all") {
             case "favorites":
-                pool = questionRepository.findAll().stream()
-                        .filter(Question::getFavorite)
-                        .collect(Collectors.toList());
+                pool = hasCategory
+                        ? questionRepository.findByCategoryAndFavoriteTrue(category)
+                        : questionRepository.findAll().stream()
+                                .filter(Question::getFavorite)
+                                .collect(Collectors.toList());
                 break;
             case "unmastered":
-                pool = questionRepository.findByMasteredFalseAndWrongCountGreaterThan(0);
+                pool = hasCategory
+                        ? questionRepository.findByCategoryAndMasteredFalseAndWrongCountGreaterThan(category, 0)
+                        : questionRepository.findByMasteredFalseAndWrongCountGreaterThanOrderByWeightDesc(0);
                 break;
             case "dueToday":
             case "today":
-                pool = questionRepository.findAll().stream()
+                // dueToday 涉及复杂业务逻辑，需加载候选集后内存判断
+                List<Question> sourcePool = hasCategory
+                        ? questionRepository.findByCategory(category)
+                        : questionRepository.findAll();
+                pool = sourcePool.stream()
                         .filter(q -> isDueToday(q, now))
                         .collect(Collectors.toList());
                 break;
             case "all":
             default:
-                pool = questionRepository.findAll();
+                pool = hasCategory
+                        ? questionRepository.findByCategory(category)
+                        : questionRepository.findAll();
                 break;
         }
 
-        // 如果指定了分类，再过滤
-        if (category != null && !category.isBlank() && !"全部".equals(category)) {
-            pool = pool.stream()
-                    .filter(q -> category.equals(q.getCategory()))
-                    .collect(Collectors.toList());
-        }
-
         if (pool.isEmpty()) {
-            throw new IllegalArgumentException("没有可抽取的题目");
+            throw new BusinessException("没有可抽取的题目");
         }
 
         return weightedRandom(pool);
@@ -335,7 +344,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Transactional
     public Question submitReview(Long id, ReviewResultDTO dto) {
         Question question = questionRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("题目不存在: " + id));
+                .orElseThrow(() -> new NotFoundException("题目", id));
 
         question.setReviewCount(safeInt(question.getReviewCount(), 0) + 1);
         question.setLastReviewTime(LocalDateTime.now());
@@ -365,7 +374,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Transactional
     public Question updateAnswer(Long id, String answer) {
         Question question = questionRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("题目不存在: " + id));
+                .orElseThrow(() -> new NotFoundException("题目", id));
         question.setAnswer(answer != null ? answer.trim() : null);
         return questionRepository.save(question);
     }
@@ -376,7 +385,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Transactional
     public Question toggleFavorite(Long id) {
         Question question = questionRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("题目不存在: " + id));
+                .orElseThrow(() -> new NotFoundException("题目", id));
         question.setFavorite(!question.getFavorite());
         return questionRepository.save(question);
     }
@@ -416,10 +425,10 @@ public class QuestionServiceImpl implements QuestionService {
 
         Map<String, List<Question>> questionsByCategory = questions.stream()
                 .collect(Collectors.groupingBy(q -> normalizeCategory(q.getCategory()), TreeMap::new, Collectors.toList()));
-        List<StatisticsVO.CategoryMasteryItem> categoryMastery = buildCategoryMastery(questionsByCategory);
-        List<StatisticsVO.TrendItem> reviewTrend = buildSevenDayReviewTrend(questions);
-        List<StatisticsVO.TrendItem> wrongGrowthTrend = buildSevenDayWrongTrend(questions);
-        List<StatisticsVO.WeakCategoryItem> weakCategoryRank = buildWeakCategoryRank(questionsByCategory);
+        List<CategoryMasteryItem> categoryMastery = buildCategoryMastery(questionsByCategory);
+        List<TrendItem> reviewTrend = buildSevenDayReviewTrend(questions);
+        List<TrendItem> wrongGrowthTrend = buildSevenDayWrongTrend(questions);
+        List<WeakCategoryItem> weakCategoryRank = buildWeakCategoryRank(questionsByCategory);
 
         // 错题排行榜
         List<WrongRankItem> wrongRank = questionRepository
@@ -453,14 +462,14 @@ public class QuestionServiceImpl implements QuestionService {
                 .build();
     }
 
-    private List<StatisticsVO.CategoryMasteryItem> buildCategoryMastery(Map<String, List<Question>> questionsByCategory) {
+    private List<CategoryMasteryItem> buildCategoryMastery(Map<String, List<Question>> questionsByCategory) {
         return questionsByCategory.entrySet().stream()
                 .map(entry -> {
                     List<Question> items = entry.getValue();
                     long total = items.size();
                     long mastered = items.stream().filter(q -> isTrue(q.getMastered())).count();
                     int wrongCount = items.stream().mapToInt(q -> safeInt(q.getWrongCount(), 0)).sum();
-                    return StatisticsVO.CategoryMasteryItem.builder()
+                    return CategoryMasteryItem.builder()
                             .category(entry.getKey())
                             .total(total)
                             .mastered(mastered)
@@ -469,11 +478,11 @@ public class QuestionServiceImpl implements QuestionService {
                             .masteryRate(rate(mastered, total))
                             .build();
                 })
-                .sorted(Comparator.comparing(StatisticsVO.CategoryMasteryItem::getCategory))
+                .sorted(Comparator.comparing(CategoryMasteryItem::getCategory))
                 .collect(Collectors.toList());
     }
 
-    private List<StatisticsVO.TrendItem> buildSevenDayReviewTrend(List<Question> questions) {
+    private List<TrendItem> buildSevenDayReviewTrend(List<Question> questions) {
         LocalDate today = LocalDate.now();
         Map<LocalDate, Long> countByDay = questions.stream()
                 .map(Question::getLastReviewTime)
@@ -485,7 +494,7 @@ public class QuestionServiceImpl implements QuestionService {
         return buildSevenDayTrend(countByDay);
     }
 
-    private List<StatisticsVO.TrendItem> buildSevenDayWrongTrend(List<Question> questions) {
+    private List<TrendItem> buildSevenDayWrongTrend(List<Question> questions) {
         LocalDate today = LocalDate.now();
         Map<LocalDate, Long> wrongCountByDay = questions.stream()
                 .filter(q -> q.getLastReviewTime() != null)
@@ -501,13 +510,13 @@ public class QuestionServiceImpl implements QuestionService {
         return buildSevenDayTrend(wrongCountByDay);
     }
 
-    private List<StatisticsVO.TrendItem> buildSevenDayTrend(Map<LocalDate, Long> valueByDay) {
+    private List<TrendItem> buildSevenDayTrend(Map<LocalDate, Long> valueByDay) {
         LocalDate today = LocalDate.now();
-        List<StatisticsVO.TrendItem> trend = new ArrayList<>();
+        List<TrendItem> trend = new ArrayList<>();
 
         for (int i = 6; i >= 0; i--) {
             LocalDate day = today.minusDays(i);
-            trend.add(StatisticsVO.TrendItem.builder()
+            trend.add(TrendItem.builder()
                     .date(day.toString())
                     .label(day.getMonthValue() + "/" + day.getDayOfMonth())
                     .value(valueByDay.getOrDefault(day, 0L))
@@ -517,7 +526,7 @@ public class QuestionServiceImpl implements QuestionService {
         return trend;
     }
 
-    private List<StatisticsVO.WeakCategoryItem> buildWeakCategoryRank(Map<String, List<Question>> questionsByCategory) {
+    private List<WeakCategoryItem> buildWeakCategoryRank(Map<String, List<Question>> questionsByCategory) {
         return questionsByCategory.entrySet().stream()
                 .map(entry -> {
                     List<Question> items = entry.getValue();
@@ -528,7 +537,7 @@ public class QuestionServiceImpl implements QuestionService {
                     double masteryRate = rate(mastered, total);
                     double riskScore = (100 - masteryRate) * 0.45 + wrongCount * 2.5 + (total - mastered) * 0.35;
 
-                    return StatisticsVO.WeakCategoryItem.builder()
+                    return WeakCategoryItem.builder()
                             .category(entry.getKey())
                             .total(total)
                             .mastered(mastered)
@@ -541,8 +550,8 @@ public class QuestionServiceImpl implements QuestionService {
                 })
                 .filter(item -> item.getTotal() > 0)
                 .sorted(Comparator
-                        .comparingDouble(StatisticsVO.WeakCategoryItem::getRiskScore).reversed()
-                        .thenComparing(StatisticsVO.WeakCategoryItem::getWrongCount, Comparator.reverseOrder()))
+                        .comparingDouble(WeakCategoryItem::getRiskScore).reversed()
+                        .thenComparing(WeakCategoryItem::getWrongCount, Comparator.reverseOrder()))
                 .limit(8)
                 .collect(Collectors.toList());
     }
@@ -681,12 +690,7 @@ public class QuestionServiceImpl implements QuestionService {
     /** 返回所有不重复的分类列表 */
     @Override
     public List<String> allCategories() {
-        return questionRepository.findAll().stream()
-                .map(Question::getCategory)
-                .filter(Objects::nonNull)
-                .distinct()
-                .sorted()
-                .collect(Collectors.toList());
+        return questionRepository.findDistinctCategories();
     }
 
     /** 返回所有不重复的标签列表 */

@@ -1,0 +1,36 @@
+server:
+  port: ${APP_PORT:8080}
+
+spring:
+  application:
+    name: interview-system
+
+  datasource:
+    url: jdbc:h2:file:./data/interview;DB_CLOSE_DELAY=-1;MODE=MySQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ${DB_PASSWORD:}
+
+  h2:
+    console:
+      enabled: false    # 生产环境关闭 H2 控制台
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: validate   # 生产环境不自动修改表结构
+    show-sql: false
+    open-in-view: false
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+    default-property-inclusion: non_null
+
+# 日志
+logging:
+  level:
+    root: WARN
+    com.interview: INFO
+  file:
+    path: logs/

@@ -55,4 +55,22 @@ public interface QuestionRepository extends JpaRepository<Question, Long>, JpaSp
 
     /** 查询所有（用于导出） */
     List<Question> findAllByOrderByIdAsc();
+
+    // ── 高效查询（替代 findAll + 内存过滤） ──
+
+    /** 查询所有分类（去重） */
+    @Query("SELECT DISTINCT q.category FROM Question q ORDER BY q.category")
+    List<String> findDistinctCategories();
+
+    /** 按分类过滤题目 */
+    List<Question> findByCategory(String category);
+
+    /** 按分类 + 收藏状态过滤 */
+    List<Question> findByCategoryAndFavoriteTrue(String category);
+
+    /** 查询未掌握且错题数 > 0 的题目 */
+    List<Question> findByMasteredFalseAndWrongCountGreaterThanOrderByWeightDesc(int minWrongCount);
+
+    /** 查询指定分类的未掌握题目 */
+    List<Question> findByCategoryAndMasteredFalseAndWrongCountGreaterThan(String category, int minWrongCount);
 }

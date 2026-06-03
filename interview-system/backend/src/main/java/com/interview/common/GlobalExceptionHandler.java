@@ -1,5 +1,7 @@
 package com.interview.common;
 
+import com.interview.common.exception.BusinessException;
+import com.interview.common.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -26,10 +28,23 @@ public class GlobalExceptionHandler {
         return Result.paramError(msg);
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result<?> handleIllegalArgument(IllegalArgumentException ex) {
+    @ExceptionHandler(NotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Result<?> handleNotFound(NotFoundException ex) {
         return Result.paramError(ex.getMessage());
+    }
+
+    @ExceptionHandler({IllegalArgumentException.class, BusinessException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Result<?> handleBadRequest(RuntimeException ex) {
+        return Result.paramError(ex.getMessage());
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Result<?> handleIllegalState(IllegalStateException ex) {
+        log.error("状态异常", ex);
+        return Result.error(ex.getMessage());
     }
 
     @ExceptionHandler(RuntimeException.class)

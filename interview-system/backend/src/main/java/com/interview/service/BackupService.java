@@ -1,6 +1,7 @@
 package com.interview.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.interview.common.exception.BusinessException;
 import com.interview.dto.backup.QuestionsBackup;
 import com.interview.dto.backup.TagsBackup;
 import com.interview.entity.Question;
@@ -233,9 +234,9 @@ public class BackupService {
     @Transactional
     public BackupInfoVO restoreBackup(String backupId) {
         QuestionsBackup qb = loadQuestionsBackup(backupId)
-                .orElseThrow(() -> new IllegalArgumentException("题目备份不存在或已损坏"));
+                .orElseThrow(() -> new BusinessException("题目备份不存在或已损坏"));
         TagsBackup tb = loadTagsBackup(backupId)
-                .orElseThrow(() -> new IllegalArgumentException("标签备份不存在或已损坏"));
+                .orElseThrow(() -> new BusinessException("标签备份不存在或已损坏"));
 
         questionRepository.deleteAllInBatch();
         tagConfigRepository.deleteAllInBatch();

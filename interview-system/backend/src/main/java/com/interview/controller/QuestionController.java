@@ -26,7 +26,6 @@ import java.util.Set;
 @RestController
 @RequestMapping("/api/questions")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*") // 允许前端跨域
 public class QuestionController {
 
     private final QuestionService questionService;
@@ -261,20 +260,12 @@ public class QuestionController {
     /** 从指定备份恢复题库和标签 */
     @PostMapping("/backup/{backupId}/restore")
     public Result<BackupInfoVO> restoreBackup(@PathVariable String backupId) {
-        try {
-            return Result.success("数据已从备份恢复", backupService.restoreBackup(backupId));
-        } catch (IllegalArgumentException e) {
-            return Result.paramError(e.getMessage());
-        }
+        return Result.success("数据已从备份恢复", backupService.restoreBackup(backupId));
     }
 
     /** 从当前自动备份恢复数据 */
     @PostMapping("/backup/restore")
     public Result<?> triggerRestore() {
-        try {
-            return Result.success("数据已从备份恢复", backupService.restoreBackup("current"));
-        } catch (IllegalArgumentException e) {
-            return Result.paramError(e.getMessage());
-        }
+        return Result.success("数据已从备份恢复", backupService.restoreBackup("current"));
     }
 }

@@ -129,7 +129,18 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { getStatistics } from '../api'
-import * as echarts from 'echarts'
+import * as echarts from 'echarts/core'
+import { PieChart, BarChart, LineChart } from 'echarts/charts'
+import {
+  TitleComponent,
+  TooltipComponent,
+  GridComponent,
+  LegendComponent,
+  GraphicComponent
+} from 'echarts/components'
+import { CanvasRenderer } from 'echarts/renderers'
+
+echarts.use([PieChart, BarChart, LineChart, TitleComponent, TooltipComponent, GridComponent, LegendComponent, GraphicComponent, CanvasRenderer])
 
 const stats = ref(null)
 const masteryChart = ref(null)

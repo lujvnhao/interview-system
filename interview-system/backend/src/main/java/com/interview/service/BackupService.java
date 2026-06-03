@@ -1,7 +1,6 @@
 package com.interview.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.interview.dto.backup.QuestionsBackup;
 import com.interview.dto.backup.TagsBackup;
 import com.interview.entity.Question;
@@ -37,20 +36,17 @@ public class BackupService {
     private final QuestionRepository questionRepository;
     private final TagConfigRepository tagConfigRepository;
     private final EntityManager entityManager;
+    private final ObjectMapper objectMapper;
 
     @Value("${app.backup.dir:data/backup}")
     private String backupDirPath;
 
     private final Object lock = new Object();
     private Path backupDir;
-    private ObjectMapper objectMapper;
 
     @PostConstruct
     public void init() {
         backupDir = Path.of(backupDirPath).toAbsolutePath().normalize();
-        objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-        objectMapper.findAndRegisterModules();
 
         try {
             Files.createDirectories(backupDir);

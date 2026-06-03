@@ -127,7 +127,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount, onActivated, onDeactivated, nextTick } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { getStatistics } from '../api'
 import * as echarts from 'echarts/core'
 import { PieChart, BarChart, LineChart } from 'echarts/charts'
@@ -309,17 +309,6 @@ onMounted(async () => {
   window.addEventListener('resize', resizeCharts)
 })
 
-onDeactivated(() => {
-  window.removeEventListener('resize', resizeCharts)
-})
-
-onActivated(() => {
-  window.addEventListener('resize', resizeCharts)
-  if (stats.value) {
-    nextTick(() => renderCharts())
-  }
-})
-
 onBeforeUnmount(() => {
   window.removeEventListener('resize', resizeCharts)
   masteryInstance?.dispose()
@@ -333,6 +322,13 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .page { max-width: 1400px; margin: 0 auto; }
+
+.cell-cat {
+  display: inline-flex; align-items: center; min-height: 22px;
+  padding: 2px 8px;
+  color: var(--color-blue); font-size: 11px; font-weight: 700;
+  background: var(--color-blue-soft); border-radius: var(--radius-sm);
+}
 
 .stat-cards {
   display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 20px;

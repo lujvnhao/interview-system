@@ -38,6 +38,19 @@ md.renderer.rules.code_block = (tokens, idx) => {
   return renderCodeCard(tokens[idx].content)
 }
 
+// 链接强制新标签打开
+const defaultLinkOpen = md.renderer.rules.link_open || ((tokens, idx, options, env, self) => {
+  return self.renderToken(tokens, idx, options)
+})
+md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
+  tokens[idx].attrSet('target', '_blank')
+  tokens[idx].attrSet('rel', 'noopener noreferrer')
+  return defaultLinkOpen(tokens, idx, options, env, self)
+}
+
+/** 共享 DOMPurify 配置 */
+const PURIFY_CONFIG = { ADD_ATTR: ['target', 'rel'] }
+
 /**
  * 渲染 Markdown 为安全的 HTML
  * @param {string} content - Markdown 文本
@@ -45,8 +58,8 @@ md.renderer.rules.code_block = (tokens, idx) => {
  * @returns {string} 安全的 HTML
  */
 export function renderMarkdown(content, emptyText = '暂无答案') {
-  if (!content) return emptyText
-  return DOMPurify.sanitize(md.render(content))
+  if (!content) return DOMPurify.sanitize(emptyText, PURIFY_CONFIG)
+  return DOMPurify.sanitize(md.render(content), PURIFY_CONFIG)
 }
 
-export { md, renderCodeCard }
+export { md, renderCodeCard, PURIFY_CONFIG }

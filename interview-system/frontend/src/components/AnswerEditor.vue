@@ -130,7 +130,13 @@
 import { computed, nextTick, ref, watch } from 'vue'
 import { ElMessageBox } from 'element-plus'
 import DOMPurify from 'dompurify'
-import { md as markdown } from '../utils/markdown'
+import MarkdownIt from 'markdown-it'
+import { renderCodeCard, PURIFY_CONFIG } from '../utils/markdown'
+
+// Editor 使用独立 MarkdownIt 实例，避免污染共享渲染器
+const markdown = new MarkdownIt({
+  html: false, linkify: true, breaks: true, typographer: false
+})
 import MarkdownView from './MarkdownView.vue'
 
 const props = defineProps({

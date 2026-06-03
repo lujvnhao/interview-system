@@ -73,6 +73,10 @@ const isCollapse = ref(false)
   --color-surface:       #ffffff;
   --color-surface-soft:  #faf9f5;
   --color-surface-warm:  #fdf9f3;
+  --color-bg-surface:    #ffffff;
+  --color-bg-elevated:   #faf9f5;
+  --color-bg-hover:      #f5f2ea;
+  --color-accent-dim:    #d4837a;
   --color-border:        #e6e1d8;
   --color-border-strong: #d4cec2;
 

@@ -357,6 +357,33 @@ public class BackupService {
         return resolved;
     }
 
+    /**
+     * 获取备份目录的绝对路径
+     */
+    public String getBackupDirPath() {
+        return backupDir.toString();
+    }
+
+    /**
+     * 在 macOS Finder 中打开备份目录
+     */
+    public void openBackupDirInFinder() {
+        try {
+            String os = System.getProperty("os.name").toLowerCase();
+            if (os.contains("mac")) {
+                new ProcessBuilder("open", backupDir.toString()).start();
+                log.info("已在 Finder 中打开备份目录: {}", backupDir);
+            } else if (os.contains("win")) {
+                new ProcessBuilder("explorer", backupDir.toString()).start();
+            } else {
+                new ProcessBuilder("xdg-open", backupDir.toString()).start();
+            }
+        } catch (IOException e) {
+            log.error("无法打开备份目录: {}", e.getMessage());
+            throw new RuntimeException("无法打开备份目录: " + e.getMessage());
+        }
+    }
+
     private String relativeBackupPath(Path dir) {
         Path normalized = dir.toAbsolutePath().normalize();
         if (normalized.equals(backupDir)) {

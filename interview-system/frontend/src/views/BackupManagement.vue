@@ -13,6 +13,10 @@
           <el-icon><Refresh /></el-icon>
           刷新
         </el-button>
+        <el-button @click="handleOpenDir" :loading="openingDir">
+          <el-icon><FolderOpened /></el-icon>
+          打开备份目录
+        </el-button>
         <el-button type="primary" @click="handleCreateBackup" :loading="creating">
           <el-icon><Plus /></el-icon>
           手动备份
@@ -44,6 +48,10 @@
         <div>
           <h3>备份列表</h3>
           <p>当前自动备份和手动快照均可用于恢复</p>
+          <p v-if="backupDirPath" class="backup-path">
+            <el-icon><FolderOpened /></el-icon>
+            {{ backupDirPath }}
+          </p>
         </div>
       </div>
 
@@ -119,6 +127,8 @@ import {
   getBackups,
   createBackup,
   restoreBackup,
+  getBackupDir,
+  openBackupDir,
   getQuestionList,
   getStatistics,
   getTags
@@ -127,10 +137,19 @@ import {
 const backups = ref([])
 const loading = ref(false)
 const creating = ref(false)
+const openingDir = ref(false)
 const restoringId = ref('')
+const backupDirPath = ref('')
 
 const latestBackup = computed(() => backups.value[0] || null)
 const latestBackupTime = computed(() => latestBackup.value ? formatDate(latestBackup.value.exportedAt) : '-')
+
+const fetchBackupDir = async () => {
+  try {
+    const res = await getBackupDir()
+    backupDirPath.value = res.data || ''
+  } catch (e) {}
+}
 
 const fetchBackups = async () => {
   loading.value = true
@@ -140,6 +159,16 @@ const fetchBackups = async () => {
   } catch (e) {
   } finally {
     loading.value = false
+  }
+}
+
+const handleOpenDir = async () => {
+  openingDir.value = true
+  try {
+    await openBackupDir()
+  } catch (e) {
+  } finally {
+    openingDir.value = false
   }
 }
 
@@ -212,7 +241,10 @@ const formatSize = (value) => {
   return `${(size / 1024 / 1024).toFixed(2)} MB`
 }
 
-onMounted(fetchBackups)
+onMounted(() => {
+  fetchBackups()
+  fetchBackupDir()
+})
 </script>
 
 <style scoped>
@@ -334,6 +366,20 @@ onMounted(fetchBackups)
   color: #667085;
   font-size: 12px;
   font-weight: 600;
+}
+
+.backup-path {
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px !important;
+  padding: 8px 12px;
+  color: #0f766e !important;
+  font-family: 'SF Mono', 'Menlo', monospace;
+  font-size: 12px !important;
+  background: #e6f4f1;
+  border-radius: 6px;
+  word-break: break-all;
 }
 
 .backup-name {

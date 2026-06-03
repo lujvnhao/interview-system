@@ -86,6 +86,8 @@ export const getStatistics = () => api.get('/questions/statistics')
 export const getBackups = () => api.get('/questions/backup/list')
 export const createBackup = () => api.post('/questions/backup/create')
 export const restoreBackup = (id) => api.post(`/questions/backup/${encodeURIComponent(id)}/restore`)
+export const getBackupDir = () => api.get('/questions/backup/dir')
+export const openBackupDir = () => api.post('/questions/backup/open-dir')
 
 // ── 导入导出 ──
 export const exportJson = () => api.get('/questions/export/json')

@@ -268,4 +268,17 @@ public class QuestionController {
     public Result<?> triggerRestore() {
         return Result.success("数据已从备份恢复", backupService.restoreBackup("current"));
     }
+
+    /** 获取备份目录绝对路径 */
+    @GetMapping("/backup/dir")
+    public Result<String> getBackupDir() {
+        return Result.success(backupService.getBackupDirPath());
+    }
+
+    /** 在 Finder 中打开备份目录 */
+    @PostMapping("/backup/open-dir")
+    public Result<?> openBackupDir() {
+        backupService.openBackupDirInFinder();
+        return Result.success("已在 Finder 中打开备份目录");
+    }
 }

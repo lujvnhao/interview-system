@@ -1,6 +1,6 @@
 <template>
   <div class="answer-editor">
-    <div class="editor-toolbar" @mousedown="saveRichSelection">
+    <div class="editor-toolbar" @mousedown="saveRichSelection(); saveSourceSelection()">
       <el-button-group>
         <el-tooltip content="一级标题" placement="top">
           <el-button size="small" aria-label="一级标题" @click="insertHeading(1)">H1</el-button>
@@ -109,6 +109,7 @@
         :placeholder="placeholder"
         @update:model-value="updateValue"
         @keydown="handleEditorKeydown"
+        @blur="saveSourceSelection"
       />
 
       <div v-if="viewMode === 'split' || viewMode === 'preview'" class="preview-pane">
@@ -288,11 +289,35 @@ const updateText = async (value, selectionStart, selectionEnd = selectionStart) 
   textarea.selectionEnd = selectionEnd
 }
 
+// 保存 textarea 选中状态，防止点击工具栏按钮时焦点丢失导致选中清空
+let savedSourceSelection = null
+
+const saveSourceSelection = () => {
+  if (viewMode.value === 'rich') return
+  const textarea = getTextarea()
+  if (textarea) {
+    savedSourceSelection = {
+      start: textarea.selectionStart,
+      end: textarea.selectionEnd,
+      direction: textarea.selectionDirection
+    }
+  }
+}
+
 const getSelection = () => {
   const value = props.modelValue || ''
   const textarea = getTextarea()
-  const start = textarea?.selectionStart ?? value.length
-  const end = textarea?.selectionEnd ?? value.length
+  let start = textarea?.selectionStart
+  let end = textarea?.selectionEnd
+  // fallback: 点击工具栏按钮后 textarea 失焦导致 selection 被清空，使用失焦前保存的值
+  if ((start == null || start === end) && savedSourceSelection) {
+    start = savedSourceSelection.start
+    end = savedSourceSelection.end
+    // 用后即清，避免下次操作读到过期选中
+    savedSourceSelection = null
+  }
+  start = start ?? value.length
+  end = end ?? value.length
   return { value, start, end, selected: value.slice(start, end) }
 }
 

@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-03T16:49:37.924924",
+  "exportedAt" : "2026-06-03T15:50:27.094392",
   "questions" : [ {
     "id" : 1,
     "question" : "Java 中 == 和 equals 的区别是什么？",
@@ -5243,18 +5243,17 @@
   }, {
     "id" : 375,
     "question" : "JWT 令牌为什么能解决集群部署，什么是集群部署？",
-    "answer" : "```java\nclass Solution {\n    public int lengthOfLongestSubstring(String s) {\n        \n    }\n}\n```",
+    "answer" : "",
     "category" : "计算机网络",
     "tags" : "高频,重点,八股文",
     "mastered" : false,
-    "favorite" : true,
-    "weight" : 18,
-    "wrongCount" : 1,
+    "favorite" : false,
+    "weight" : 10,
+    "wrongCount" : 0,
     "correctCount" : 0,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-06-03T16:11:15.461718",
+    "reviewCount" : 0,
     "createTime" : "2026-06-03T13:53:26.872342",
-    "updateTime" : "2026-06-03T16:12:39.097652"
+    "updateTime" : "2026-06-03T13:53:26.872342"
   }, {
     "id" : 376,
     "question" : "JWT 令牌如果泄露了，怎么解决，JWT是怎么做的？",

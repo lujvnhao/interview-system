@@ -3,6 +3,7 @@ package com.interview.service;
 import com.interview.dto.QuestionDTO;
 import com.interview.dto.ReviewResultDTO;
 import com.interview.entity.Question;
+import com.interview.vo.ReviewOverviewVO;
 import com.interview.vo.StatisticsVO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,10 +23,13 @@ public interface QuestionService {
     void batchDelete(List<Long> ids);
     Question getById(Long id);
     Page<Question> list(Pageable pageable, String keyword, String category, String tag,
-                        Boolean mastered, Boolean favorite);
+                        Boolean mastered, Boolean favorite, Boolean emptyTag, Boolean noAnswer,
+                        Boolean hotTag, Boolean longUnreviewed, Integer staleDays);
 
     // ── 抽题 ──
     Question randomQuestion(String mode, String category);
+    Page<Question> dueToday(Pageable pageable, String category);
+    ReviewOverviewVO reviewOverview();
 
     // ── 复习反馈 ──
     Question submitReview(Long id, ReviewResultDTO dto);

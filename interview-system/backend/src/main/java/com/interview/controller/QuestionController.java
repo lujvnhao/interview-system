@@ -6,6 +6,8 @@ import com.interview.dto.ReviewResultDTO;
 import com.interview.entity.Question;
 import com.interview.service.BackupService;
 import com.interview.service.QuestionService;
+import com.interview.vo.BackupInfoVO;
+import com.interview.vo.ReviewOverviewVO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 题目管理控制器
@@ -28,6 +31,10 @@ public class QuestionController {
 
     private final QuestionService questionService;
     private final BackupService backupService;
+
+    private static final Set<String> LIST_SORT_FIELDS = Set.of(
+            "createTime", "wrongCount", "reviewCount", "lastReviewTime", "weight"
+    );
 
     // ── CRUD ──
 
@@ -72,10 +79,25 @@ public class QuestionController {
             @RequestParam(required = false) String category,
             @RequestParam(required = false) String tag,
             @RequestParam(required = false) Boolean mastered,
-            @RequestParam(required = false) Boolean favorite) {
+            @RequestParam(required = false) Boolean favorite,
+            @RequestParam(required = false) Boolean emptyTag,
+            @RequestParam(required = false) Boolean noAnswer,
+            @RequestParam(required = false) Boolean hotTag,
+            @RequestParam(required = false) Boolean longUnreviewed,
+            @RequestParam(defaultValue = "14") Integer staleDays,
+            @RequestParam(defaultValue = "createTime") String sortBy,
+            @RequestParam(defaultValue = "desc") String sortDir) {
 
-        Pageable pageable = PageRequest.of(page - 1, size, Sort.by(Sort.Direction.DESC, "createTime"));
-        Page<Question> result = questionService.list(pageable, keyword, category, tag, mastered, favorite);
+        String safeSortBy = LIST_SORT_FIELDS.contains(sortBy) ? sortBy : "createTime";
+        Sort.Direction direction = "asc".equalsIgnoreCase(sortDir)
+                ? Sort.Direction.ASC
+                : Sort.Direction.DESC;
+        Sort.Order order = Sort.Order.by(safeSortBy)
+                .with(direction)
+                .nullsLast();
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by(order));
+        Page<Question> result = questionService.list(pageable, keyword, category, tag,
+                mastered, favorite, emptyTag, noAnswer, hotTag, longUnreviewed, staleDays);
 
         return Result.success(Map.of(
                 "content", result.getContent(),
@@ -94,6 +116,29 @@ public class QuestionController {
             @RequestParam(defaultValue = "all") String mode,
             @RequestParam(required = false) String category) {
         return Result.success(questionService.randomQuestion(mode, category));
+    }
+
+    /** 今日应复习题目列表 */
+    @GetMapping("/due-today")
+    public Result<Map<String, Object>> dueToday(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "20") int size,
+            @RequestParam(required = false) String category) {
+        Pageable pageable = PageRequest.of(page - 1, size);
+        Page<Question> result = questionService.dueToday(pageable, category);
+        return Result.success(Map.of(
+                "content", result.getContent(),
+                "totalElements", result.getTotalElements(),
+                "totalPages", result.getTotalPages(),
+                "currentPage", page,
+                "pageSize", size
+        ));
+    }
+
+    /** 首页今日复习概览 */
+    @GetMapping("/review-overview")
+    public Result<ReviewOverviewVO> reviewOverview() {
+        return Result.success(questionService.reviewOverview());
     }
 
     // ── 复习反馈 ──
@@ -195,25 +240,41 @@ public class QuestionController {
 
     // ── 备份与恢复 ──
 
-    /** 手动触发数据备份到 data/backup/ */
-    @PostMapping("/backup/export")
-    public Result<?> triggerBackup() {
-        backupService.exportBackup();
-        return Result.success("备份已导出到 data/backup/");
+    /** 查询备份列表 */
+    @GetMapping("/backup/list")
+    public Result<List<BackupInfoVO>> listBackups() {
+        return Result.success(backupService.listBackups());
     }
 
-    /** 从备份恢复数据（仅限数据库为空时） */
+    /** 创建手动备份快照 */
+    @PostMapping("/backup/create")
+    public Result<BackupInfoVO> createBackup() {
+        return Result.success("备份已创建", backupService.createManualBackup());
+    }
+
+    /** 手动触发数据备份到 data/backup/ */
+    @PostMapping("/backup/export")
+    public Result<BackupInfoVO> triggerBackup() {
+        return Result.success("备份已导出到 data/backup/", backupService.createManualBackup());
+    }
+
+    /** 从指定备份恢复题库和标签 */
+    @PostMapping("/backup/{backupId}/restore")
+    public Result<BackupInfoVO> restoreBackup(@PathVariable String backupId) {
+        try {
+            return Result.success("数据已从备份恢复", backupService.restoreBackup(backupId));
+        } catch (IllegalArgumentException e) {
+            return Result.paramError(e.getMessage());
+        }
+    }
+
+    /** 从当前自动备份恢复数据 */
     @PostMapping("/backup/restore")
     public Result<?> triggerRestore() {
-        // 安全检查：仅当数据库为空时允许恢复
-        var qbOpt = backupService.loadQuestionsBackup();
-        var tbOpt = backupService.loadTagsBackup();
-
-        if (qbOpt.isEmpty() || tbOpt.isEmpty()) {
-            return Result.paramError("备份文件不存在或已损坏，无法恢复");
+        try {
+            return Result.success("数据已从备份恢复", backupService.restoreBackup("current"));
+        } catch (IllegalArgumentException e) {
+            return Result.paramError(e.getMessage());
         }
-
-        backupService.restoreFromBackup(qbOpt.get(), tbOpt.get());
-        return Result.success("数据已从备份恢复");
     }
 }

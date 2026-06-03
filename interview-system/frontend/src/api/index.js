@@ -34,6 +34,8 @@ export const getQuestionList = (params) => api.get('/questions', { params })
 
 // ── 抽题 ──
 export const getRandomQuestion = (params) => api.get('/questions/random', { params })
+export const getDueTodayQuestions = (params) => api.get('/questions/due-today', { params })
+export const getReviewOverview = () => api.get('/questions/review-overview')
 
 // ── 复习反馈 ──
 export const submitReview = (id, data) => api.post(`/questions/${id}/review`, data)
@@ -50,6 +52,11 @@ export const getUnmastered = (params) => api.get('/questions/unmastered', { para
 
 // ── 统计 ──
 export const getStatistics = () => api.get('/questions/statistics')
+
+// ── 备份管理 ──
+export const getBackups = () => api.get('/questions/backup/list')
+export const createBackup = () => api.post('/questions/backup/create')
+export const restoreBackup = (id) => api.post(`/questions/backup/${encodeURIComponent(id)}/restore`)
 
 // ── 导入导出 ──
 export const exportJson = () => api.get('/questions/export/json')

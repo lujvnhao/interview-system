@@ -29,7 +29,13 @@ const routes = [
     path: '/statistics',
     name: 'Statistics',
     component: () => import('../views/Statistics.vue'),
-    meta: { title: '统计分析' }
+    meta: { title: '学习诊断' }
+  },
+  {
+    path: '/backups',
+    name: 'BackupManagement',
+    component: () => import('../views/BackupManagement.vue'),
+    meta: { title: '备份管理' }
   }
 ]
 

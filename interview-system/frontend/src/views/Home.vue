@@ -1,5 +1,27 @@
 <template>
   <div class="quiz-page">
+    <header class="quiz-hero">
+      <div class="hero-copy">
+        <h1>面试抽背</h1>
+        <p v-if="stats">今日 {{ stats.todayReviewCount }} 题 · 题库 {{ stats.totalQuestions }} 题</p>
+        <p v-else>题库加载中</p>
+      </div>
+      <div class="hero-metrics" v-if="stats">
+        <div class="metric-chip">
+          <span class="metric-value">{{ stats.masteredQuestions }}</span>
+          <span class="metric-label">已掌握</span>
+        </div>
+        <div class="metric-chip warn">
+          <span class="metric-value">{{ stats.unmasteredQuestions }}</span>
+          <span class="metric-label">待巩固</span>
+        </div>
+        <div class="metric-chip saved">
+          <span class="metric-value">{{ stats.favoriteQuestions }}</span>
+          <span class="metric-label">收藏</span>
+        </div>
+      </div>
+    </header>
+
     <div class="quiz-layout">
       <!-- 左侧：抽题主区域 -->
       <div class="quiz-main">
@@ -10,8 +32,9 @@
               <label>抽题范围</label>
               <el-select v-model="mode" size="large" class="mode-select">
                 <el-option label="全部题目" value="all" />
-                <el-option label="⭐ 收藏题目" value="favorites" />
-                <el-option label="🔥 未掌握" value="unmastered" />
+                <el-option label="今日待复习" value="dueToday" />
+                <el-option label="收藏题目" value="favorites" />
+                <el-option label="未掌握" value="unmastered" />
               </el-select>
             </div>
             <div class="control-group">
@@ -21,18 +44,25 @@
               </el-select>
             </div>
           </div>
-          <el-button type="primary" size="large" @click="nextQuestion" :loading="loading" class="draw-btn">
-            <el-icon><Refresh /></el-icon> 随机抽题
+          <el-button
+            type="primary"
+            size="large"
+            title="快捷键：Enter"
+            @click="nextQuestion"
+            :loading="loading"
+            class="draw-btn"
+          >
+            <el-icon><Refresh /></el-icon> {{ drawButtonText }}
           </el-button>
         </div>
 
         <!-- 空状态 -->
         <div v-if="!currentQuestion && !loading" class="empty-state">
           <div class="empty-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2M9 5h6"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
+            <el-icon><Document /></el-icon>
           </div>
-          <h3>暂无题目</h3>
-          <p>前往题库管理添加面试题，或点击上方按钮切换抽题范围</p>
+          <h3>{{ emptyTitle }}</h3>
+          <p>{{ emptyDescription }}</p>
         </div>
 
         <!-- 题目卡片 -->
@@ -47,7 +77,7 @@
               :class="{ 'tag-hot': tag === '高频' || tag === '重点' || tag === '必背' }"
             >{{ tag }}</span>
             <span v-if="currentQuestion.mastered" class="tag-status done">已掌握</span>
-            <span v-if="currentQuestion.favorite" class="tag-status fav">⭐ 收藏</span>
+            <span v-if="currentQuestion.favorite" class="tag-status fav">收藏</span>
           </div>
 
           <!-- 问题区 -->
@@ -58,19 +88,23 @@
 
           <!-- 操作按钮（答案显示前） -->
           <div v-if="!answerVisible" class="action-row">
-            <button class="btn-mastered" @click="handleMastered(true)" :disabled="submitting">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <button class="btn-mastered" title="快捷键：1" @click="handleMastered(true)" :disabled="submitting">
+              <el-icon><Check /></el-icon>
               <span>掌握了</span>
             </button>
-            <button class="btn-failed" @click="handleMastered(false)" :disabled="submitting">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <button class="btn-failed" title="快捷键：2" @click="handleMastered(false)" :disabled="submitting">
+              <el-icon><Close /></el-icon>
               <span>没掌握</span>
             </button>
             <button
               :class="['btn-fav', { active: currentQuestion.favorite }]"
+              title="快捷键：F"
               @click="handleFavorite"
             >
-              <svg viewBox="0 0 24 24" :fill="currentQuestion.favorite ? 'currentColor' : 'none'" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <el-icon>
+                <StarFilled v-if="currentQuestion.favorite" />
+                <Star v-else />
+              </el-icon>
               <span>{{ currentQuestion.favorite ? '已收藏' : '收藏' }}</span>
             </button>
           </div>
@@ -80,39 +114,34 @@
             <div class="answer-divider">
               <span class="divider-line"></span>
               <span class="divider-label">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="12" y2="16"/></svg>
+                <el-icon><Tickets /></el-icon>
                 参考答案
               </span>
               <span class="divider-line"></span>
             </div>
 
-            <div v-if="currentQuestion.answer" class="answer-content">
-              {{ currentQuestion.answer }}
-            </div>
-            <div v-else class="answer-empty">
-              <p>📭 当前题目暂无答案</p>
-            </div>
+            <MarkdownView :content="currentQuestion.answer" empty-text="当前题目暂无答案" />
 
             <div class="answer-actions">
-              <button class="btn-edit-answer" @click="showAnswerDialog = true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              <button class="btn-edit-answer" title="快捷键：E" @click="openAnswerDialog">
+                <el-icon><EditPen /></el-icon>
                 {{ currentQuestion.answer ? '修改答案' : '补充答案' }}
               </button>
-              <button class="btn-next" @click="nextQuestion">
+              <button class="btn-next" title="快捷键：Enter" @click="nextQuestion">
                 下一题
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                <el-icon><Right /></el-icon>
               </button>
             </div>
 
             <!-- 复习统计条 -->
             <div class="review-meta">
-              <span>📊 复习 {{ currentQuestion.reviewCount }} 次</span>
+              <span>复习 {{ currentQuestion.reviewCount }} 次</span>
               <span class="dot">·</span>
-              <span>✅ 掌握 {{ currentQuestion.correctCount }}</span>
+              <span>掌握 {{ currentQuestion.correctCount }}</span>
               <span class="dot">·</span>
-              <span>❌ 未掌握 {{ currentQuestion.wrongCount }}</span>
+              <span>未掌握 {{ currentQuestion.wrongCount }}</span>
               <span class="dot">·</span>
-              <span>⚖️ 权重 {{ currentQuestion.weight }}</span>
+              <span>权重 {{ currentQuestion.weight }}</span>
             </div>
           </div>
         </div>
@@ -122,36 +151,64 @@
       <div class="quiz-sidebar">
         <div class="stats-panel">
           <h3 class="panel-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <el-icon><DataAnalysis /></el-icon>
             复习概览
           </h3>
 
           <div class="stats-grid" v-if="stats">
-            <div class="stat-card">
-              <div class="stat-num" style="color:#6366f1">{{ stats.totalQuestions }}</div>
+            <div class="stat-card total">
+              <div class="stat-num">{{ stats.totalQuestions }}</div>
               <div class="stat-lbl">总题目</div>
             </div>
-            <div class="stat-card">
-              <div class="stat-num" style="color:#10b981">{{ stats.masteredQuestions }}</div>
+            <div class="stat-card mastered">
+              <div class="stat-num">{{ stats.masteredQuestions }}</div>
               <div class="stat-lbl">已掌握</div>
             </div>
-            <div class="stat-card">
-              <div class="stat-num" style="color:#ef4444">{{ stats.unmasteredQuestions }}</div>
+            <div class="stat-card unmastered">
+              <div class="stat-num">{{ stats.unmasteredQuestions }}</div>
               <div class="stat-lbl">未掌握</div>
             </div>
-            <div class="stat-card">
-              <div class="stat-num" style="color:#f59e0b">{{ stats.favoriteQuestions }}</div>
+            <div class="stat-card favorite">
+              <div class="stat-num">{{ stats.favoriteQuestions }}</div>
               <div class="stat-lbl">收藏</div>
             </div>
           </div>
 
           <div class="today-badge" v-if="stats">
-            📅 今日已复习 <strong>{{ stats.todayReviewCount }}</strong> 题
+            今日已复习 <strong>{{ stats.todayReviewCount }}</strong> 题
+          </div>
+
+          <div class="due-overview" v-if="reviewOverview">
+            <div class="due-grid">
+              <div class="due-item primary">
+                <span class="due-num">{{ reviewOverview.dueTodayCount }}</span>
+                <span class="due-label">今日待复习</span>
+              </div>
+              <div class="due-item risk">
+                <span class="due-num">{{ reviewOverview.highRiskCount }}</span>
+                <span class="due-label">高风险题</span>
+              </div>
+              <div class="due-item stale">
+                <span class="due-num">{{ reviewOverview.longUnreviewedCount }}</span>
+                <span class="due-label">长期未复习</span>
+              </div>
+            </div>
+            <el-button
+              type="primary"
+              class="start-today-btn"
+              :disabled="loading"
+              @click="startTodayReview"
+            >
+              开始今日复习
+            </el-button>
+            <p v-if="reviewOverview.dueTodayCount === 0" class="due-empty-tip">
+              今天暂无到期题，可继续随机抽题
+            </p>
           </div>
 
           <!-- 错题排行 -->
           <div class="rank-section" v-if="stats?.wrongRank?.length">
-            <h4>🔥 错题排行</h4>
+            <h4>错题排行</h4>
             <div v-for="(item, i) in stats.wrongRank.slice(0, 5)" :key="item.id" class="rank-row">
               <span class="rank-pos" :class="'top' + (i + 1)">{{ i + 1 }}</span>
               <span class="rank-q">{{ item.question }}</span>
@@ -163,8 +220,18 @@
     </div>
 
     <!-- 补充答案弹窗 -->
-    <el-dialog v-model="showAnswerDialog" title="补充 / 修改答案" width="620px" :close-on-click-modal="false">
-      <el-input v-model="answerForm" type="textarea" :rows="10" placeholder="请输入参考答案..." />
+    <el-dialog
+      v-model="showAnswerDialog"
+      title="补充 / 修改答案"
+      width="620px"
+      :close-on-click-modal="false"
+    >
+      <AnswerEditor
+        v-model="answerForm"
+        :rows="10"
+        placeholder="请输入参考答案..."
+        @escape="showAnswerDialog = false"
+      />
       <template #footer>
         <el-button @click="showAnswerDialog = false">取消</el-button>
         <el-button type="primary" @click="submitAnswer" :loading="submitting">保存答案</el-button>
@@ -174,13 +241,26 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import {
+  ref,
+  computed,
+  onMounted,
+  onBeforeUnmount,
+  onActivated,
+  onDeactivated,
+  watch
+} from 'vue'
+import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import {
   getRandomQuestion, submitReview, toggleFavorite,
-  updateAnswer, getStatistics, getCategories
+  updateAnswer, getStatistics, getCategories,
+  getDueTodayQuestions, getReviewOverview
 } from '../api'
+import AnswerEditor from '../components/AnswerEditor.vue'
+import MarkdownView from '../components/MarkdownView.vue'
 
+const route = useRoute()
 const loading = ref(false)
 const submitting = ref(false)
 const currentQuestion = ref(null)
@@ -188,13 +268,33 @@ const answerVisible = ref(false)
 const showAnswerDialog = ref(false)
 const answerForm = ref('')
 const stats = ref(null)
+const reviewOverview = ref(null)
 const categories = ref([])
 const mode = ref('all')
 const filterCategory = ref('')
+let shortcutBound = false
+
+const syncModeFromRoute = () => {
+  const routeMode = route.query.mode
+  if (['all', 'dueToday', 'favorites', 'unmastered'].includes(routeMode)) {
+    mode.value = routeMode
+  }
+}
 
 const tagList = computed(() => {
   if (!currentQuestion.value?.tags) return []
   return currentQuestion.value.tags.split(',').map(t => t.trim()).filter(Boolean)
+})
+
+const drawButtonText = computed(() => mode.value === 'dueToday' ? '抽待复习题' : '随机抽题')
+
+const emptyTitle = computed(() => mode.value === 'dueToday' ? '今天没有待复习题' : '暂无题目')
+
+const emptyDescription = computed(() => {
+  if (mode.value === 'dueToday') {
+    return '当前范围内暂无到期题，可切换分类或返回全部题目继续随机抽背'
+  }
+  return '前往题库管理添加面试题，或点击上方按钮切换抽题范围'
 })
 
 const nextQuestion = async () => {
@@ -203,6 +303,15 @@ const nextQuestion = async () => {
   try {
     const params = { mode: mode.value }
     if (filterCategory.value) params.category = filterCategory.value
+    if (mode.value === 'dueToday') {
+      const dueParams = { page: 1, size: 1 }
+      if (filterCategory.value) dueParams.category = filterCategory.value
+      const dueRes = await getDueTodayQuestions(dueParams)
+      if (!dueRes.data?.totalElements) {
+        currentQuestion.value = null
+        return
+      }
+    }
     const res = await getRandomQuestion(params)
     currentQuestion.value = res.data
   } catch (e) {
@@ -221,6 +330,7 @@ const handleMastered = async (mastered) => {
     answerVisible.value = true
     ElMessage.success(mastered ? '已标记为掌握 ✓' : '已标记为没掌握，自动收藏，下次加油！')
     fetchStats()
+    fetchReviewOverview()
   } catch (e) {} finally { submitting.value = false }
 }
 
@@ -230,7 +340,14 @@ const handleFavorite = async () => {
     const res = await toggleFavorite(currentQuestion.value.id)
     currentQuestion.value = res.data
     fetchStats()
+    fetchReviewOverview()
   } catch (e) {}
+}
+
+const openAnswerDialog = () => {
+  if (!currentQuestion.value) return
+  answerForm.value = currentQuestion.value.answer || ''
+  showAnswerDialog.value = true
 }
 
 const submitAnswer = async () => {
@@ -251,6 +368,13 @@ const fetchStats = async () => {
   } catch (e) {}
 }
 
+const fetchReviewOverview = async () => {
+  try {
+    const res = await getReviewOverview()
+    reviewOverview.value = res.data
+  } catch (e) {}
+}
+
 const fetchCategories = async () => {
   try {
     const res = await getCategories()
@@ -258,256 +382,760 @@ const fetchCategories = async () => {
   } catch (e) {}
 }
 
+const startTodayReview = async () => {
+  mode.value = 'dueToday'
+  await nextQuestion()
+}
+
+const isEditableTarget = (target) => {
+  if (!(target instanceof HTMLElement)) return false
+  const tagName = target.tagName.toLowerCase()
+  return tagName === 'input'
+    || tagName === 'textarea'
+    || tagName === 'select'
+    || target.isContentEditable
+    || !!target.closest('[contenteditable="true"]')
+}
+
+const handleShortcut = (event) => {
+  if (event.__quizShortcutHandled) return
+  event.__quizShortcutHandled = true
+  if (route.path !== '/' || event.defaultPrevented) return
+  if (event.ctrlKey || event.metaKey || event.altKey) return
+
+  const key = event.key.toLowerCase()
+
+  if (showAnswerDialog.value) {
+    if (key === 'escape' || key === 'esc') {
+      event.preventDefault()
+      showAnswerDialog.value = false
+    }
+    return
+  }
+
+  if (isEditableTarget(event.target)) return
+
+  if (key === 'enter') {
+    event.preventDefault()
+    if (!loading.value) nextQuestion()
+    return
+  }
+
+  if (!currentQuestion.value || submitting.value) return
+
+  if (key === '1') {
+    event.preventDefault()
+    if (!answerVisible.value) handleMastered(true)
+    return
+  }
+
+  if (key === '2') {
+    event.preventDefault()
+    if (!answerVisible.value) handleMastered(false)
+    return
+  }
+
+  if (key === 'f') {
+    event.preventDefault()
+    handleFavorite()
+    return
+  }
+
+  if (key === 'e') {
+    event.preventDefault()
+    openAnswerDialog()
+  }
+}
+
+const bindShortcuts = () => {
+  if (shortcutBound) return
+  window.addEventListener('keydown', handleShortcut, true)
+  document.addEventListener('keydown', handleShortcut, true)
+  shortcutBound = true
+}
+
+const unbindShortcuts = () => {
+  if (!shortcutBound) return
+  window.removeEventListener('keydown', handleShortcut, true)
+  document.removeEventListener('keydown', handleShortcut, true)
+  shortcutBound = false
+}
+
 onMounted(() => {
+  syncModeFromRoute()
   fetchCategories()
   fetchStats()
+  fetchReviewOverview()
   if (!currentQuestion.value) nextQuestion()
+  bindShortcuts()
+})
+
+onActivated(bindShortcuts)
+onDeactivated(unbindShortcuts)
+onBeforeUnmount(unbindShortcuts)
+
+watch(() => route.query.mode, async () => {
+  syncModeFromRoute()
+  await nextQuestion()
 })
 </script>
 
 <style scoped>
-.quiz-page { max-width: 1340px; margin: 0 auto; }
+.quiz-page {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.quiz-hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 4px 0 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #dfe5e8;
+}
+
+.hero-copy h1 {
+  color: #1f2933;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.hero-copy p {
+  margin-top: 8px;
+  color: #667085;
+  font-size: 14px;
+}
+
+.hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(92px, 1fr));
+  gap: 10px;
+}
+
+.metric-chip {
+  min-width: 92px;
+  padding: 11px 12px;
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-left: 3px solid #16a34a;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.metric-chip.warn {
+  border-left-color: #dc2626;
+}
+
+.metric-chip.saved {
+  border-left-color: #d97706;
+}
+
+.metric-value {
+  display: block;
+  color: #1f2933;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.metric-label {
+  display: block;
+  margin-top: 6px;
+  color: #667085;
+  font-size: 12px;
+  font-weight: 600;
+}
 
 .quiz-layout {
   display: flex;
-  gap: 24px;
+  gap: 18px;
   align-items: flex-start;
 }
 
-/* ── 左侧主区域 ── */
 .quiz-main {
   flex: 1;
   min-width: 0;
 }
 
-/* 控制栏 */
 .control-bar {
   display: flex;
-  align-items: flex-end;
-  gap: 16px;
-  margin-bottom: 24px;
   flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-end;
+  padding: 16px;
+  margin-bottom: 16px;
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
 }
-.control-left { display: flex; gap: 16px; }
-.control-group { display: flex; flex-direction: column; gap: 4px; }
+
+.control-left {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 12px;
+  min-width: 280px;
+}
+
+.control-group {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 180px;
+}
+
 .control-group label {
-  font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: .5px;
+  color: #667085;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
 }
+
 .draw-btn {
   height: 44px !important;
-  padding: 0 28px !important;
+  min-width: 132px;
+  padding: 0 20px !important;
   font-size: 15px !important;
-  font-weight: 600 !important;
-  border-radius: 12px !important;
+  border-radius: 8px !important;
 }
 
-/* 空状态 */
 .empty-state {
+  padding: 72px 32px;
   text-align: center;
-  padding: 80px 40px;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
 }
+
 .empty-icon {
-  width: 72px; height: 72px;
-  margin: 0 auto 20px;
-  background: #f1f5f9; border-radius: 20px;
-  display: flex; align-items: center; justify-content: center;
-  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  color: #0f766e;
+  font-size: 30px;
+  background: #e6f4f1;
+  border-radius: 8px;
 }
-.empty-icon svg { width: 32px; height: 32px; }
-.empty-state h3 { font-size: 18px; color: #334155; margin-bottom: 8px; }
-.empty-state p { color: #94a3b8; font-size: 14px; }
 
-/* 题目卡片 */
+.empty-state h3 {
+  margin-bottom: 8px;
+  color: #344054;
+  font-size: 18px;
+}
+
+.empty-state p {
+  color: #667085;
+  font-size: 14px;
+}
+
 .question-card {
-  background: #fff;
-  border-radius: 20px;
-  padding: 32px;
-  box-shadow: 0 1px 3px rgba(0,0,0,.04), 0 1px 2px rgba(0,0,0,.03);
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 14px 30px rgba(16, 24, 40, 0.05);
 }
 
-/* 标签 */
 .card-tags {
-  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
 }
-.tag-category {
-  font-size: 12px; font-weight: 600;
-  padding: 4px 10px; border-radius: 6px;
-  background: #eef2ff; color: #6366f1;
-}
-.tag-item {
-  font-size: 12px; font-weight: 500;
-  padding: 4px 10px; border-radius: 6px;
-  background: #f1f5f9; color: #64748b;
-}
-.tag-hot { background: #fef2f2; color: #ef4444; }
-.tag-status {
-  font-size: 12px; font-weight: 600;
-  padding: 4px 10px; border-radius: 6px;
-}
-.tag-status.done { background: #ecfdf5; color: #10b981; }
-.tag-status.fav { background: #fffbeb; color: #f59e0b; }
 
-/* 问题 */
-.question-body {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  border-radius: 16px;
-  padding: 32px;
-  margin-bottom: 28px;
+.tag-category,
+.tag-item,
+.tag-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 3px 9px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 6px;
 }
+
+.tag-category {
+  color: #2563eb;
+  background: #eaf2ff;
+}
+
+.tag-item {
+  color: #5f6f7d;
+  background: #f0f3f5;
+}
+
+.tag-hot {
+  color: #dc2626;
+  background: #fff1f0;
+}
+
+.tag-status.done {
+  color: #0f766e;
+  background: #e6f4f1;
+}
+
+.tag-status.fav {
+  color: #b45309;
+  background: #fff4df;
+}
+
+.question-body {
+  position: relative;
+  padding: 26px 28px 28px;
+  margin-bottom: 22px;
+  overflow: hidden;
+  color: #ffffff;
+  background:
+    linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(217, 119, 6, 0.08)),
+    linear-gradient(135deg, #0f766e 0%, #1f2933 100%);
+  border-radius: 8px;
+}
+
+.question-body::after {
+  position: absolute;
+  right: 18px;
+  bottom: 12px;
+  width: 120px;
+  height: 1px;
+  content: "";
+  background: rgba(255, 255, 255, 0.32);
+}
+
 .q-number {
   display: inline-block;
-  font-size: 12px; font-weight: 700; color: rgba(255,255,255,.5);
-  letter-spacing: 1px; margin-bottom: 12px;
-}
-.q-text {
-  font-size: 19px; font-weight: 600; line-height: 1.8; color: #fff;
-  letter-spacing: .3px;
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
 }
 
-/* 操作按钮 */
+.q-text {
+  position: relative;
+  z-index: 1;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.75;
+  letter-spacing: 0;
+}
+
 .action-row {
-  display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
 }
-.btn-mastered, .btn-failed, .btn-fav {
-  display: flex; align-items: center; gap: 8px;
-  padding: 14px 28px;
-  border: none; border-radius: 14px;
-  font-size: 15px; font-weight: 600; cursor: pointer;
-  transition: all .2s;
+
+.btn-mastered,
+.btn-failed,
+.btn-fav,
+.btn-edit-answer,
+.btn-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
 }
+
+.btn-mastered:disabled,
+.btn-failed:disabled,
+.btn-fav:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
 .btn-mastered {
-  background: #ecfdf5; color: #059669;
+  color: #0f766e;
+  background: #e6f4f1;
+  border-color: #b8ded8;
 }
-.btn-mastered:hover { background: #d1fae5; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16,185,129,.2); }
-.btn-mastered svg { width: 20px; height: 20px; }
+
+.btn-mastered:hover {
+  background: #d5eee9;
+  transform: translateY(-1px);
+}
 
 .btn-failed {
-  background: #fef2f2; color: #dc2626;
+  color: #dc2626;
+  background: #fff1f0;
+  border-color: #ffd4d0;
 }
-.btn-failed:hover { background: #fee2e2; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(239,68,68,.2); }
-.btn-failed svg { width: 20px; height: 20px; }
+
+.btn-failed:hover {
+  background: #ffe4e1;
+  transform: translateY(-1px);
+}
 
 .btn-fav {
-  background: #f8fafc; color: #64748b;
+  color: #5f6f7d;
+  background: #f6f8f9;
+  border-color: #dfe5e8;
 }
-.btn-fav:hover, .btn-fav.active { background: #fffbeb; color: #f59e0b; }
-.btn-fav.active:hover { background: #fef3c7; }
-.btn-fav svg { width: 20px; height: 20px; }
 
-/* 答案区域 */
-.answer-section { margin-top: 8px; }
+.btn-fav:hover,
+.btn-fav.active {
+  color: #b45309;
+  background: #fff4df;
+  border-color: #f8d49a;
+}
+
+.answer-section {
+  margin-top: 4px;
+}
 
 .answer-divider {
-  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
 }
-.divider-line { flex: 1; height: 1px; background: #e2e8f0; }
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: #dfe5e8;
+}
+
 .divider-label {
-  font-size: 13px; font-weight: 600; color: #94a3b8;
-  display: flex; align-items: center; gap: 6px; white-space: nowrap;
-}
-
-.answer-content {
-  background: #f8fafc;
-  border-radius: 12px;
-  padding: 24px;
-  font-size: 15px; line-height: 2; color: #334155;
-  white-space: pre-wrap; word-break: break-word;
-  border: 1px solid #e2e8f0;
-}
-
-.answer-empty {
-  text-align: center; padding: 32px;
-  color: #94a3b8; font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #667085;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .answer-actions {
-  display: flex; justify-content: center; gap: 12px; margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
 }
-.btn-edit-answer, .btn-next {
-  display: flex; align-items: center; gap: 6px;
-  padding: 10px 22px;
-  border: none; border-radius: 10px;
-  font-size: 14px; font-weight: 600; cursor: pointer;
-  transition: all .2s;
+
+.btn-edit-answer {
+  color: #2563eb;
+  background: #eaf2ff;
+  border-color: #c9ddff;
 }
-.btn-edit-answer { background: #eef2ff; color: #6366f1; }
-.btn-edit-answer:hover { background: #e0e7ff; }
-.btn-next { background: #6366f1; color: #fff; }
-.btn-next:hover { background: #4f46e5; box-shadow: 0 4px 12px rgba(99,102,241,.3); }
+
+.btn-edit-answer:hover {
+  background: #deebff;
+}
+
+.btn-next {
+  color: #ffffff;
+  background: #0f766e;
+  border-color: #0f766e;
+}
+
+.btn-next:hover {
+  background: #0b5f59;
+  border-color: #0b5f59;
+}
 
 .review-meta {
-  display: flex; justify-content: center; gap: 8px;
-  margin-top: 18px; font-size: 13px; color: #94a3b8;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+  color: #667085;
+  font-size: 13px;
 }
-.dot { color: #cbd5e1; }
 
-/* ── 右侧面板 ── */
-.quiz-sidebar { width: 280px; flex-shrink: 0; }
+.dot {
+  color: #b7c0c7;
+}
+
+.quiz-sidebar {
+  flex-shrink: 0;
+  width: 292px;
+}
 
 .stats-panel {
-  background: #fff;
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0,0,0,.04);
-  position: sticky; top: 28px;
+  position: sticky;
+  top: 28px;
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
 }
+
 .panel-title {
-  font-size: 15px; font-weight: 700; color: #1e293b;
-  display: flex; align-items: center; gap: 8px;
-  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  color: #1f2933;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.panel-title .el-icon {
+  color: #0f766e;
 }
 
 .stats-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
+
 .stat-card {
-  background: #f8fafc;
-  border-radius: 12px;
-  padding: 14px 12px;
+  padding: 13px 10px;
   text-align: center;
-  transition: transform .15s;
+  background: #f8faf9;
+  border: 1px solid #edf1f3;
+  border-radius: 8px;
 }
-.stat-card:hover { transform: translateY(-2px); }
-.stat-num { font-size: 26px; font-weight: 800; line-height: 1.2; }
-.stat-lbl { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+
+.stat-num {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.stat-card.total .stat-num {
+  color: #2563eb;
+}
+
+.stat-card.mastered .stat-num {
+  color: #16a34a;
+}
+
+.stat-card.unmastered .stat-num {
+  color: #dc2626;
+}
+
+.stat-card.favorite .stat-num {
+  color: #d97706;
+}
+
+.stat-lbl {
+  margin-top: 4px;
+  color: #667085;
+  font-size: 12px;
+  font-weight: 600;
+}
 
 .today-badge {
-  text-align: center; margin-top: 16px;
-  padding: 10px; background: #f8fafc; border-radius: 10px;
-  font-size: 13px; color: #64748b;
+  padding: 10px;
+  margin-top: 12px;
+  color: #667085;
+  font-size: 13px;
+  text-align: center;
+  background: #f6f8f9;
+  border-radius: 8px;
 }
-.today-badge strong { color: #6366f1; }
 
-.rank-section { margin-top: 20px; }
-.rank-section h4 { font-size: 13px; font-weight: 700; color: #1e293b; margin-bottom: 10px; }
+.today-badge strong {
+  color: #0f766e;
+}
+
+.due-overview {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #edf1f3;
+}
+
+.due-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.due-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 38px;
+  padding: 8px 10px;
+  background: #f8faf9;
+  border: 1px solid #edf1f3;
+  border-left: 3px solid #0f766e;
+  border-radius: 8px;
+}
+
+.due-item.risk {
+  border-left-color: #dc2626;
+}
+
+.due-item.stale {
+  border-left-color: #d97706;
+}
+
+.due-num {
+  color: #1f2933;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.due-label {
+  color: #667085;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.start-today-btn {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 8px !important;
+}
+
+.due-empty-tip {
+  margin-top: 8px;
+  color: #667085;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.rank-section {
+  margin-top: 18px;
+}
+
+.rank-section h4 {
+  margin-bottom: 10px;
+  color: #1f2933;
+  font-size: 13px;
+  font-weight: 800;
+}
 
 .rank-row {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 0; border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 0;
   font-size: 13px;
-}
-.rank-row:last-child { border-bottom: none; }
-.rank-pos {
-  width: 22px; height: 22px; border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700;
-  background: #e2e8f0; color: #64748b; flex-shrink: 0;
-}
-.rank-pos.top1 { background: #fef2f2; color: #ef4444; }
-.rank-pos.top2 { background: #fff7ed; color: #f97316; }
-.rank-pos.top3 { background: #fefce8; color: #eab308; }
-.rank-q {
-  flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #475569;
-}
-.rank-count {
-  font-weight: 600; color: #ef4444; flex-shrink: 0;
+  border-bottom: 1px solid #edf1f3;
 }
 
-@media (max-width: 1024px) {
-  .quiz-layout { flex-direction: column; }
-  .quiz-sidebar { width: 100%; }
+.rank-row:last-child {
+  border-bottom: 0;
+}
+
+.rank-pos {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: #667085;
+  font-size: 11px;
+  font-weight: 800;
+  background: #edf1f3;
+  border-radius: 6px;
+}
+
+.rank-pos.top1 {
+  color: #dc2626;
+  background: #fff1f0;
+}
+
+.rank-pos.top2 {
+  color: #d97706;
+  background: #fff4df;
+}
+
+.rank-pos.top3 {
+  color: #ca8a04;
+  background: #fef9c3;
+}
+
+.rank-q {
+  flex: 1;
+  overflow: hidden;
+  color: #475467;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rank-count {
+  flex-shrink: 0;
+  color: #dc2626;
+  font-weight: 700;
+}
+
+@media (max-width: 1080px) {
+  .quiz-layout {
+    flex-direction: column;
+  }
+
+  .quiz-sidebar {
+    width: 100%;
+  }
+
+  .stats-panel {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .quiz-hero {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hero-copy h1 {
+    font-size: 26px;
+  }
+
+  .hero-metrics {
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .question-card,
+  .control-bar {
+    padding: 14px;
+  }
+
+  .question-body {
+    padding: 22px 18px;
+  }
+
+  .q-text {
+    font-size: 18px;
+  }
+
+  .action-row,
+  .answer-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .btn-mastered,
+  .btn-failed,
+  .btn-fav,
+  .btn-edit-answer,
+  .btn-next,
+  .draw-btn {
+    width: 100%;
+  }
 }
 </style>

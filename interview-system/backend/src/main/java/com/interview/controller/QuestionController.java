@@ -140,12 +140,43 @@ public class QuestionController {
         return Result.success(questionService.reviewOverview());
     }
 
+    /** 专项抽题：算法题每次抽 5 道，当天已抽过的不再出现 */
+    @PostMapping("/special/algorithm/draw")
+    public Result<Map<String, Object>> drawSpecialAlgorithm(
+            @RequestParam(required = false, defaultValue = "5") Integer count) {
+        return Result.success(questionService.drawSpecialAlgorithm(count));
+    }
+
+    /** 专项抽题：恢复今天算法题抽题会话 */
+    @GetMapping("/special/algorithm/state")
+    public Result<Map<String, Object>> specialAlgorithmState() {
+        return Result.success(questionService.specialAlgorithmState());
+    }
+
+    /** 专项抽题：SQL 题随机抽取，不限制当天次数 */
+    @PostMapping("/special/sql/draw")
+    public Result<Map<String, Object>> drawSpecialSql() {
+        return Result.success(questionService.drawSpecialSql());
+    }
+
+    /** 专项抽题概览 */
+    @GetMapping("/special/overview")
+    public Result<Map<String, Object>> specialPracticeOverview() {
+        return Result.success(questionService.specialPracticeOverview());
+    }
+
     // ── 复习反馈 ──
 
     /** 提交掌握/没掌握结果 */
     @PostMapping("/{id}/review")
     public Result<Question> submitReview(@PathVariable Long id, @RequestBody ReviewResultDTO dto) {
         return Result.success(questionService.submitReview(id, dto));
+    }
+
+    /** 专项抽题：提交算法题掌握状态并推进今日会话进度 */
+    @PostMapping("/special/algorithm/{id}/review")
+    public Result<Question> submitSpecialAlgorithmReview(@PathVariable Long id, @RequestBody ReviewResultDTO dto) {
+        return Result.success(questionService.submitSpecialAlgorithmReview(id, dto));
     }
 
     // ── 答案 ──

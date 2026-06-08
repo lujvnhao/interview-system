@@ -114,7 +114,11 @@
           </div>
         </div>
         <el-table v-if="stats?.recentReviews?.length" :data="stats.recentReviews" stripe size="small">
-          <el-table-column prop="question" label="题目" min-width="200" show-overflow-tooltip />
+          <el-table-column prop="question" label="题目" min-width="200">
+            <template #default="{row}">
+              <span class="table-ellipsis-cell" :title="row.question || ''">{{ row.question }}</span>
+            </template>
+          </el-table-column>
           <el-table-column prop="category" label="分类" width="110">
             <template #default="{row}"><span class="cell-cat">{{ row.category }}</span></template>
           </el-table-column>

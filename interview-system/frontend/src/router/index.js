@@ -14,6 +14,12 @@ const routes = [
     meta: { title: '题库管理' }
   },
   {
+    path: '/special-practice',
+    name: 'SpecialPractice',
+    component: () => import('../views/SpecialPractice.vue'),
+    meta: { title: '专项抽题' }
+  },
+  {
     path: '/favorites',
     name: 'Favorites',
     component: () => import('../views/Favorites.vue'),

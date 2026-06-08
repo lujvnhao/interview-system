@@ -18,7 +18,11 @@
     <div class="table-card">
       <el-table :data="tableData" v-loading="loading" stripe class="data-table" max-height="calc(100vh - 260px)">
         <el-table-column prop="id" label="ID" width="55" />
-        <el-table-column prop="question" label="问题" min-width="280" show-overflow-tooltip />
+        <el-table-column prop="question" label="问题" min-width="280">
+          <template #default="{row}">
+            <span class="table-ellipsis-cell" :title="row.question || ''">{{ row.question }}</span>
+          </template>
+        </el-table-column>
         <el-table-column prop="category" label="分类" width="105">
           <template #default="{row}"><span class="cell-cat">{{ row.category }}</span></template>
         </el-table-column>
@@ -35,7 +39,13 @@
             <span v-else class="empty-mark">-</span>
           </template>
         </el-table-column>
-        <el-table-column prop="lastReviewTime" label="最近复习" width="145" show-overflow-tooltip />
+        <el-table-column prop="lastReviewTime" label="最近复习" width="145">
+          <template #default="{row}">
+            <span class="table-ellipsis-cell" :title="row.lastReviewTime || ''">
+              {{ row.lastReviewTime || '暂未复习' }}
+            </span>
+          </template>
+        </el-table-column>
         <el-table-column label="操作" width="240" fixed="right">
           <template #default="{row}">
             <el-button size="small" text @click="showAnswer(row)">查看答案</el-button>

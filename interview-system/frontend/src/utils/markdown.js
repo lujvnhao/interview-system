@@ -1,5 +1,6 @@
 import MarkdownIt from 'markdown-it'
 import DOMPurify from 'dompurify'
+import { formatCodeBlock, getCodeLanguageLabel, normalizeCodeLanguage } from './codeFormatter'
 
 /**
  * 共享 Markdown 渲染器 — MarkdownView 和 AnswerEditor 共用
@@ -15,14 +16,16 @@ const md = new MarkdownIt({
  * 渲染代码块为卡片样式 HTML
  */
 function renderCodeCard(code, language = '') {
-  const escapedLang = md.utils.escapeHtml(language)
+  const normalizedLanguage = normalizeCodeLanguage(language)
+  const escapedLang = md.utils.escapeHtml(normalizedLanguage)
   const langClass = escapedLang ? ` language-${escapedLang}` : ''
-  const label = escapedLang || '代码'
+  const label = md.utils.escapeHtml(getCodeLanguageLabel(normalizedLanguage))
+  const formattedCode = formatCodeBlock(code, normalizedLanguage)
 
   return [
-    '<div class="md-code-card">',
-    `<div class="md-code-head"><span>${label}</span></div>`,
-    `<pre class="md-code-block"><code class="${langClass}">${md.utils.escapeHtml(code)}</code></pre>`,
+    `<div class="md-code-card" data-code-language="${escapedLang}">`,
+    `<div class="md-code-head"><span class="md-code-lang">${label}</span><span class="md-code-state">格式化展示</span></div>`,
+    `<pre class="md-code-block"><code class="${langClass}">${md.utils.escapeHtml(formattedCode)}</code></pre>`,
     '</div>'
   ].join('')
 }
@@ -49,7 +52,7 @@ md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
 }
 
 /** 共享 DOMPurify 配置 */
-const PURIFY_CONFIG = { ADD_ATTR: ['target', 'rel'] }
+const PURIFY_CONFIG = { ADD_ATTR: ['target', 'rel', 'class', 'data-code-language'] }
 
 /**
  * 渲染 Markdown 为安全的 HTML

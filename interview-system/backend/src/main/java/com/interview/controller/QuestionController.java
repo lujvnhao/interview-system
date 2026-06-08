@@ -14,8 +14,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -280,6 +285,23 @@ public class QuestionController {
     @PostMapping("/backup/create")
     public Result<BackupInfoVO> createBackup() {
         return Result.success("备份已创建", backupService.createManualBackup());
+    }
+
+    /** 下载指定备份数据包（questions.json + tags.json） */
+    @GetMapping("/backup/{backupId}/download")
+    public ResponseEntity<byte[]> downloadBackup(@PathVariable String backupId) {
+        byte[] archive = backupService.buildBackupArchive(backupId);
+        String safeId = (backupId == null || backupId.isBlank()) ? "current" : backupId;
+        String filename = "interview-backup-" + safeId + ".zip";
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        ContentDisposition.attachment()
+                                .filename(filename, StandardCharsets.UTF_8)
+                                .build()
+                                .toString())
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .contentLength(archive.length)
+                .body(archive);
     }
 
     /** 手动触发数据备份到 data/backup/ */

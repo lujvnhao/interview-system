@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.io.ByteArrayOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -30,6 +31,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * 数据备份服务 — 将题库数据导出为 JSON 文件，方便 Git 跟踪和灾备恢复
@@ -130,6 +133,29 @@ public class BackupService {
         backups.sort(Comparator.comparing(BackupInfoVO::getExportedAt,
                 Comparator.nullsLast(Comparator.reverseOrder())));
         return backups;
+    }
+
+    /**
+     * 将指定备份打包为 ZIP，便于浏览器一次性下载题目和标签备份。
+     */
+    public byte[] buildBackupArchive(String backupId) {
+        Path dir = resolveBackupDir(backupId);
+        Path questionsFile = dir.resolve("questions.json");
+        Path tagsFile = dir.resolve("tags.json");
+        if (!Files.exists(questionsFile) || !Files.exists(tagsFile)) {
+            throw new BusinessException("备份文件不存在或已损坏");
+        }
+
+        try (ByteArrayOutputStream out = new ByteArrayOutputStream();
+             ZipOutputStream zip = new ZipOutputStream(out)) {
+            writeZipEntry(zip, "questions.json", questionsFile);
+            writeZipEntry(zip, "tags.json", tagsFile);
+            zip.finish();
+            return out.toByteArray();
+        } catch (IOException e) {
+            log.warn("备份下载打包失败: {} ({})", dir, e.getMessage());
+            throw new BusinessException("备份下载失败: " + e.getMessage());
+        }
     }
 
     /**
@@ -302,6 +328,14 @@ public class BackupService {
         Path tempTags = targetDir.resolve("tags.json.tmp");
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(tempTags.toFile(), tb);
         Files.move(tempTags, tagsFile, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+    }
+
+    private void writeZipEntry(ZipOutputStream zip, String entryName, Path source) throws IOException {
+        ZipEntry entry = new ZipEntry(entryName);
+        entry.setTime(Files.getLastModifiedTime(source).toMillis());
+        zip.putNextEntry(entry);
+        Files.copy(source, zip);
+        zip.closeEntry();
     }
 
     private Optional<BackupInfoVO> buildBackupInfo(String id, String type, Path dir) {

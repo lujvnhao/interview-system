@@ -31,6 +31,9 @@ api.interceptors.response.use(
   response => {
     const key = requestKey(response.config)
     pendingRequests.delete(key)
+    if (response.config.responseType === 'blob') {
+      return response
+    }
     const data = response.data
     if (data.code === 200) {
       return data
@@ -100,6 +103,7 @@ export const getStatistics = () => api.get('/questions/statistics')
 export const getBackups = () => api.get('/questions/backup/list')
 export const createBackup = () => api.post('/questions/backup/create')
 export const restoreBackup = (id) => api.post(`/questions/backup/${encodeURIComponent(id)}/restore`)
+export const downloadBackup = (id) => api.get(`/questions/backup/${encodeURIComponent(id)}/download`, { responseType: 'blob' })
 export const getBackupDir = () => api.get('/questions/backup/dir')
 export const openBackupDir = () => api.post('/questions/backup/open-dir')
 

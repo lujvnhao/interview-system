@@ -98,17 +98,27 @@
           </template>
         </el-table-column>
 
-        <el-table-column label="操作" width="128" align="right" fixed="right">
+        <el-table-column label="操作" width="178" align="right" fixed="right">
           <template #default="{ row }">
-            <el-button
-              size="small"
-              type="danger"
-              plain
-              :loading="restoringId === row.id"
-              @click="handleRestore(row)"
-            >
-              恢复
-            </el-button>
+            <div class="action-cell">
+              <el-button
+                size="small"
+                plain
+                :loading="downloadingId === row.id"
+                @click="handleDownload(row)"
+              >
+                下载
+              </el-button>
+              <el-button
+                size="small"
+                type="danger"
+                plain
+                :loading="restoringId === row.id"
+                @click="handleRestore(row)"
+              >
+                恢复
+              </el-button>
+            </div>
           </template>
         </el-table-column>
       </el-table>
@@ -126,6 +136,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import {
   getBackups,
   createBackup,
+  downloadBackup,
   restoreBackup,
   getBackupDir,
   openBackupDir,
@@ -139,6 +150,7 @@ const loading = ref(false)
 const creating = ref(false)
 const openingDir = ref(false)
 const restoringId = ref('')
+const downloadingId = ref('')
 const backupDirPath = ref('')
 
 const latestBackup = computed(() => backups.value[0] || null)
@@ -181,6 +193,35 @@ const handleCreateBackup = async () => {
   } catch (e) {
   } finally {
     creating.value = false
+  }
+}
+
+const getDownloadFilename = (response, fallback) => {
+  const disposition = response.headers?.['content-disposition'] || ''
+  const utf8Match = disposition.match(/filename\*=UTF-8''([^;]+)/i)
+  if (utf8Match?.[1]) return decodeURIComponent(utf8Match[1])
+  const plainMatch = disposition.match(/filename="?([^";]+)"?/i)
+  return plainMatch?.[1] || fallback
+}
+
+const handleDownload = async (backup) => {
+  downloadingId.value = backup.id
+  try {
+    const response = await downloadBackup(backup.id)
+    const blob = new Blob([response.data], { type: response.headers?.['content-type'] || 'application/zip' })
+    const filename = getDownloadFilename(response, `interview-backup-${backup.id}.zip`)
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = filename
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+    ElMessage.success('备份数据已开始下载')
+  } catch (e) {
+  } finally {
+    downloadingId.value = ''
   }
 }
 
@@ -426,6 +467,16 @@ onMounted(() => {
   color: var(--color-accent);
   font-size: 12px;
   font-weight: 800;
+}
+
+.action-cell {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.action-cell .el-button + .el-button {
+  margin-left: 0;
 }
 
 .table-card :deep(.el-table) {

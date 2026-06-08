@@ -65,9 +65,23 @@ export const getQuestionList = (params) => api.get('/questions', { params })
 export const getRandomQuestion = (params) => api.get('/questions/random', { params })
 export const getDueTodayQuestions = (params) => api.get('/questions/due-today', { params })
 export const getReviewOverview = () => api.get('/questions/review-overview')
+export const getSpecialPracticeOverview = () => api.get('/questions/special/overview')
+export const getSpecialAlgorithmState = () => api.get('/questions/special/algorithm/state')
+const normalizeSpecialDrawCount = (count) => {
+  const value = Number(count)
+  return Number.isInteger(value) ? Math.min(5, Math.max(1, value)) : 5
+}
+
+export const drawSpecialAlgorithm = (count = 5) => {
+  return api.post('/questions/special/algorithm/draw', null, {
+    params: { count: normalizeSpecialDrawCount(count) }
+  })
+}
+export const drawSpecialSql = () => api.post('/questions/special/sql/draw')
 
 // ── 复习反馈 ──
 export const submitReview = (id, data) => api.post(`/questions/${id}/review`, data)
+export const submitSpecialAlgorithmReview = (id, data) => api.post(`/questions/special/algorithm/${id}/review`, data)
 
 // ── 答案 ──
 export const updateAnswer = (id, answer) => api.put(`/questions/${id}/answer`, { answer })

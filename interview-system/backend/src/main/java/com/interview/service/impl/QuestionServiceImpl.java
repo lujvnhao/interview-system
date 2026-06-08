@@ -5,7 +5,9 @@ import com.interview.common.exception.NotFoundException;
 import com.interview.dto.QuestionDTO;
 import com.interview.dto.ReviewResultDTO;
 import com.interview.entity.Question;
+import com.interview.entity.SpecialDrawRecord;
 import com.interview.repository.QuestionRepository;
+import com.interview.repository.SpecialDrawRecordRepository;
 import com.interview.service.QuestionService;
 import com.interview.vo.CategoryMasteryItem;
 import com.interview.vo.RecentReviewItem;
@@ -40,8 +42,12 @@ import java.util.stream.Collectors;
 public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionRepository questionRepository;
+    private final SpecialDrawRecordRepository specialDrawRecordRepository;
 
     private static final int DEFAULT_WEIGHT = 10;
+    private static final String CATEGORY_ALGORITHM = "算法";
+    private static final String CATEGORY_SQL = "SQL";
+    private static final int ALGORITHM_DRAW_SIZE = 5;
     private static final int MAX_PERSISTED_WEIGHT = 100;
     private static final double MIN_EFFECTIVE_WEIGHT = 1.0;
     private static final double MAX_EFFECTIVE_WEIGHT = 180.0;
@@ -232,6 +238,233 @@ public class QuestionServiceImpl implements QuestionService {
                 .build();
     }
 
+    @Override
+    @Transactional
+    public Map<String, Object> drawSpecialAlgorithm(Integer count) {
+        int drawCount = Math.min(ALGORITHM_DRAW_SIZE, Math.max(1, count == null ? ALGORITHM_DRAW_SIZE : count));
+        LocalDate today = LocalDate.now();
+        List<SpecialDrawRecord> todayRecords = sortedSpecialRecords(today);
+        List<SpecialDrawRecord> activeBatch = findFirstIncompleteBatch(todayRecords);
+        long total = questionRepository.findByCategory(CATEGORY_ALGORITHM).size();
+
+        if (!activeBatch.isEmpty()) {
+            return buildAlgorithmSessionResponse(activeBatch, drawCount, total, todayRecords.size(),
+                    Math.max(0, total - todayRecords.size()), true);
+        }
+
+        Set<Long> drawnToday = todayRecords.stream()
+                .map(SpecialDrawRecord::getQuestionId)
+                .collect(Collectors.toSet());
+
+        List<Question> candidates = questionRepository.findByCategory(CATEGORY_ALGORITHM).stream()
+                .filter(q -> !drawnToday.contains(q.getId()))
+                .collect(Collectors.toCollection(ArrayList::new));
+        Collections.shuffle(candidates);
+
+        List<Question> selected = candidates.stream()
+                .limit(drawCount)
+                .collect(Collectors.toList());
+
+        int batchNo = Optional.ofNullable(
+                specialDrawRecordRepository.findMaxBatchNoByCategoryAndDrawDate(CATEGORY_ALGORITHM, today)
+        ).orElse(0) + 1;
+        List<SpecialDrawRecord> records = new ArrayList<>();
+
+        if (!selected.isEmpty()) {
+            for (int i = 0; i < selected.size(); i++) {
+                Question q = selected.get(i);
+                records.add(SpecialDrawRecord.builder()
+                            .category(CATEGORY_ALGORITHM)
+                            .questionId(q.getId())
+                            .drawDate(today)
+                            .batchNo(batchNo)
+                            .drawOrder(i + 1)
+                            .reviewed(false)
+                            .build());
+            }
+            specialDrawRecordRepository.saveAll(records);
+        }
+
+        long drawnAfter = drawnToday.size() + selected.size();
+        long remaining = Math.max(0, total - drawnAfter);
+
+        return buildAlgorithmSessionResponse(records, drawCount, total, drawnAfter, remaining, false);
+    }
+
+    @Override
+    public Map<String, Object> specialAlgorithmState() {
+        LocalDate today = LocalDate.now();
+        List<SpecialDrawRecord> todayRecords = sortedSpecialRecords(today);
+        List<SpecialDrawRecord> activeBatch = chooseActiveBatch(todayRecords);
+        long total = questionRepository.findByCategory(CATEGORY_ALGORITHM).size();
+        long drawnToday = todayRecords.size();
+        long remaining = Math.max(0, total - drawnToday);
+
+        return buildAlgorithmSessionResponse(activeBatch,
+                activeBatch.isEmpty() ? ALGORITHM_DRAW_SIZE : activeBatch.size(),
+                total, drawnToday, remaining, true);
+    }
+
+    @Override
+    public Map<String, Object> drawSpecialSql() {
+        List<Question> pool = questionRepository.findByCategory(CATEGORY_SQL);
+        if (pool.isEmpty()) {
+            Map<String, Object> result = new HashMap<>();
+            result.put("category", CATEGORY_SQL);
+            result.put("total", 0);
+            result.put("question", null);
+            return result;
+        }
+
+        Collections.shuffle(pool);
+        return Map.of(
+                "category", CATEGORY_SQL,
+                "total", pool.size(),
+                "question", pool.get(0)
+        );
+    }
+
+    @Override
+    public Map<String, Object> specialPracticeOverview() {
+        LocalDate today = LocalDate.now();
+        long algorithmTotal = questionRepository.findByCategory(CATEGORY_ALGORITHM).size();
+        long algorithmDrawnToday = specialDrawRecordRepository.countByCategoryAndDrawDate(CATEGORY_ALGORITHM, today);
+        long sqlTotal = questionRepository.findByCategory(CATEGORY_SQL).size();
+
+        return Map.of(
+                "algorithmTotal", algorithmTotal,
+                "algorithmDrawnToday", algorithmDrawnToday,
+                "algorithmRemainingToday", Math.max(0, algorithmTotal - algorithmDrawnToday),
+                "algorithmDrawSize", ALGORITHM_DRAW_SIZE,
+                "sqlTotal", sqlTotal,
+                "sqlUnlimited", true
+        );
+    }
+
+    private List<SpecialDrawRecord> sortedSpecialRecords(LocalDate date) {
+        List<SpecialDrawRecord> records = specialDrawRecordRepository.findByCategoryAndDrawDate(CATEGORY_ALGORITHM, date);
+        backfillLegacySpecialRecords(records);
+        return records.stream()
+                .sorted(Comparator
+                        .comparingInt(this::safeBatchNo)
+                        .thenComparingInt(this::safeDrawOrder)
+                        .thenComparing(record -> Optional.ofNullable(record.getId()).orElse(Long.MAX_VALUE)))
+                .collect(Collectors.toList());
+    }
+
+    private void backfillLegacySpecialRecords(List<SpecialDrawRecord> records) {
+        List<SpecialDrawRecord> legacyRecords = records.stream()
+                .filter(record -> record.getBatchNo() == null
+                        || record.getDrawOrder() == null
+                        || record.getReviewed() == null)
+                .collect(Collectors.toList());
+        if (legacyRecords.isEmpty()) return;
+
+        List<SpecialDrawRecord> ordered = records.stream()
+                .sorted(Comparator
+                        .comparing(SpecialDrawRecord::getCreateTime,
+                                Comparator.nullsLast(LocalDateTime::compareTo))
+                        .thenComparing(record -> Optional.ofNullable(record.getId()).orElse(Long.MAX_VALUE)))
+                .collect(Collectors.toList());
+
+        for (int i = 0; i < ordered.size(); i++) {
+            SpecialDrawRecord record = ordered.get(i);
+            if (record.getBatchNo() == null) record.setBatchNo(i / ALGORITHM_DRAW_SIZE + 1);
+            if (record.getDrawOrder() == null) record.setDrawOrder(i % ALGORITHM_DRAW_SIZE + 1);
+            if (record.getReviewed() == null) record.setReviewed(false);
+        }
+        specialDrawRecordRepository.saveAll(legacyRecords);
+    }
+
+    private List<SpecialDrawRecord> findFirstIncompleteBatch(List<SpecialDrawRecord> records) {
+        return groupedSpecialBatches(records).values().stream()
+                .filter(batch -> batch.stream().anyMatch(record -> !Boolean.TRUE.equals(record.getReviewed())))
+                .findFirst()
+                .orElse(Collections.emptyList());
+    }
+
+    private List<SpecialDrawRecord> chooseActiveBatch(List<SpecialDrawRecord> records) {
+        Map<Integer, List<SpecialDrawRecord>> batches = groupedSpecialBatches(records);
+        if (batches.isEmpty()) return Collections.emptyList();
+
+        Optional<List<SpecialDrawRecord>> incomplete = batches.values().stream()
+                .filter(batch -> batch.stream().anyMatch(record -> !Boolean.TRUE.equals(record.getReviewed())))
+                .findFirst();
+        if (incomplete.isPresent()) return incomplete.get();
+
+        List<List<SpecialDrawRecord>> values = new ArrayList<>(batches.values());
+        return values.get(values.size() - 1);
+    }
+
+    private Map<Integer, List<SpecialDrawRecord>> groupedSpecialBatches(List<SpecialDrawRecord> records) {
+        return records.stream()
+                .collect(Collectors.groupingBy(this::safeBatchNo, LinkedHashMap::new, Collectors.toList()));
+    }
+
+    private Map<String, Object> buildAlgorithmSessionResponse(List<SpecialDrawRecord> batchRecords,
+                                                              int requestedCount,
+                                                              long total,
+                                                              long drawnToday,
+                                                              long remaining,
+                                                              boolean restored) {
+        List<SpecialDrawRecord> sortedBatch = batchRecords.stream()
+                .sorted(Comparator
+                        .comparingInt(this::safeDrawOrder)
+                        .thenComparing(record -> Optional.ofNullable(record.getId()).orElse(Long.MAX_VALUE)))
+                .collect(Collectors.toList());
+        List<Long> ids = sortedBatch.stream().map(SpecialDrawRecord::getQuestionId).collect(Collectors.toList());
+        Map<Long, Question> questionMap = questionRepository.findAllById(ids).stream()
+                .collect(Collectors.toMap(Question::getId, q -> q));
+        List<Question> questions = ids.stream()
+                .map(questionMap::get)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+
+        List<Long> reviewedIds = sortedBatch.stream()
+                .filter(record -> Boolean.TRUE.equals(record.getReviewed()))
+                .map(SpecialDrawRecord::getQuestionId)
+                .collect(Collectors.toList());
+        boolean completed = !sortedBatch.isEmpty()
+                && sortedBatch.stream().allMatch(record -> Boolean.TRUE.equals(record.getReviewed()));
+        int currentIndex = 0;
+        for (int i = 0; i < sortedBatch.size(); i++) {
+            if (!Boolean.TRUE.equals(sortedBatch.get(i).getReviewed())) {
+                currentIndex = i;
+                break;
+            }
+            if (completed) currentIndex = Math.max(0, sortedBatch.size() - 1);
+        }
+        if (!questions.isEmpty()) currentIndex = Math.min(currentIndex, questions.size() - 1);
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("category", CATEGORY_ALGORITHM);
+        result.put("drawDate", LocalDate.now().toString());
+        result.put("batchNo", sortedBatch.isEmpty() ? null : safeBatchNo(sortedBatch.get(0)));
+        result.put("requestedCount", requestedCount);
+        result.put("returnedCount", questions.size());
+        result.put("total", total);
+        result.put("drawnToday", drawnToday);
+        result.put("remainingToday", remaining);
+        result.put("exhausted", remaining == 0);
+        result.put("restored", restored);
+        result.put("completed", completed);
+        result.put("currentIndex", currentIndex);
+        result.put("reviewedQuestionIds", reviewedIds);
+        result.put("questions", questions);
+        return result;
+    }
+
+    private int safeBatchNo(SpecialDrawRecord record) {
+        return record.getBatchNo() == null ? 1 : record.getBatchNo();
+    }
+
+    private int safeDrawOrder(SpecialDrawRecord record) {
+        if (record.getDrawOrder() != null) return record.getDrawOrder();
+        Long id = record.getId();
+        if (id == null) return 1;
+        return id > Integer.MAX_VALUE ? Integer.MAX_VALUE : id.intValue();
+    }
+
     /**
      * 间隔重复加权随机算法。
      * 规则：
@@ -366,6 +599,22 @@ public class QuestionServiceImpl implements QuestionService {
         }
 
         return questionRepository.save(question);
+    }
+
+    @Override
+    @Transactional
+    public Question submitSpecialAlgorithmReview(Long id, ReviewResultDTO dto) {
+        Question question = submitReview(id, dto);
+        LocalDate today = LocalDate.now();
+        SpecialDrawRecord record = specialDrawRecordRepository
+                .findByCategoryAndQuestionIdAndDrawDate(CATEGORY_ALGORITHM, id, today)
+                .orElseThrow(() -> new BusinessException("当前题目不在今日算法专项抽题中，请重新进入专项抽题页"));
+
+        record.setReviewed(true);
+        record.setReviewResult(dto.getMastered() != null && dto.getMastered());
+        record.setReviewTime(LocalDateTime.now());
+        specialDrawRecordRepository.save(record);
+        return question;
     }
 
     // ==================== 答案 ====================
@@ -690,7 +939,9 @@ public class QuestionServiceImpl implements QuestionService {
     /** 返回所有不重复的分类列表 */
     @Override
     public List<String> allCategories() {
-        return questionRepository.findDistinctCategories();
+        Set<String> categories = new TreeSet<>(questionRepository.findDistinctCategories());
+        categories.add(CATEGORY_SQL);
+        return new ArrayList<>(categories);
     }
 
     /** 返回所有不重复的标签列表 */

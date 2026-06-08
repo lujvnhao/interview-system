@@ -71,6 +71,9 @@
         <el-tooltip content="整理格式" placement="top">
           <el-button size="small" aria-label="整理格式" @click="formatMarkdown">整理</el-button>
         </el-tooltip>
+        <el-tooltip content="格式化所有代码字段" placement="top">
+          <el-button size="small" aria-label="格式化代码字段" @click="formatCodeBlocks">格式化代码</el-button>
+        </el-tooltip>
       </el-button-group>
 
       <el-radio-group v-model="viewMode" size="small" class="view-switch" aria-label="编辑视图">
@@ -132,7 +135,7 @@ import { computed, nextTick, ref, watch } from 'vue'
 import { ElMessageBox } from 'element-plus'
 import DOMPurify from 'dompurify'
 import MarkdownIt from 'markdown-it'
-import { renderCodeCard, PURIFY_CONFIG } from '../utils/markdown'
+import { formatCodeBlock, formatCodeFences, getCodeLanguageLabel, normalizeCodeLanguage } from '../utils/codeFormatter'
 
 // Editor 使用独立 MarkdownIt 实例，避免污染共享渲染器
 const markdown = new MarkdownIt({
@@ -176,15 +179,17 @@ const codePlaceholder = '在这里输入代码'
 const zeroWidthSpace = '\u200b'
 
 const renderCodeCardHtml = (code, language = '') => {
-  const escapedLanguage = escapeHtml(language)
+  const normalizedLanguage = normalizeCodeLanguage(language)
+  const escapedLanguage = escapeHtml(normalizedLanguage)
   const langClass = escapedLanguage ? ` language-${escapedLanguage}` : ''
-  const label = escapedLanguage || '代码'
+  const label = escapeHtml(getCodeLanguageLabel(normalizedLanguage))
   const placeholder = escapeHtml(codePlaceholder)
-  const codeContent = code?.trim() ? code : ''
+  const hasCodeContent = String(code || '').replace(/\u200b/g, '').trim()
+  const codeContent = hasCodeContent ? formatCodeBlock(code, normalizedLanguage) : ''
 
   return [
-    '<div class="md-code-card" data-code-card="true">',
-    `<div class="md-code-head" contenteditable="false"><span>${label}</span></div>`,
+    `<div class="md-code-card" data-code-card="true" data-code-language="${escapedLanguage}">`,
+    `<div class="md-code-head" contenteditable="false"><span class="md-code-lang">${label}</span><span class="md-code-state">格式化展示</span></div>`,
     `<pre class="md-code-block"><code class="${langClass}" data-placeholder="${placeholder}">${escapeHtml(codeContent)}</code></pre>`,
     '</div>'
   ].join('')
@@ -211,7 +216,7 @@ markdown.renderer.rules.link_open = (tokens, idx, options, env, self) => {
 const renderMarkdownHtml = (content) => {
   const html = content?.trim() ? markdown.render(content) : ''
   return DOMPurify.sanitize(html, {
-    ADD_ATTR: ['target', 'rel', 'class', 'contenteditable', 'data-code-card', 'data-placeholder']
+    ADD_ATTR: ['target', 'rel', 'class', 'contenteditable', 'data-code-card', 'data-code-language', 'data-placeholder']
   })
 }
 
@@ -408,6 +413,42 @@ watch(
 
 const cleanText = (text = '') => text.replace(/\u00a0/g, ' ').replace(/\u200b/g, '')
 
+const codeTextFromNode = (node) => {
+  if (!node) return ''
+  if (node.nodeType === Node.TEXT_NODE) return node.textContent || ''
+  if (node.nodeType !== Node.ELEMENT_NODE) return ''
+
+  const element = node
+  const tag = element.tagName.toLowerCase()
+  if (tag === 'br') return '\n'
+
+  const text = Array.from(element.childNodes).map(codeTextFromNode).join('')
+  if (['div', 'p', 'li'].includes(tag) && text && !text.endsWith('\n')) return `${text}\n`
+  return text
+}
+
+const readPreCodeText = (preElement) => {
+  if (!preElement) return ''
+  const nodes = Array.from(preElement.childNodes)
+  return cleanText(nodes.map((node, index) => {
+    let text = codeTextFromNode(node)
+    const hasNextTextNode = nodes.slice(index + 1).some(nextNode => cleanText(codeTextFromNode(nextNode)).trim())
+    if (hasNextTextNode && text && !text.endsWith('\n')) text += '\n'
+    return text
+  }).join('')).replace(/\n+$/g, '')
+}
+
+const normalizePreCodeElement = (preElement, language = '') => {
+  const codeElement = preElement.querySelector('code') || document.createElement('code')
+  const normalizedLanguage = normalizeCodeLanguage(language)
+  codeElement.className = normalizedLanguage ? `language-${normalizedLanguage}` : ''
+  codeElement.setAttribute('data-placeholder', codePlaceholder)
+
+  while (preElement.firstChild) preElement.removeChild(preElement.firstChild)
+  preElement.appendChild(codeElement)
+  return codeElement
+}
+
 const inlineMarkdown = (node) => {
   if (node.nodeType === Node.TEXT_NODE) return cleanText(node.textContent)
   if (node.nodeType !== Node.ELEMENT_NODE) return ''
@@ -446,7 +487,7 @@ const languageFromCode = (codeElement) => {
 const serializePre = (preElement) => {
   const codeElement = preElement.querySelector('code') || preElement
   const language = languageFromCode(codeElement)
-  const code = cleanText(codeElement.textContent).replace(/\n$/, '')
+  const code = readPreCodeText(preElement)
   return `\`\`\`${language}\n${code}\n\`\`\`\n\n`
 }
 
@@ -562,8 +603,9 @@ const handleRichClick = (event) => {
     return
   }
 
+  const pre = codeCard.querySelector('.md-code-block')
   const code = codeCard.querySelector('.md-code-block code')
-  if (!code || cleanText(code.textContent).trim()) {
+  if (!code || readPreCodeText(pre).trim()) {
     updateActiveCodeCard()
     return
   }
@@ -680,7 +722,7 @@ const removeEmptyCodeCardOnBackspace = () => {
   const codeElement = preElement?.querySelector?.('code') || preElement
   if (!codeCard || !preElement || !codeElement || !preElement.contains(selection.anchorNode)) return false
 
-  const codeText = cleanText(codeElement.textContent || '').replace(/\u200b/g, '').trim()
+  const codeText = readPreCodeText(preElement).replace(/\u200b/g, '').trim()
   if (codeText) return false
 
   const nextTarget = codeCard.nextSibling
@@ -827,6 +869,43 @@ const detectCodeLanguage = (code) => {
   return ''
 }
 
+const formatCodeBlocksInMarkdown = (text = '') => {
+  return formatCodeFences(text)
+}
+
+const formatRichCodeBlocksInDom = () => {
+  const editor = richEditorRef.value
+  if (!editor) return false
+
+  let changed = false
+  editor.querySelectorAll('pre.md-code-block').forEach((preElement) => {
+    const codeElement = preElement.querySelector('code') || preElement
+    const language = languageFromCode(codeElement)
+    const sourceCode = readPreCodeText(preElement)
+
+    if (!sourceCode.trim()) {
+      if (preElement.textContent) {
+        normalizePreCodeElement(preElement, language).textContent = ''
+        changed = true
+      }
+      return
+    }
+
+    const formattedCode = formatCodeBlock(sourceCode, language)
+    const isPlainCodeElement = codeElement !== preElement &&
+      preElement.childNodes.length === 1 &&
+      preElement.firstChild === codeElement &&
+      Array.from(codeElement.childNodes).every(child => child.nodeType === Node.TEXT_NODE)
+
+    if (formattedCode !== sourceCode || !isPlainCodeElement) {
+      normalizePreCodeElement(preElement, language).textContent = formattedCode
+      changed = true
+    }
+  })
+
+  return changed
+}
+
 const insertCodeBlock = (language) => {
   if (viewMode.value === 'rich') {
     const selectedCode = getRichSelectedText()
@@ -865,6 +944,7 @@ const insertTemplate = (type) => {
 
 const formatMarkdown = async () => {
   if (viewMode.value === 'rich') {
+    formatRichCodeBlocksInDom()
     const normalized = normalizeMarkdown(serializeRichContent())
     commitValue(normalized, { history: true })
     await nextTick()
@@ -873,8 +953,23 @@ const formatMarkdown = async () => {
     return
   }
 
-  const normalized = normalizeMarkdown(props.modelValue || '')
+  const normalized = normalizeMarkdown(formatCodeBlocksInMarkdown(props.modelValue || ''))
   updateText(normalized, normalized.length)
+}
+
+const formatCodeBlocks = async () => {
+  if (viewMode.value === 'rich') {
+    formatRichCodeBlocksInDom()
+    const normalized = normalizeMarkdown(serializeRichContent())
+    commitValue(normalized, { history: true })
+    await nextTick()
+    richInputActive.value = false
+    await syncRichEditor(true)
+    return
+  }
+
+  const formatted = formatCodeBlocksInMarkdown(props.modelValue || '')
+  updateText(formatted, formatted.length)
 }
 
 const handleEditorKeydown = (event) => {
@@ -1093,29 +1188,50 @@ const handleRichKeydown = (event) => {
 
 .rich-editor :deep(.md-code-card) {
   overflow: hidden;
-  background: #f6f8fa;
-  border: 1px solid #dfe5e8;
+  background: #111827;
+  border: 1px solid #263244;
   border-radius: 8px;
 }
 
 .rich-editor :deep(.md-code-head) {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   min-height: 34px;
   padding: 0 12px;
-  color: #5f6f7d;
+  color: #d1d5db;
   font-size: 12px;
   font-weight: 800;
   line-height: 1;
-  background: #eef1f4;
-  border-bottom: 1px solid #dfe5e8;
+  background: #1f2937;
+  border-bottom: 1px solid #374151;
   user-select: none;
+}
+
+.rich-editor :deep(.md-code-lang) {
+  min-width: 0;
+  overflow: hidden;
+  color: #f9fafb;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rich-editor :deep(.md-code-state) {
+  flex: none;
+  padding: 2px 7px;
+  color: #9ca3af;
+  font-size: 11px;
+  line-height: 1.4;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
 }
 
 .rich-editor :deep(pre.md-code-block) {
   margin: 0;
   overflow-x: auto;
-  background: #f8fafc;
+  background: #111827;
   border: 0;
   border-radius: 0;
 }
@@ -1125,8 +1241,9 @@ const handleRichKeydown = (event) => {
   min-width: max-content;
   min-height: 24px;
   padding: 14px;
-  color: #1f2933;
+  color: #e5e7eb;
   line-height: 1.7;
+  tab-size: 2;
   white-space: pre;
   background: transparent;
   border-radius: 0;

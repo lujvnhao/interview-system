@@ -19,6 +19,10 @@
           <span class="nav-icon"><Collection /></span>
           <span class="nav-label">题库管理</span>
         </router-link>
+        <router-link to="/special-practice" class="nav-item" :class="{ active: route.path === '/special-practice' }">
+          <span class="nav-icon"><Tickets /></span>
+          <span class="nav-label">专项抽题</span>
+        </router-link>
         <router-link to="/favorites" class="nav-item" :class="{ active: route.path === '/favorites' }">
           <span class="nav-icon"><Star /></span>
           <span class="nav-label">收藏题目</span>
@@ -297,6 +301,15 @@ button, input, textarea, select { font: inherit; color: inherit; }
   letter-spacing: 0.05em; text-transform: uppercase;
 }
 .el-table .el-table__row:hover > td.el-table__cell { background: #fdf9f3 !important; }
+.table-ellipsis-cell {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  color: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 /* Message Box */
 .el-message-box { background: var(--color-surface) !important; border: 1px solid var(--color-border) !important; border-radius: var(--radius-md) !important; }
@@ -308,6 +321,45 @@ button, input, textarea, select { font: inherit; color: inherit; }
   border: 1px solid var(--color-border) !important;
   border-radius: var(--radius-sm) !important;
   box-shadow: var(--shadow-md) !important;
+}
+.el-popper.el-tooltip,
+.el-popper.el-tooltip.is-dark,
+.el-popper.el-tooltip.is-light,
+.el-tooltip__popper,
+.el-tooltip__popper.is-dark,
+.el-tooltip__popper.is-light {
+  max-width: min(320px, calc(100vw - 24px));
+  padding: 7px 10px !important;
+  color: var(--color-ink-strong) !important;
+  font-family: var(--font-ui) !important;
+  font-size: 12px !important;
+  font-weight: 600;
+  line-height: 1.45;
+  word-break: break-word;
+  white-space: normal;
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+.el-popper.el-tooltip .el-popper__content,
+.el-popper.el-tooltip span:not(.el-popper__arrow) {
+  color: var(--color-ink-strong) !important;
+}
+.el-popper.el-tooltip:empty {
+  display: none !important;
+}
+.el-popper.el-tooltip:has(.el-popper__content:empty) {
+  display: none !important;
+}
+.el-popper.el-tooltip .el-popper__arrow::before,
+.el-popper.el-tooltip.is-dark .el-popper__arrow::before,
+.el-popper.el-tooltip.is-light .el-popper__arrow::before,
+.el-tooltip__popper .el-popper__arrow::before,
+.el-tooltip__popper.is-dark .el-popper__arrow::before,
+.el-tooltip__popper.is-light .el-popper__arrow::before {
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
 }
 .el-select-dropdown__item.hover { background: var(--color-surface-soft) !important; }
 .el-select-dropdown__item.selected { color: var(--color-accent) !important; font-weight: 600; }

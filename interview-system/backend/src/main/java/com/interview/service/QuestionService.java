@@ -30,9 +30,14 @@ public interface QuestionService {
     Question randomQuestion(String mode, String category);
     Page<Question> dueToday(Pageable pageable, String category);
     ReviewOverviewVO reviewOverview();
+    Map<String, Object> drawSpecialAlgorithm(Integer count);
+    Map<String, Object> specialAlgorithmState();
+    Map<String, Object> drawSpecialSql();
+    Map<String, Object> specialPracticeOverview();
 
     // ── 复习反馈 ──
     Question submitReview(Long id, ReviewResultDTO dto);
+    Question submitSpecialAlgorithmReview(Long id, ReviewResultDTO dto);
 
     // ── 答案 ──
     Question updateAnswer(Long id, String answer);

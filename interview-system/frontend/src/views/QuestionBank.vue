@@ -89,7 +89,11 @@
         @selection-change="onSelectionChange" max-height="calc(100vh - 300px)">
         <el-table-column type="selection" width="42" />
         <el-table-column prop="id" label="ID" width="55" />
-        <el-table-column prop="question" label="问题" min-width="220" show-overflow-tooltip />
+        <el-table-column prop="question" label="问题" min-width="220">
+          <template #default="{ row }">
+            <span class="table-ellipsis-cell" :title="row.question || ''">{{ row.question }}</span>
+          </template>
+        </el-table-column>
         <el-table-column prop="category" label="分类" width="105">
           <template #default="{ row }">
             <span class="cell-tag cat">{{ row.category }}</span>
@@ -119,7 +123,13 @@
             <span :class="{ 'err-num': row.wrongCount > 0 }">{{ row.wrongCount }}</span>
           </template>
         </el-table-column>
-        <el-table-column prop="lastReviewTime" label="最近复习" width="145" show-overflow-tooltip />
+        <el-table-column prop="lastReviewTime" label="最近复习" width="145">
+          <template #default="{ row }">
+            <span class="table-ellipsis-cell" :title="row.lastReviewTime || ''">
+              {{ row.lastReviewTime || '暂未复习' }}
+            </span>
+          </template>
+        </el-table-column>
         <el-table-column label="操作" width="170" fixed="right">
           <template #default="{ row }">
             <el-button size="small" text @click="showDetailDialog(row)">详情</el-button>

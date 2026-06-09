@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-09T12:36:47.969449603",
+  "exportedAt" : "2026-06-09T13:06:47.993823574",
   "questions" : [ {
     "id" : 1,
     "question" : "Java 中 == 和 equals 的区别是什么？",
@@ -6813,12 +6813,13 @@
     "tags" : "高频,手撕代码,链表,递归",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 12,
+    "weight" : 10,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-09T12:50:56.11016",
     "createTime" : "2026-06-08T18:58:32.258457",
-    "updateTime" : "2026-06-08T18:58:32.258459"
+    "updateTime" : "2026-06-09T12:50:56.113685"
   }, {
     "id" : 488,
     "question" : "合并 K 个升序链表",
@@ -6909,14 +6910,15 @@
     "answer" : "找出数组中乘积最大的非空连续子数组。\n\n**DP 维护最大和最小**（负数相乘变号）：\n- `curMax = max(num, num × prevMax, num × prevMin)`\n- `curMin = min(num, num × prevMax, num × prevMin)`\n\n```java\npublic int maxProduct(int[] nums) {\n    int mx = nums[0], mn = nums[0], ans = nums[0];\n    for (int i = 1; i < nums.length; i++) {\n        int pmx = mx, pmn = mn;\n        mx = Math.max(nums[i], Math.max(nums[i] * pmx, nums[i] * pmn));\n        mn = Math.min(nums[i], Math.min(nums[i] * pmx, nums[i] * pmn));\n        ans = Math.max(ans, mx);\n    }\n    return ans;\n}\n```\nO(n)，O(1)。",
     "category" : "算法",
     "tags" : "手撕代码,动态规划",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-09T12:37:29.115175",
     "createTime" : "2026-06-08T18:58:32.270941",
-    "updateTime" : "2026-06-08T18:58:32.270943"
+    "updateTime" : "2026-06-09T12:37:29.126078"
   }, {
     "id" : 495,
     "question" : "最长公共子序列",
@@ -6951,14 +6953,15 @@
     "answer" : "判断能否将正整数数组分割成两个和相等的子集。\n\n**0-1 背包**：sum 为奇数直接 false。target = sum/2。`dp[j]` 表示能否凑出 j。\n\n```java\npublic boolean canPartition(int[] nums) {\n    int sum = Arrays.stream(nums).sum();\n    if (sum % 2 != 0) return false;\n    int target = sum / 2;\n    boolean[] dp = new boolean[target + 1];\n    dp[0] = true;\n    for (int num : nums)\n        for (int j = target; j >= num; j--)\n            dp[j] = dp[j] || dp[j - num];\n    return dp[target];\n}\n```\nO(n × target)。",
     "category" : "算法",
     "tags" : "手撕代码,动态规划,背包问题",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-09T12:43:11.955648",
     "createTime" : "2026-06-08T18:58:32.289975",
-    "updateTime" : "2026-06-08T18:58:32.289977"
+    "updateTime" : "2026-06-09T12:43:11.959011"
   }, {
     "id" : 498,
     "question" : "跳跃游戏 II",
@@ -6981,12 +6984,13 @@
     "tags" : "手撕代码,贪心,双指针",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 6,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-09T13:05:20.417256",
     "createTime" : "2026-06-08T18:58:32.293274",
-    "updateTime" : "2026-06-08T18:58:32.293276"
+    "updateTime" : "2026-06-09T13:05:20.420392"
   }, {
     "id" : 500,
     "question" : "小于 n 的最大和",
@@ -7133,14 +7137,15 @@
     "answer" : "二叉树中路径和等于 targetSum 的路径数。路径不必从根开始，不必在叶子结束，但必须从上到下。\n\n**前缀和 + DFS**：`count = map.getOrDefault(curSum - target, 0)`，回溯恢复。\n\n```java\npublic int pathSum(TreeNode root, int targetSum) {\n    Map<Long,Integer> prefix = new HashMap<>();\n    prefix.put(0L, 1);\n    return dfs(root, 0L, targetSum, prefix);\n}\nint dfs(TreeNode node, long cur, int target, Map<Long,Integer> prefix) {\n    if (node == null) return 0;\n    cur += node.val;\n    int count = prefix.getOrDefault(cur - target, 0);\n    prefix.merge(cur, 1, Integer::sum);\n    count += dfs(node.left, cur, target, prefix)\n           + dfs(node.right, cur, target, prefix);\n    prefix.merge(cur, -1, Integer::sum);\n    return count;\n}\n```\nO(n)，O(n)。",
     "category" : "算法",
     "tags" : "手撕代码,二叉树,前缀和,DFS",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-09T12:59:29.89275",
     "createTime" : "2026-06-08T18:58:32.311102",
-    "updateTime" : "2026-06-08T18:58:32.311105"
+    "updateTime" : "2026-06-09T12:59:29.896414"
   }, {
     "id" : 511,
     "question" : "实现 Trie (前缀树)",

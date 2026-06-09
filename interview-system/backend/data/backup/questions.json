@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-09T13:06:47.993823574",
+  "exportedAt" : "2026-06-09T13:36:48.010093271",
   "questions" : [ {
     "id" : 1,
     "question" : "Java 中 == 和 equals 的区别是什么？",
@@ -7440,5 +7440,33 @@
     "reviewCount" : 0,
     "createTime" : "2026-06-08T18:58:32.345027",
     "updateTime" : "2026-06-08T18:58:32.345029"
+  }, {
+    "id" : 532,
+    "question" : "返回 2020 年 1 月的所有订单的订单号和订单日期",
+    "answer" : "",
+    "category" : "SQL",
+    "tags" : "",
+    "mastered" : false,
+    "favorite" : false,
+    "weight" : 10,
+    "wrongCount" : 0,
+    "correctCount" : 0,
+    "reviewCount" : 0,
+    "createTime" : "2026-06-09T13:19:36.214062",
+    "updateTime" : "2026-06-09T13:19:36.214087"
+  }, {
+    "id" : 533,
+    "question" : "确定 Products 表中价格不超过 10 美元的最贵产品的价格",
+    "answer" : "",
+    "category" : "SQL",
+    "tags" : "",
+    "mastered" : false,
+    "favorite" : false,
+    "weight" : 10,
+    "wrongCount" : 0,
+    "correctCount" : 0,
+    "reviewCount" : 0,
+    "createTime" : "2026-06-09T13:26:26.128196",
+    "updateTime" : "2026-06-09T13:26:26.128222"
   } ]
 }

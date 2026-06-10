@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-10T11:36:48.478795018",
+  "exportedAt" : "2026-06-10T12:06:48.486919045",
   "questions" : [ {
     "id" : 1,
     "question" : "Java 中 == 和 equals 的区别是什么？",
@@ -5635,14 +5635,15 @@
     "answer" : "",
     "category" : "算法",
     "tags" : "高频,必背,手撕代码,设计模式,并发,并发",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-10T12:06:00.002538",
     "createTime" : "2026-06-08T18:58:32.108548",
-    "updateTime" : "2026-06-08T18:58:32.10855"
+    "updateTime" : "2026-06-10T12:06:00.005986"
   }, {
     "id" : 404,
     "question" : "生产者消费者",
@@ -6729,12 +6730,13 @@
     "tags" : "手撕代码,二分查找,旋转数组",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-10T12:06:08.54801",
     "createTime" : "2026-06-08T18:58:32.247651",
-    "updateTime" : "2026-06-08T18:58:32.247654"
+    "updateTime" : "2026-06-10T12:06:08.551394"
   }, {
     "id" : 482,
     "question" : "接雨水",
@@ -6828,12 +6830,13 @@
     "tags" : "高频,手撕代码,链表,堆,优先队列,分治",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-10T12:06:12.54519",
     "createTime" : "2026-06-08T18:58:32.260106",
-    "updateTime" : "2026-06-08T18:58:32.260108"
+    "updateTime" : "2026-06-10T12:06:12.547484"
   }, {
     "id" : 489,
     "question" : "随机链表的复制",
@@ -6842,12 +6845,13 @@
     "tags" : "手撕代码,链表,哈希表",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 6,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-10T12:06:04.282084",
     "createTime" : "2026-06-08T18:58:32.261896",
-    "updateTime" : "2026-06-08T18:58:32.261899"
+    "updateTime" : "2026-06-10T12:06:04.285473"
   }, {
     "id" : 490,
     "question" : "最长递增子序列",

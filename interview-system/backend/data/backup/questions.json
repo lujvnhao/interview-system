@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-11T12:06:48.895532345",
+  "exportedAt" : "2026-06-11T12:36:48.903706724",
   "questions" : [ {
     "id" : 1,
     "question" : "Java 中 == 和 equals 的区别是什么？",
@@ -1625,20 +1625,6 @@
     "reviewCount" : 0,
     "createTime" : "2026-06-08T18:58:31.531433",
     "updateTime" : "2026-06-08T18:58:31.531442"
-  }, {
-    "id" : 117,
-    "question" : "列举JUC里面常用的类",
-    "answer" : "",
-    "category" : "Java 并发",
-    "tags" : "高频,重点,原理题",
-    "mastered" : false,
-    "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
-    "createTime" : "2026-06-08T18:58:31.53374",
-    "updateTime" : "2026-06-08T18:58:31.533749"
   }, {
     "id" : 118,
     "question" : "Java中有哪些常用的锁，在什么场景下使用？",
@@ -7508,5 +7494,75 @@
     "reviewCount" : 0,
     "createTime" : "2026-06-11T12:02:40.826498",
     "updateTime" : "2026-06-11T12:03:26.030397"
+  }, {
+    "id" : 536,
+    "question" : "交替打印奇偶数（多线程基础算法），使用线程池实现。",
+    "answer" : "",
+    "category" : "算法",
+    "tags" : "",
+    "mastered" : false,
+    "favorite" : false,
+    "weight" : 10,
+    "wrongCount" : 0,
+    "correctCount" : 0,
+    "reviewCount" : 0,
+    "createTime" : "2026-06-11T12:09:13.779615",
+    "updateTime" : "2026-06-11T12:09:13.779621"
+  }, {
+    "id" : 537,
+    "question" : "日常开发如何自定义拒绝策略？",
+    "answer" : "",
+    "category" : "Java 并发",
+    "tags" : "",
+    "mastered" : false,
+    "favorite" : false,
+    "weight" : 10,
+    "wrongCount" : 0,
+    "correctCount" : 0,
+    "reviewCount" : 0,
+    "createTime" : "2026-06-11T12:10:37.406593",
+    "updateTime" : "2026-06-11T12:10:37.4066"
+  }, {
+    "id" : 538,
+    "question" : "HashMap 和 ConcurrentHashMap 在 JDK 1.7 和 JDK 1.8 中的区别？",
+    "answer" : "",
+    "category" : "Java 集合",
+    "tags" : "",
+    "mastered" : false,
+    "favorite" : false,
+    "weight" : 10,
+    "wrongCount" : 0,
+    "correctCount" : 0,
+    "reviewCount" : 0,
+    "createTime" : "2026-06-11T12:13:05.087105",
+    "updateTime" : "2026-06-11T12:13:05.087111"
+  }, {
+    "id" : 539,
+    "question" : "CountDownLatch、CyclicBarrier、Semaphore的区别和实战场景？",
+    "answer" : "",
+    "category" : "Java 并发",
+    "tags" : "",
+    "mastered" : false,
+    "favorite" : false,
+    "weight" : 10,
+    "wrongCount" : 0,
+    "correctCount" : 0,
+    "reviewCount" : 0,
+    "createTime" : "2026-06-11T12:19:40.777834",
+    "updateTime" : "2026-06-11T12:19:40.77784"
+  }, {
+    "id" : 540,
+    "question" : "什么是死锁？死锁产生的四个必要条件，如何避免和排查死锁？",
+    "answer" : "",
+    "category" : "Java 并发",
+    "tags" : "",
+    "mastered" : false,
+    "favorite" : false,
+    "weight" : 10,
+    "wrongCount" : 0,
+    "correctCount" : 0,
+    "reviewCount" : 0,
+    "createTime" : "2026-06-11T12:19:51.270638",
+    "updateTime" : "2026-06-11T12:19:51.270644"
   } ]
 }

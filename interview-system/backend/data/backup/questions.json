@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-11T10:36:48.870883972",
+  "exportedAt" : "2026-06-11T11:06:48.878443181",
   "questions" : [ {
     "id" : 1,
     "question" : "Java 中 == 和 equals 的区别是什么？",
@@ -6644,14 +6644,15 @@
     "answer" : "```java\nclass Singleton {\n  public static volatile Singleton instance;\n  private Singleton() {\n  }\n  public static Singleton getInstance() {\n    if (instance == null) {\n      synchronized(Singleton.class) {\n        if (instance == null) {\n          instance = new Singleton();\n        }\n      }\n    }\n    return instance;\n  }\n}\n```",
     "category" : "算法",
     "tags" : "手撕代码,高频",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-11T10:48:09.575679",
     "createTime" : "2026-06-08T18:58:32.236441",
-    "updateTime" : "2026-06-08T18:58:32.236443"
+    "updateTime" : "2026-06-11T10:48:09.57824"
   }, {
     "id" : 476,
     "question" : "多数元素",
@@ -7029,14 +7030,15 @@
     "answer" : "将字符串 s 分割成一系列子串，使每个子串都是回文串。返回所有可能的分割方案。\n\n**回溯 + DP 预处理**：\n1. DP 预处理 `isPalindrome[i][j]`\n2. DFS 回溯枚举\n\n```java\npublic List<List<String>> partition(String s) {\n    int n = s.length();\n    boolean[][] dp = new boolean[n][n];\n    for (int j = 0; j < n; j++)\n        for (int i = 0; i <= j; i++)\n            if (s.charAt(i)==s.charAt(j) && (j-i<=2 || dp[i+1][j-1]))\n                dp[i][j] = true;\n    List<List<String>> res = new ArrayList<>();\n    backtrack(s, 0, dp, new ArrayList<>(), res);\n    return res;\n}\nvoid backtrack(String s, int start, boolean[][] dp,\n               List<String> path, List<List<String>> res) {\n    if (start == s.length()) { res.add(new ArrayList<>(path)); return; }\n    for (int end = start; end < s.length(); end++) {\n        if (dp[start][end]) {\n            path.add(s.substring(start, end+1));\n            backtrack(s, end+1, dp, path, res);\n            path.remove(path.size()-1);\n        }\n    }\n}\n```",
     "category" : "算法",
     "tags" : "手撕代码,回溯,动态规划,回文串",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-11T11:05:49.517308",
     "createTime" : "2026-06-08T18:58:32.298402",
-    "updateTime" : "2026-06-08T18:58:32.298404"
+    "updateTime" : "2026-06-11T11:05:49.519759"
   }, {
     "id" : 503,
     "question" : "单词搜索",

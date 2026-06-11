@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-11T11:06:48.878443181",
+  "exportedAt" : "2026-06-11T11:36:48.887999688",
   "questions" : [ {
     "id" : 1,
     "question" : "Java 中 == 和 equals 的区别是什么？",
@@ -6703,26 +6703,28 @@
     "tags" : "手撕代码,数组,双指针",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-11T11:30:28.669885",
     "createTime" : "2026-06-08T18:58:32.243497",
-    "updateTime" : "2026-06-08T18:58:32.2435"
+    "updateTime" : "2026-06-11T11:30:28.671978"
   }, {
     "id" : 480,
     "question" : "搜索旋转排序数组",
     "answer" : "在旋转排序数组中搜索目标值 target，返回下标或 -1。数组中的值互不相同。\n\n**二分查找**：\n- `nums[mid] >= nums[left]` → 左半有序，判断 target 是否在左半\n- 否则右半有序，判断 target 是否在右半\n\n```java\npublic int search(int[] nums, int target) {\n    int left = 0, right = nums.length - 1;\n    while (left <= right) {\n        int mid = left + (right - left) / 2;\n        if (nums[mid] == target) return mid;\n        if (nums[mid] >= nums[left]) {  // 左半有序\n            if (target >= nums[left] && target < nums[mid])\n                right = mid - 1;\n            else left = mid + 1;\n        } else {  // 右半有序\n            if (target > nums[mid] && target <= nums[right])\n                left = mid + 1;\n            else right = mid - 1;\n        }\n    }\n    return -1;\n}\n```\n时间复杂度 O(log n)。",
     "category" : "算法",
     "tags" : "手撕代码,二分查找,旋转数组,高频",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-11T11:15:19.98044",
     "createTime" : "2026-06-08T18:58:32.245551",
-    "updateTime" : "2026-06-08T18:58:32.245554"
+    "updateTime" : "2026-06-11T11:15:19.982303"
   }, {
     "id" : 481,
     "question" : "寻找旋转排序数组中的最小值",
@@ -6816,13 +6818,13 @@
     "tags" : "高频,手撕代码,链表,递归",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 7,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-06-09T12:50:56.11016",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-06-11T11:15:50.145507",
     "createTime" : "2026-06-08T18:58:32.258457",
-    "updateTime" : "2026-06-09T12:50:56.113685"
+    "updateTime" : "2026-06-11T11:15:50.147258"
   }, {
     "id" : 488,
     "question" : "合并 K 个升序链表",
@@ -6903,12 +6905,13 @@
     "tags" : "手撕代码,动态规划",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 6,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-11T11:15:47.836833",
     "createTime" : "2026-06-08T18:58:32.269218",
-    "updateTime" : "2026-06-08T18:58:32.269222"
+    "updateTime" : "2026-06-11T11:15:47.838767"
   }, {
     "id" : 494,
     "question" : "乘积最大子数组",
@@ -7047,12 +7050,13 @@
     "tags" : "手撕代码,回溯,DFS",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 6,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-11T11:15:42.526205",
     "createTime" : "2026-06-08T18:58:32.300333",
-    "updateTime" : "2026-06-08T18:58:32.300336"
+    "updateTime" : "2026-06-11T11:15:42.528023"
   }, {
     "id" : 504,
     "question" : "课程表",
@@ -7131,12 +7135,13 @@
     "tags" : "高频,手撕代码,二叉树,递归",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-11T11:15:06.848074",
     "createTime" : "2026-06-08T18:58:32.309536",
-    "updateTime" : "2026-06-08T18:58:32.309538"
+    "updateTime" : "2026-06-11T11:15:06.85063"
   }, {
     "id" : 510,
     "question" : "路径总和 III",

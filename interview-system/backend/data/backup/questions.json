@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-13T09:36:49.566306785",
+  "exportedAt" : "2026-06-13T10:06:49.575634873",
   "questions" : [ {
     "id" : 1,
     "question" : "Java 中 == 和 equals 的区别是什么？",
@@ -6819,13 +6819,13 @@
     "tags" : "高频,手撕代码,链表,堆,优先队列,分治",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-06-10T12:06:12.54519",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-06-13T10:02:42.958337",
     "createTime" : "2026-06-08T18:58:32.260106",
-    "updateTime" : "2026-06-10T12:06:12.547484"
+    "updateTime" : "2026-06-13T10:02:42.960813"
   }, {
     "id" : 489,
     "question" : "随机链表的复制",

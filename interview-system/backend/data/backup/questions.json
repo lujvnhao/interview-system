@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-24T10:13:50.239506918",
+  "exportedAt" : "2026-06-24T10:43:50.247569541",
   "questions" : [ {
     "id" : 1,
     "question" : "Java 中 == 和 equals 的区别是什么？",
@@ -7906,14 +7906,15 @@
     "answer" : "Embedding是向量检索的前提和基础：\n1. Embedding负责将非结构化文本翻译为向量空间的坐标\n2. 向量检索在向量空间中寻找与查询向量最接近的文档向量\n3. Embedding质量直接决定向量检索效果——如果Embedding不能准确表达语义，向量检索无论如何优化都无法得到好结果\n4. 向量检索的性能受向量维度和索引算法的影响\n两者是上下游协作关系，缺一不可",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T10:43:49.854394",
     "createTime" : "2026-06-23T18:29:19.339764",
-    "updateTime" : "2026-06-23T18:29:19.339774"
+    "updateTime" : "2026-06-24T10:43:49.856824"
   }, {
     "id" : 641,
     "question" : "语义检索和关键词检索有什么不同？",
@@ -8048,12 +8049,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T10:42:59.686639",
     "createTime" : "2026-06-23T18:29:19.382311",
-    "updateTime" : "2026-06-23T18:29:19.382338"
+    "updateTime" : "2026-06-24T10:42:59.694936"
   }, {
     "id" : 651,
     "question" : "RAG效果差的时候如何排查？",

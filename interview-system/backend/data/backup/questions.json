@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-24T17:13:50.35700294",
+  "exportedAt" : "2026-06-24T17:43:50.379549532",
   "questions" : [ {
     "id" : 1,
     "question" : "Java 中 == 和 equals 的区别是什么？",
@@ -8632,14 +8632,15 @@
     "answer" : "LeetCode Hot 100 - 链表\n难度: 困难\n\n在线编程: https://leetcode.cn/problems/reverse-nodes-in-k-group/\n国际站: https://leetcode.com/problems/reverse-nodes-in-k-group/",
     "category" : "Hot100",
     "tags" : "Hot100,链表,困难",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T17:14:57.955294",
     "createTime" : "2026-06-24T16:58:47.889065",
-    "updateTime" : "2026-06-24T16:58:47.889068"
+    "updateTime" : "2026-06-24T17:14:57.957824"
   }, {
     "id" : 691,
     "question" : "随机链表的复制",

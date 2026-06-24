@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-24T22:13:50.496138901",
+  "exportedAt" : "2026-06-24T22:43:50.50218011",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -1413,15 +1413,15 @@
     "answer" : "Rerank模型（如Cohere Rerank、BGE Reranker）使用交叉编码器架构：将查询和文档拼接后通过Transformer输出相关性分数。\n\n流程：\n1. 向量检索返回Top-K候选（K=50~100）\n2. 将每个候选文档与查询配对送入Rerank模型\n3. Rerank模型对每对进行精细打分\n4. 按分数重新排序，取Top-N（N=5~10）送入LLM\n\n作用：将向量检索的相关性精度从召回阶段提升到精确阶段",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 18,
+    "weight" : 16,
     "wrongCount" : 1,
-    "correctCount" : 0,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-06-24T13:04:59.034108",
+    "correctCount" : 1,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-06-24T22:17:53.093294",
     "createTime" : "2026-06-23T18:29:19.378477",
-    "updateTime" : "2026-06-24T13:04:59.036082"
+    "updateTime" : "2026-06-24T22:17:53.093518"
   }, {
     "id" : 650,
     "question" : "Metadata的作用是什么？",
@@ -1490,13 +1490,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-06-24T11:46:24.263646",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-06-24T22:15:19.331728",
     "createTime" : "2026-06-23T18:29:19.399473",
-    "updateTime" : "2026-06-24T11:46:24.265543"
+    "updateTime" : "2026-06-24T22:15:19.331967"
   }, {
     "id" : 655,
     "question" : "RAG的语义分块策略具体怎么做？",

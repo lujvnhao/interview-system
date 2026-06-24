@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-24T12:13:50.275200981",
+  "exportedAt" : "2026-06-24T12:43:50.282753809",
   "questions" : [ {
     "id" : 1,
     "question" : "Java 中 == 和 equals 的区别是什么？",
@@ -7599,14 +7599,15 @@
     "answer" : "1. LLM训练数据有截止日期，无法回答最新问题\n2. LLM存在幻觉问题，会编造不存在的知识\n3. 传统微调（Fine-tuning）成本高，难以频繁更新知识\n4. 企业需要基于自有内部知识库回答问题\n5. 需要回答的可溯源性和可解释性",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:19:23.474111",
     "createTime" : "2026-06-23T18:29:19.218078",
-    "updateTime" : "2026-06-23T18:29:19.218088"
+    "updateTime" : "2026-06-24T12:19:23.476486"
   }, {
     "id" : 619,
     "question" : "为什么RAG能够解决幻觉？",
@@ -7615,12 +7616,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:28:07.495925",
     "createTime" : "2026-06-23T18:29:19.222475",
-    "updateTime" : "2026-06-23T18:29:19.222484"
+    "updateTime" : "2026-06-24T12:28:07.497732"
   }, {
     "id" : 620,
     "question" : "RAG的流程是怎样的？",
@@ -7659,12 +7661,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:16:03.455369",
     "createTime" : "2026-06-23T18:29:19.234509",
-    "updateTime" : "2026-06-23T18:29:19.234516"
+    "updateTime" : "2026-06-24T12:16:03.457424"
   }, {
     "id" : 623,
     "question" : "RAG包含哪几个部分？",
@@ -7688,26 +7691,28 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:20:57.515285",
     "createTime" : "2026-06-23T18:29:19.242178",
-    "updateTime" : "2026-06-23T18:29:19.242185"
+    "updateTime" : "2026-06-24T12:20:57.517217"
   }, {
     "id" : 625,
     "question" : "RAG用来解决什么问题？",
     "answer" : "RAG解决的核心问题：\n1. 知识时效性——LLM训练数据陈旧，RAG可接入最新信息\n2. 幻觉问题——LLM会编造不存在的事实，RAG通过外部知识约束\n3. 领域专精——通用LLM缺乏企业内部专有领域知识\n4. 可解释性——RAG可以告诉用户答案来源于哪里\n5. 低成本知识更新——不需要重新训练模型，只需更新知识库\n6. 长尾知识覆盖——LLM对低频知识的记忆不完整",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:27:59.428614",
     "createTime" : "2026-06-23T18:29:19.246346",
-    "updateTime" : "2026-06-23T18:29:19.246355"
+    "updateTime" : "2026-06-24T12:27:59.430688"
   }, {
     "id" : 626,
     "question" : "RAG还有什么问题？",
@@ -7743,14 +7748,15 @@
     "answer" : "Embedding（嵌入/向量化）是将文本、图像等非结构化数据转换为固定维度的稠密向量（浮点数数组）的过程。这些向量位于高维向量空间中，语义相近的文本在向量空间中的距离也更近。Embedding是RAG系统中连接非结构化文本和数学计算的桥梁。",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:18:25.950844",
     "createTime" : "2026-06-23T18:29:19.263366",
-    "updateTime" : "2026-06-23T18:29:19.263378"
+    "updateTime" : "2026-06-24T12:18:25.95261"
   }, {
     "id" : 629,
     "question" : "常见的Embedding模型有哪些？",
@@ -7800,14 +7806,15 @@
     "answer" : "长上下文窗口不会完全取代RAG，原因：\n1. 成本问题——将所有文档塞入上下文Token消耗巨大\n2. 注意力稀释——LLM对长上下文中间位置的信息关注度下降（Lost in the Middle效应）\n3. 检索精度——RAG的检索相当于注意力引导，能准确定位最相关信息\n4. 互补关系——实际趋势是RAG+长上下文的结合\n5. 延迟——超长上下文的推理速度明显慢于RAG方式",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:34:03.172424",
     "createTime" : "2026-06-23T18:29:19.28408",
-    "updateTime" : "2026-06-23T18:29:19.284091"
+    "updateTime" : "2026-06-24T12:34:03.1749"
   }, {
     "id" : 633,
     "question" : "RAG有哪些演进阶段？",
@@ -7975,14 +7982,15 @@
     "answer" : "选择向量数据库需考虑：\n1. 数据规模——小于百万级用Chroma/Qdrant，百万级以上考虑Milvus/Pinecone\n2. 运维能力——无运维团队选全托管，有运维能力选自建\n3. 过滤需求——需复杂元数据过滤选Milvus/Weaviate/Qdrant\n4. 混合检索——需同时支持关键词+向量选Elasticsearch/Weaviate\n5. 成本——开源方案成本低但需自己运维，云服务方便但有费用\n6. 已有技术栈——已用PG可用pgvector，已用ES就用ES向量功能",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:18:45.344043",
     "createTime" : "2026-06-23T18:29:19.357728",
-    "updateTime" : "2026-06-23T18:29:19.357737"
+    "updateTime" : "2026-06-24T12:18:45.345861"
   }, {
     "id" : 645,
     "question" : "RAG优化闭环是什么？",
@@ -8105,14 +8113,15 @@
     "answer" : "实现步骤：\n1. 将文档按句子或段落拆分\n2. 对每个片段进行Embedding得到向量\n3. 计算相邻片段间的余弦相似度\n4. 生成相似度序列\n5. 当相邻片段的相似度出现显著下降时，将该位置标记为断点\n6. 在断点处将文档切分为不同的Chunk\n\n具体工具：LangChain的SemanticChunker、LlamaIndex的SentenceSplitter",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:27:50.860989",
     "createTime" : "2026-06-23T18:29:19.394171",
-    "updateTime" : "2026-06-23T18:29:19.394178"
+    "updateTime" : "2026-06-24T12:27:50.862785"
   }, {
     "id" : 654,
     "question" : "怎么判断相似度下降明显？",
@@ -8149,14 +8158,15 @@
     "answer" : "避免语义截断的策略：\n1. 语义切分——使用语义相似度而非固定长度确定切分点\n2. Chunk重叠——相邻Chunk重叠10-20%\n3. 父子文档——用小Chunk检索但返回其所在完整段落\n4. Sentence Window——检索到关键句后自动扩展前后各N句\n5. 多粒度索引——同时索引句子级和段落级Chunk\n6. 后处理合并——检索后检查相邻Chunk是否属同一段落\n7. 保留结构标记——在Chunk边界处标记是否被截断",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:17:13.125133",
     "createTime" : "2026-06-23T18:29:19.407129",
-    "updateTime" : "2026-06-23T18:29:19.407137"
+    "updateTime" : "2026-06-24T12:17:13.127286"
   }, {
     "id" : 657,
     "question" : "按照固定Token切分的缺点有哪些？",

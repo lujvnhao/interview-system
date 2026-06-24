@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-24T10:43:50.247569541",
+  "exportedAt" : "2026-06-24T11:13:50.255570016",
   "questions" : [ {
     "id" : 1,
     "question" : "Java 中 == 和 equals 的区别是什么？",
@@ -7586,12 +7586,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T11:00:15.488198",
     "createTime" : "2026-06-23T18:29:19.213015",
-    "updateTime" : "2026-06-23T18:29:19.213028"
+    "updateTime" : "2026-06-24T11:00:15.491047"
   }, {
     "id" : 618,
     "question" : "出现RAG的原因？",
@@ -7628,12 +7629,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T11:00:22.461541",
     "createTime" : "2026-06-23T18:29:19.226882",
-    "updateTime" : "2026-06-23T18:29:19.226892"
+    "updateTime" : "2026-06-24T11:00:22.464269"
   }, {
     "id" : 621,
     "question" : "RAG中为什么要进行文档清洗？",
@@ -7780,14 +7782,15 @@
     "answer" : "1. 检索对象不同：搜索引擎检索网页/文档，RAG检索文档片段(Chunk)\n2. 输出方式不同：搜索引擎返回链接列表，RAG直接生成自然语言答案\n3. 匹配方式不同：搜索引擎主要用关键词+PageRank，RAG用向量语义匹配\n4. 交互方式不同：搜索引擎是单次查询，RAG支持多轮对话和上下文理解\n5. 信息组织不同：搜索引擎展示原始结果，RAG将多源信息综合成连贯回答",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T10:49:53.315772",
     "createTime" : "2026-06-23T18:29:19.278927",
-    "updateTime" : "2026-06-23T18:29:19.278937"
+    "updateTime" : "2026-06-24T10:49:53.318049"
   }, {
     "id" : 632,
     "question" : "长上下文窗口会取代RAG吗？",
@@ -7951,12 +7954,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T10:54:22.760969",
     "createTime" : "2026-06-23T18:29:19.353013",
-    "updateTime" : "2026-06-23T18:29:19.353022"
+    "updateTime" : "2026-06-24T10:54:22.762918"
   }, {
     "id" : 644,
     "question" : "向量数据库怎么选？",

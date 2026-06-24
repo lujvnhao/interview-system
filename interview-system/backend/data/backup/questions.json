@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-24T13:13:50.291142781",
+  "exportedAt" : "2026-06-24T13:43:50.298362568",
   "questions" : [ {
     "id" : 1,
     "question" : "Java 中 == 和 equals 的区别是什么？",
@@ -7764,14 +7764,15 @@
     "answer" : "1. OpenAI text-embedding-3-small/large——高效、多语言支持\n2. BGE系列(BAAI)——中文表现优秀，开源\n3. M3E——中文专精，小巧高效\n4. Cohere Embed——多语言，企业级\n5. Jina Embeddings——支持长文本（8K token）\n6. E5/Mistral Embed——开源选项\n7. text2vec系列——轻量中文模型\n选择时需考虑：语言支持、向量维度、最大输入长度、推理速度和成本",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T13:23:52.459001",
     "createTime" : "2026-06-23T18:29:19.268281",
-    "updateTime" : "2026-06-23T18:29:19.268291"
+    "updateTime" : "2026-06-24T13:23:52.460654"
   }, {
     "id" : 630,
     "question" : "向量相似度怎么计算？",
@@ -7818,20 +7819,6 @@
     "createTime" : "2026-06-23T18:29:19.28408",
     "updateTime" : "2026-06-24T12:34:03.1749"
   }, {
-    "id" : 633,
-    "question" : "RAG有哪些演进阶段？",
-    "answer" : "RAG大致经历了以下演进阶段：\n1. Naive RAG——简单检索+生成，无优化\n2. Advanced RAG——加入查询重写、Rerank、Hybrid Search等优化\n3. Modular RAG——各组件模块化、可替换，支持灵活编排\n4. Agentic RAG——将RAG与Agent结合，支持工具调用、多步推理、自主决策\n5. Graph RAG——引入知识图谱增强实体关系的理解和推理\n6. Multimodal RAG——支持图片、表格、视频等多模态内容的检索和生成",
-    "category" : "AI",
-    "tags" : "",
-    "mastered" : false,
-    "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
-    "createTime" : "2026-06-23T18:29:19.288867",
-    "updateTime" : "2026-06-23T18:29:19.288879"
-  }, {
     "id" : 634,
     "question" : "RAG的核心优势和局限性分别是什么？",
     "answer" : "核心优势：\n1. 知识可更新无需重训\n2. 回答可溯源有据可查\n3. 减少幻觉，提高事实准确性\n4. 支持私有化部署和领域定制\n5. 成本低于持续微调模型\n\n局限性：\n1. 检索失败则整个系统失败（Garbage In Garbage Out）\n2. 无法处理需要全局理解的任务\n3. 引入额外延迟和复杂度\n4. 对Chunk策略和Embedding模型依赖度高\n5. 多语言和跨领域检索仍具挑战",
@@ -7839,12 +7826,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T13:25:45.780561",
     "createTime" : "2026-06-23T18:29:19.297602",
-    "updateTime" : "2026-06-23T18:29:19.297613"
+    "updateTime" : "2026-06-24T13:25:45.782438"
   }, {
     "id" : 635,
     "question" : "如何选择合适的Chunking策略？",
@@ -7896,14 +7884,15 @@
     "answer" : "语义丢失的本质是上下文信息的断裂和结构化信息的扁平化：\n1. 上下文断裂——语言意义高度依赖上下文，切分破坏局部连贯性\n2. 结构化信息丢失——表格、列表、层级结构等非线性信息表达方式在文本化后失效\n3. 指代消解失败——代词或引用失去了它们指向的实体\n4. 隐式关联丢失——文档中未明确说明但通过结构暗示的逻辑关系不复存在",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T13:26:10.230029",
     "createTime" : "2026-06-23T18:29:19.330534",
-    "updateTime" : "2026-06-23T18:29:19.330545"
+    "updateTime" : "2026-06-24T13:26:10.231781"
   }, {
     "id" : 639,
     "question" : "如何解决语义丢失的问题？",
@@ -7957,12 +7946,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T13:23:31.813073",
     "createTime" : "2026-06-23T18:29:19.34849",
-    "updateTime" : "2026-06-23T18:29:19.348497"
+    "updateTime" : "2026-06-24T13:23:31.815008"
   }, {
     "id" : 643,
     "question" : "有哪些向量数据库？",
@@ -8188,5 +8178,19 @@
     "lastReviewTime" : "2026-06-24T12:00:01.268909",
     "createTime" : "2026-06-23T18:29:19.413022",
     "updateTime" : "2026-06-24T12:00:01.271886"
+  }, {
+    "id" : 658,
+    "question" : "有序数组的平方",
+    "answer" : "",
+    "category" : "算法",
+    "tags" : "",
+    "mastered" : false,
+    "favorite" : false,
+    "weight" : 10,
+    "wrongCount" : 0,
+    "correctCount" : 0,
+    "reviewCount" : 0,
+    "createTime" : "2026-06-24T13:41:23.768152",
+    "updateTime" : "2026-06-24T13:41:23.768158"
   } ]
 }

@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-24T12:43:50.282753809",
+  "exportedAt" : "2026-06-24T13:13:50.291142781",
   "questions" : [ {
     "id" : 1,
     "question" : "Java 中 == 和 equals 的区别是什么？",
@@ -7721,12 +7721,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:57:36.294846",
     "createTime" : "2026-06-23T18:29:19.250474",
-    "updateTime" : "2026-06-23T18:29:19.250481"
+    "updateTime" : "2026-06-24T12:57:36.297192"
   }, {
     "id" : 627,
     "question" : "RAG的常用场景有哪些？",
@@ -7779,12 +7780,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:57:54.441782",
     "createTime" : "2026-06-23T18:29:19.273288",
-    "updateTime" : "2026-06-23T18:29:19.273299"
+    "updateTime" : "2026-06-24T12:57:54.443872"
   }, {
     "id" : 631,
     "question" : "RAG与传统搜索引擎的区别是什么？",
@@ -8014,12 +8016,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:58:28.176241",
     "createTime" : "2026-06-23T18:29:19.367068",
-    "updateTime" : "2026-06-23T18:29:19.367075"
+    "updateTime" : "2026-06-24T12:58:28.177997"
   }, {
     "id" : 647,
     "question" : "什么是Hybrid Search混合检索？",
@@ -8058,12 +8061,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T13:04:59.034108",
     "createTime" : "2026-06-23T18:29:19.378477",
-    "updateTime" : "2026-06-23T18:29:19.378483"
+    "updateTime" : "2026-06-24T13:04:59.036082"
   }, {
     "id" : 650,
     "question" : "Metadata的作用是什么？",
@@ -8087,26 +8091,28 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:53:52.761698",
     "createTime" : "2026-06-23T18:29:19.386577",
-    "updateTime" : "2026-06-23T18:29:19.386584"
+    "updateTime" : "2026-06-24T12:53:52.763535"
   }, {
     "id" : 652,
     "question" : "RAG的文档切分策略有哪些？",
     "answer" : "主要切分策略：\n1. 固定Token切分——按固定Token数切分，简单但可能在句子中断开\n2. 递归字符切分——按分隔符优先级递归切分\n3. 语义切分——基于Embedding计算相邻句子语义相似度，在相似度骤降处切分\n4. 文档结构切分——按Markdown标题、HTML标签等结构标记切分\n5. 句子窗口切分——以句子为单位在句子边界切分\n6. Agentic切分——使用LLM本身判断最佳切分点",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:58:15.561852",
     "createTime" : "2026-06-23T18:29:19.390355",
-    "updateTime" : "2026-06-23T18:29:19.390363"
+    "updateTime" : "2026-06-24T12:58:15.563552"
   }, {
     "id" : 653,
     "question" : "文档切分时基于语义相似度判断断点是怎么实现的？",

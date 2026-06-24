@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-24T11:43:50.266797781",
+  "exportedAt" : "2026-06-24T12:13:50.275200981",
   "questions" : [ {
     "id" : 1,
     "question" : "Java 中 == 和 equals 的区别是什么？",
@@ -7642,14 +7642,15 @@
     "answer" : "1. 去除噪声——PDF中可能包含页眉页脚、广告、水印等无关内容\n2. 格式统一——不同来源的文档格式各异，需统一处理\n3. 提高检索质量——干净的数据能产生更准确的Embedding向量\n4. 节省Token——去除冗余内容减少向量化及LLM调用的Token消耗\n5. 避免语义污染——混乱的内容会导致错误的向量表示，影响检索精度",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:01:43.464588",
     "createTime" : "2026-06-23T18:29:19.23076",
-    "updateTime" : "2026-06-23T18:29:19.230767"
+    "updateTime" : "2026-06-24T12:01:43.467189"
   }, {
     "id" : 622,
     "question" : "Rerank重排序的作用是什么？",
@@ -7727,14 +7728,15 @@
     "answer" : "1. 企业知识库问答——基于企业内部文档、手册、规章制度回答问题\n2. 客服机器人——基于产品文档、FAQ提供自动化客服\n3. 法律文档分析——检索相关判例、法规辅助律师工作\n4. 医疗辅助——基于医学文献和临床指南提供诊疗建议\n5. 代码助手——基于代码库和技术文档回答编程问题\n6. 学术研究——检索论文库辅助文献综述和知识发现\n7. 新闻摘要——基于实时新闻内容生成摘要和分析\n8. 教育培训——基于教材和课程资料回答学生问题",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T11:44:53.101441",
     "createTime" : "2026-06-23T18:29:19.255309",
-    "updateTime" : "2026-06-23T18:29:19.255341"
+    "updateTime" : "2026-06-24T11:44:53.104211"
   }, {
     "id" : 628,
     "question" : "Embedding是什么？",
@@ -7842,12 +7844,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:07:52.103276",
     "createTime" : "2026-06-23T18:29:19.308529",
-    "updateTime" : "2026-06-23T18:29:19.308551"
+    "updateTime" : "2026-06-24T12:07:52.105089"
   }, {
     "id" : 636,
     "question" : "什么是语义丢失，为什么会发生？",
@@ -7856,26 +7859,28 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:02:52.267114",
     "createTime" : "2026-06-23T18:29:19.314925",
-    "updateTime" : "2026-06-23T18:29:19.314934"
+    "updateTime" : "2026-06-24T12:02:52.269032"
   }, {
     "id" : 637,
     "question" : "语义丢失的典型场景有哪些？",
     "answer" : "1. 在段落中间切分，导致前一段论述在后一段找不到结论\n2. 表格数据提取为纯文本后，行列关系和数值含义丢失\n3. 代码中的注释和代码被拆分到不同Chunk\n4. 引用标记或脚注被移除后无法追溯来源\n5. 带层级结构的文档切分后，条款之间引用关系丢失\n6. 数学公式在文本化过程中语义完全改变",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:02:39.157936",
     "createTime" : "2026-06-23T18:29:19.32457",
-    "updateTime" : "2026-06-23T18:29:19.324582"
+    "updateTime" : "2026-06-24T12:02:39.159936"
   }, {
     "id" : 638,
     "question" : "语义丢失的本质是什么？",
@@ -7898,12 +7903,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T11:57:21.868304",
     "createTime" : "2026-06-23T18:29:19.335834",
-    "updateTime" : "2026-06-23T18:29:19.335843"
+    "updateTime" : "2026-06-24T11:57:21.8707"
   }, {
     "id" : 640,
     "question" : "Embedding和向量检索是什么关系？",
@@ -7927,12 +7933,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T11:58:35.104479",
     "createTime" : "2026-06-23T18:29:19.344034",
-    "updateTime" : "2026-06-23T18:29:19.344068"
+    "updateTime" : "2026-06-24T11:58:35.107247"
   }, {
     "id" : 642,
     "question" : "什么是向量索引算法？",
@@ -7982,14 +7989,15 @@
     "answer" : "RAG优化闭环（RAG OODA循环）：\n1. 建立评估基准——构建标注数据集和评估指标体系\n2. 识别问题——通过用户反馈和指标监控发现薄弱环节\n3. 假设与优化——针对具体问题提出优化假设\n4. 实验验证——进行受控实验对比优化前后指标\n5. 部署上线——将验证有效的优化部署到生产\n6. 监控反馈——持续监控，收集新一轮反馈\n这是一个持续迭代的飞轮",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:00:46.765829",
     "createTime" : "2026-06-23T18:29:19.363171",
-    "updateTime" : "2026-06-23T18:29:19.363179"
+    "updateTime" : "2026-06-24T12:00:46.767809"
   }, {
     "id" : 646,
     "question" : "Chunk大小怎么选取？",
@@ -8010,14 +8018,15 @@
     "answer" : "Hybrid Search是指同时使用向量检索（语义匹配）和关键词检索（精确匹配），然后通过融合算法（如倒数排名融合RRF）合并排序结果的检索策略。\n\n优势：\n1. 弥补向量检索对专有名词、缩写、精确匹配的不足\n2. 弥补关键词检索对同义词、语义相似的不足\n3. 两者互补，显著提升召回率\n\n典型实现：RRF（Reciprocal Rank Fusion），将两种检索结果的倒数排名相加后重新排序",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T11:57:50.038242",
     "createTime" : "2026-06-23T18:29:19.370841",
-    "updateTime" : "2026-06-23T18:29:19.370849"
+    "updateTime" : "2026-06-24T11:57:50.040572"
   }, {
     "id" : 648,
     "question" : "Top-K不是越大越好，为什么？",
@@ -8110,14 +8119,15 @@
     "answer" : "判断相似度显著下降的常见方法：\n1. 百分位阈值法——计算所有相邻相似度分布，将低于某百分位数(如P10)的视为断点，最为稳健\n2. 标准差法——当相似度低于均值减1-2个标准差时判定为断点\n3. 绝对阈值法——低于某绝对阈值(如0.5)即判定为断点\n4. 梯度法——计算相似度变化一阶导数，降幅超一定比例时判定\n5. 自适应阈值——使用滑动窗口动态计算局部阈值",
     "category" : "AI",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T11:46:24.263646",
     "createTime" : "2026-06-23T18:29:19.399473",
-    "updateTime" : "2026-06-23T18:29:19.399479"
+    "updateTime" : "2026-06-24T11:46:24.265543"
   }, {
     "id" : 655,
     "question" : "RAG的语义分块策略具体怎么做？",
@@ -8126,12 +8136,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:04:48.830673",
     "createTime" : "2026-06-23T18:29:19.403047",
-    "updateTime" : "2026-06-23T18:29:19.403054"
+    "updateTime" : "2026-06-24T12:04:48.832589"
   }, {
     "id" : 656,
     "question" : "怎么避免语义截断？",
@@ -8154,11 +8165,12 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-24T12:00:01.268909",
     "createTime" : "2026-06-23T18:29:19.413022",
-    "updateTime" : "2026-06-23T18:29:19.41303"
+    "updateTime" : "2026-06-24T12:00:01.271886"
   } ]
 }

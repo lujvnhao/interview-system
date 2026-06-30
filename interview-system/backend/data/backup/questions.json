@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-06-30T12:13:52.001947097",
+  "exportedAt" : "2026-06-30T12:43:52.006964273",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -1832,12 +1832,13 @@
     "tags" : "Hot100,矩阵,中等",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-30T12:14:29.909563",
     "createTime" : "2026-06-24T16:58:47.848144",
-    "updateTime" : "2026-06-24T16:58:47.848147"
+    "updateTime" : "2026-06-30T12:14:29.910719"
   }, {
     "id" : 679,
     "question" : "旋转图像",
@@ -2069,14 +2070,15 @@
     "answer" : "LeetCode Hot 100 - 二叉树\n难度: 简单\n\n在线编程: https://leetcode.cn/problems/binary-tree-inorder-traversal/\n国际站: https://leetcode.com/problems/binary-tree-inorder-traversal/",
     "category" : "Hot100",
     "tags" : "Hot100,二叉树,简单",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-30T12:22:41.911798",
     "createTime" : "2026-06-24T16:58:47.908226",
-    "updateTime" : "2026-06-24T16:58:47.908229"
+    "updateTime" : "2026-06-30T12:22:41.913143"
   }, {
     "id" : 696,
     "question" : "二叉树的最大深度",
@@ -2589,12 +2591,13 @@
     "tags" : "Hot100,栈,困难",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-30T12:19:47.963228",
     "createTime" : "2026-06-24T16:58:48.042821",
-    "updateTime" : "2026-06-24T16:58:48.042823"
+    "updateTime" : "2026-06-30T12:19:47.96427"
   }, {
     "id" : 733,
     "question" : "数组中的第K个最大元素",
@@ -2909,14 +2912,15 @@
     "answer" : "LeetCode Hot 100 - 技巧\n难度: 简单\n\n在线编程: https://leetcode.cn/problems/single-number/\n国际站: https://leetcode.com/problems/single-number/",
     "category" : "Hot100",
     "tags" : "Hot100,技巧,简单",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-06-30T12:19:20.469459",
     "createTime" : "2026-06-24T16:58:48.115117",
-    "updateTime" : "2026-06-24T16:58:48.11512"
+    "updateTime" : "2026-06-30T12:19:20.470559"
   }, {
     "id" : 756,
     "question" : "多数元素",

@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-07-10T14:13:54.758125193",
+  "exportedAt" : "2026-07-10T14:43:54.763546247",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -1776,12 +1776,13 @@
     "tags" : "Hot100,普通数组,中等",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-10T14:25:09.948966",
     "createTime" : "2026-06-24T16:58:47.835287",
-    "updateTime" : "2026-06-24T16:58:47.835291"
+    "updateTime" : "2026-07-10T14:25:09.950206"
   }, {
     "id" : 675,
     "question" : "除自身以外数组的乘积",
@@ -2015,14 +2016,15 @@
     "answer" : "LeetCode Hot 100 - 链表\n难度: 中等\n\n在线编程: https://leetcode.cn/problems/copy-list-with-random-pointer/\n国际站: https://leetcode.com/problems/copy-list-with-random-pointer/",
     "category" : "Hot100",
     "tags" : "Hot100,链表,中等",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-10T14:42:42.639872",
     "createTime" : "2026-06-24T16:58:47.892135",
-    "updateTime" : "2026-06-24T16:58:47.892138"
+    "updateTime" : "2026-07-10T14:42:42.640912"
   }, {
     "id" : 692,
     "question" : "排序链表",
@@ -2648,14 +2650,15 @@
     "answer" : "LeetCode Hot 100 - 贪心算法\n难度: 简单\n\n在线编程: https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/\n国际站: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
     "category" : "Hot100",
     "tags" : "Hot100,贪心算法,简单",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-10T14:39:10.559934",
     "createTime" : "2026-06-24T16:58:48.05631",
-    "updateTime" : "2026-06-24T16:58:48.056342"
+    "updateTime" : "2026-07-10T14:39:10.561044"
   }, {
     "id" : 737,
     "question" : "跳跃游戏",

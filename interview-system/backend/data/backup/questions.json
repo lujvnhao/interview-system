@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-07-10T12:13:54.736610073",
+  "exportedAt" : "2026-07-10T12:43:54.741898952",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -1987,12 +1987,13 @@
     "tags" : "Hot100,链表,中等",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-10T12:36:04.86374",
     "createTime" : "2026-06-24T16:58:47.886001",
-    "updateTime" : "2026-06-24T16:58:47.886004"
+    "updateTime" : "2026-07-10T12:36:04.864797"
   }, {
     "id" : 690,
     "question" : "K 个一组翻转链表",
@@ -2058,12 +2059,13 @@
     "tags" : "Hot100,链表,中等",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-10T12:20:01.966768",
     "createTime" : "2026-06-24T16:58:47.905008",
-    "updateTime" : "2026-06-24T16:58:47.905011"
+    "updateTime" : "2026-07-10T12:20:01.968087"
   }, {
     "id" : 695,
     "question" : "二叉树的中序遍历",

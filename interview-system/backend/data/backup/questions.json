@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-07-12T11:13:55.29435821",
+  "exportedAt" : "2026-07-12T11:43:55.299693701",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -2177,12 +2177,13 @@
     "tags" : "Hot100,二叉树,中等",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-12T11:29:15.157284",
     "createTime" : "2026-06-24T16:58:47.929733",
-    "updateTime" : "2026-06-24T16:58:47.92974"
+    "updateTime" : "2026-07-12T11:29:15.158223"
   }, {
     "id" : 703,
     "question" : "二叉搜索树中第 K 小的元素",
@@ -2810,12 +2811,13 @@
     "tags" : "Hot100,动态规划,中等",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-12T11:33:45.628769",
     "createTime" : "2026-06-24T16:58:48.088619",
-    "updateTime" : "2026-06-24T16:58:48.088621"
+    "updateTime" : "2026-07-12T11:33:45.629792"
   }, {
     "id" : 748,
     "question" : "分割等和子集",

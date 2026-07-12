@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-07-12T11:43:55.299693701",
+  "exportedAt" : "2026-07-12T12:13:55.304998769",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -1962,12 +1962,13 @@
     "tags" : "Hot100,链表,中等",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-12T11:49:59.982736",
     "createTime" : "2026-06-24T16:58:47.87965",
-    "updateTime" : "2026-06-24T16:58:47.879654"
+    "updateTime" : "2026-07-12T11:49:59.983721"
   }, {
     "id" : 688,
     "question" : "删除链表的倒数第 N 个结点",

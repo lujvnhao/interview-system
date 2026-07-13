@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-07-13T10:43:55.568988112",
+  "exportedAt" : "2026-07-13T11:13:55.574829164",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -528,12 +528,13 @@
     "tags" : "高频,手撕代码,栈,设计",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-13T10:45:27.737071",
     "createTime" : "2026-06-08T18:58:32.305094",
-    "updateTime" : "2026-06-08T18:58:32.305097"
+    "updateTime" : "2026-07-13T10:45:27.73809"
   }, {
     "id" : 507,
     "question" : "每日温度",
@@ -569,15 +570,15 @@
     "answer" : "找二叉树中两个节点的最近公共祖先（LCA）。\n\n**递归**：\n- root 为 null 或等于 p 或 q → 返回 root\n- 递归左右子树\n- 左右都不为 null → root 是 LCA\n- 一边为 null → LCA 在另一边\n\n```java\npublic TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {\n    if (root == null || root == p || root == q) return root;\n    TreeNode left = lowestCommonAncestor(root.left, p, q);\n    TreeNode right = lowestCommonAncestor(root.right, p, q);\n    if (left != null && right != null) return root;\n    return left != null ? left : right;\n}\n```\nO(n)，O(h)。\n\n**BST 版本**：利用有序性质，与 root.val 比较决定搜索方向。",
     "category" : "算法",
     "tags" : "高频,手撕代码,二叉树,递归",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 18,
+    "weight" : 16,
     "wrongCount" : 1,
-    "correctCount" : 0,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-06-11T11:15:06.848074",
+    "correctCount" : 1,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-07-13T10:51:58.195135",
     "createTime" : "2026-06-08T18:58:32.309536",
-    "updateTime" : "2026-06-11T11:15:06.85063"
+    "updateTime" : "2026-07-13T10:51:58.196135"
   }, {
     "id" : 510,
     "question" : "路径总和 III",

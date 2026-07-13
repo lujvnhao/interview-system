@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-07-13T11:13:55.574829164",
+  "exportedAt" : "2026-07-13T11:43:55.580668603",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -672,12 +672,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-13T11:25:11.610019",
     "createTime" : "2026-06-08T18:58:32.321999",
-    "updateTime" : "2026-06-08T18:58:32.322002"
+    "updateTime" : "2026-07-13T11:25:11.61096"
   }, {
     "id" : 517,
     "question" : "数组切割",
@@ -756,12 +757,13 @@
     "tags" : "手撕代码,动态规划,股票问题",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-13T11:25:08.728923",
     "createTime" : "2026-06-08T18:58:32.33054",
-    "updateTime" : "2026-06-08T18:58:32.330542"
+    "updateTime" : "2026-07-13T11:25:08.72997"
   }, {
     "id" : 523,
     "question" : "买卖股票的最佳时机 IV",

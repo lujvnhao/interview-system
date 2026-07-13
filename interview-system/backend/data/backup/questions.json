@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-07-13T10:13:55.563771568",
+  "exportedAt" : "2026-07-13T10:43:55.568988112",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -1850,12 +1850,13 @@
     "tags" : "Hot100,矩阵,中等",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-13T10:19:02.354581",
     "createTime" : "2026-06-24T16:58:47.851233",
-    "updateTime" : "2026-06-24T16:58:47.851235"
+    "updateTime" : "2026-07-13T10:19:02.355576"
   }, {
     "id" : 680,
     "question" : "搜索二维矩阵 II",

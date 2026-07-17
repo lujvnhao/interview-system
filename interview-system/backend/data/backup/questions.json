@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-07-17T09:13:56.74097892",
+  "exportedAt" : "2026-07-17T09:43:56.74683785",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -2775,14 +2775,15 @@
     "answer" : "LeetCode Hot 100 - 动态规划\n难度: 中等\n\n在线编程: https://leetcode.cn/problems/coin-change/\n国际站: https://leetcode.com/problems/coin-change/",
     "category" : "Hot100",
     "tags" : "Hot100,动态规划,中等",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-17T09:22:02.479138",
     "createTime" : "2026-06-24T16:58:48.08036",
-    "updateTime" : "2026-06-24T16:58:48.080363"
+    "updateTime" : "2026-07-17T09:22:02.480264"
   }, {
     "id" : 745,
     "question" : "单词拆分",
@@ -2791,12 +2792,13 @@
     "tags" : "Hot100,动态规划,中等",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-17T09:38:06.233953",
     "createTime" : "2026-06-24T16:58:48.083262",
-    "updateTime" : "2026-06-24T16:58:48.083264"
+    "updateTime" : "2026-07-17T09:38:06.234889"
   }, {
     "id" : 746,
     "question" : "最长递增子序列",

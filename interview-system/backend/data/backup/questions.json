@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-07-17T09:43:56.74683785",
+  "exportedAt" : "2026-07-17T10:13:56.752735579",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -1667,14 +1667,15 @@
     "answer" : "LeetCode Hot 100 - 双指针\n难度: 困难\n\n在线编程: https://leetcode.cn/problems/trapping-rain-water/\n国际站: https://leetcode.com/problems/trapping-rain-water/",
     "category" : "Hot100",
     "tags" : "Hot100,双指针,困难",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-17T09:59:21.720928",
     "createTime" : "2026-06-24T16:58:47.806311",
-    "updateTime" : "2026-06-24T16:58:47.806331"
+    "updateTime" : "2026-07-17T09:59:21.721831"
   }, {
     "id" : 667,
     "question" : "无重复字符的最长子串",
@@ -2126,14 +2127,15 @@
     "answer" : "LeetCode Hot 100 - 二叉树\n难度: 简单\n\n在线编程: https://leetcode.cn/problems/symmetric-tree/\n国际站: https://leetcode.com/problems/symmetric-tree/",
     "category" : "Hot100",
     "tags" : "Hot100,二叉树,简单",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-17T10:11:51.165699",
     "createTime" : "2026-06-24T16:58:47.917222",
-    "updateTime" : "2026-06-24T16:58:47.917225"
+    "updateTime" : "2026-07-17T10:11:51.16663"
   }, {
     "id" : 699,
     "question" : "二叉树的直径",
@@ -2380,14 +2382,15 @@
     "answer" : "LeetCode Hot 100 - 回溯\n难度: 中等\n\n在线编程: https://leetcode.cn/problems/letter-combinations-of-a-phone-number/\n国际站: https://leetcode.com/problems/letter-combinations-of-a-phone-number/",
     "category" : "Hot100",
     "tags" : "Hot100,回溯,中等",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-17T10:07:20.433626",
     "createTime" : "2026-06-24T16:58:47.982838",
-    "updateTime" : "2026-06-24T16:58:47.982841"
+    "updateTime" : "2026-07-17T10:07:20.434508"
   }, {
     "id" : 717,
     "question" : "组合总和",
@@ -2761,14 +2764,15 @@
     "answer" : "LeetCode Hot 100 - 动态规划\n难度: 中等\n\n在线编程: https://leetcode.cn/problems/perfect-squares/\n国际站: https://leetcode.com/problems/perfect-squares/",
     "category" : "Hot100",
     "tags" : "Hot100,动态规划,中等",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-17T10:07:14.709444",
     "createTime" : "2026-06-24T16:58:48.07711",
-    "updateTime" : "2026-06-24T16:58:48.077113"
+    "updateTime" : "2026-07-17T10:07:14.710356"
   }, {
     "id" : 744,
     "question" : "零钱兑换",
@@ -2919,14 +2923,15 @@
     "answer" : "LeetCode Hot 100 - 多维动态规划\n难度: 中等\n\n在线编程: https://leetcode.cn/problems/edit-distance/\n国际站: https://leetcode.com/problems/edit-distance/",
     "category" : "Hot100",
     "tags" : "Hot100,多维动态规划,中等",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-17T09:54:49.721214",
     "createTime" : "2026-06-24T16:58:48.111613",
-    "updateTime" : "2026-06-24T16:58:48.111618"
+    "updateTime" : "2026-07-17T09:54:49.722113"
   }, {
     "id" : 755,
     "question" : "只出现一次的数字",

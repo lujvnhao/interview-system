@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-07-17T10:43:56.758386459",
+  "exportedAt" : "2026-07-17T11:13:56.764354015",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -1909,14 +1909,15 @@
     "answer" : "LeetCode Hot 100 - 链表\n难度: 简单\n\n在线编程: https://leetcode.cn/problems/palindrome-linked-list/\n国际站: https://leetcode.com/problems/palindrome-linked-list/",
     "category" : "Hot100",
     "tags" : "Hot100,链表,简单",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-07-17T10:58:34.412498",
     "createTime" : "2026-06-24T16:58:47.864486",
-    "updateTime" : "2026-06-24T16:58:47.86449"
+    "updateTime" : "2026-07-17T10:58:34.413396"
   }, {
     "id" : 684,
     "question" : "环形链表",

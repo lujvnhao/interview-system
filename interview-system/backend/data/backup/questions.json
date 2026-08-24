@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-08-24T16:07:22.990368457",
+  "exportedAt" : "2026-08-24T16:37:23.009764646",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -6367,14 +6367,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T16:25:28.869827",
     "createTime" : "2026-08-24T15:32:51.089127",
-    "updateTime" : "2026-08-24T15:32:51.08913"
+    "updateTime" : "2026-08-24T16:25:28.872727"
   }, {
     "id" : 996,
     "question" : "经过业务面，有没有对我们部门有更深刻的了解？结合过往经验，说说自身与岗位的契合点。",
@@ -6481,14 +6482,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T16:18:57.001969",
     "createTime" : "2026-08-24T15:32:52.312345",
-    "updateTime" : "2026-08-24T15:32:52.312348"
+    "updateTime" : "2026-08-24T16:18:57.00468"
   }, {
     "id" : 1004,
     "question" : "你是如何看待压力的，你是如何处理的?",
@@ -6652,14 +6654,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T16:28:48.886157",
     "createTime" : "2026-08-24T15:32:54.144628",
-    "updateTime" : "2026-08-24T15:32:54.14463"
+    "updateTime" : "2026-08-24T16:28:48.889047"
   }, {
     "id" : 1016,
     "question" : "有什么兴趣爱好，喜欢的书籍",
@@ -6736,14 +6739,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T16:18:00.984787",
     "createTime" : "2026-08-24T15:32:55.060066",
-    "updateTime" : "2026-08-24T15:32:55.060069"
+    "updateTime" : "2026-08-24T16:18:00.988147"
   }, {
     "id" : 1022,
     "question" : "有没有了解过一个项目的完整流程",
@@ -6820,14 +6824,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T16:15:13.885153",
     "createTime" : "2026-08-24T15:32:55.97542",
-    "updateTime" : "2026-08-24T15:32:55.975422"
+    "updateTime" : "2026-08-24T16:15:13.887761"
   }, {
     "id" : 1028,
     "question" : "对AI软硬件的看法",
@@ -6919,14 +6924,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T16:21:25.772398",
     "createTime" : "2026-08-24T15:32:57.043234",
-    "updateTime" : "2026-08-24T15:32:57.043236"
+    "updateTime" : "2026-08-24T16:21:25.775442"
   }, {
     "id" : 1035,
     "question" : "你是如何制定学习和成长目标的？",

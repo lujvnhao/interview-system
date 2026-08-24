@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-08-24T15:37:22.655138769",
+  "exportedAt" : "2026-08-24T16:07:22.990368457",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -6269,12 +6269,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T16:05:40.394837",
     "createTime" : "2026-08-24T15:32:50.020488",
-    "updateTime" : "2026-08-24T15:32:50.02049"
+    "updateTime" : "2026-08-24T16:05:40.397256"
   }, {
     "id" : 989,
     "question" : "为什么选择做后端",
@@ -6337,14 +6338,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T16:01:27.041084",
     "createTime" : "2026-08-24T15:32:50.784039",
-    "updateTime" : "2026-08-24T15:32:50.784041"
+    "updateTime" : "2026-08-24T16:01:27.043395"
   }, {
     "id" : 994,
     "question" : "对京东科技的了解",
@@ -6421,14 +6423,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T15:56:08.708133",
     "createTime" : "2026-08-24T15:32:51.700994",
-    "updateTime" : "2026-08-24T15:32:51.700997"
+    "updateTime" : "2026-08-24T15:56:08.711084"
   }, {
     "id" : 1000,
     "question" : "遇到问题你是怎么解决的",
@@ -6463,14 +6466,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T15:57:59.081531",
     "createTime" : "2026-08-24T15:32:52.15955",
-    "updateTime" : "2026-08-24T15:32:52.159552"
+    "updateTime" : "2026-08-24T15:57:59.08496"
   }, {
     "id" : 1003,
     "question" : "你是如何处理加班中的情绪问题呢？",
@@ -6491,28 +6495,30 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T15:44:08.862642",
     "createTime" : "2026-08-24T15:32:52.465244",
-    "updateTime" : "2026-08-24T15:32:52.465247"
+    "updateTime" : "2026-08-24T15:44:08.873913"
   }, {
     "id" : 1005,
     "question" : "你坚持最长的一件事是什么？",
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T15:54:21.643447",
     "createTime" : "2026-08-24T15:32:52.61817",
-    "updateTime" : "2026-08-24T15:32:52.618173"
+    "updateTime" : "2026-08-24T15:54:21.646676"
   }, {
     "id" : 1006,
     "question" : "你最骄傲的一件事",
@@ -6561,14 +6567,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T15:45:55.533383",
     "createTime" : "2026-08-24T15:32:53.228582",
-    "updateTime" : "2026-08-24T15:32:53.228583"
+    "updateTime" : "2026-08-24T15:45:55.536757"
   }, {
     "id" : 1010,
     "question" : "做到什么程度才会让自己满意？",
@@ -6841,14 +6848,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T15:49:18.310479",
     "createTime" : "2026-08-24T15:32:56.280861",
-    "updateTime" : "2026-08-24T15:32:56.280864"
+    "updateTime" : "2026-08-24T15:49:18.314488"
   }, {
     "id" : 1030,
     "question" : "你为了参加京东的面试做了哪些特殊的准备吗",
@@ -6925,13 +6933,14 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T16:02:56.271159",
     "createTime" : "2026-08-24T15:32:57.195799",
-    "updateTime" : "2026-08-24T15:32:57.195802"
+    "updateTime" : "2026-08-24T16:02:56.274783"
   } ]
 }

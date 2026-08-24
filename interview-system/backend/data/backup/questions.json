@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-08-24T17:07:23.02553176",
+  "exportedAt" : "2026-08-24T17:37:23.042179927",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -6284,12 +6284,13 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 10,
-    "wrongCount" : 0,
+    "weight" : 18,
+    "wrongCount" : 1,
     "correctCount" : 0,
-    "reviewCount" : 0,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T17:23:27.197683",
     "createTime" : "2026-08-24T15:32:50.173186",
-    "updateTime" : "2026-08-24T15:32:50.173188"
+    "updateTime" : "2026-08-24T17:23:27.200061"
   }, {
     "id" : 990,
     "question" : "你为什么会想学习AI技术呢？",
@@ -6324,14 +6325,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T17:31:17.975774",
     "createTime" : "2026-08-24T15:32:50.631513",
-    "updateTime" : "2026-08-24T15:32:50.631515"
+    "updateTime" : "2026-08-24T17:31:17.978357"
   }, {
     "id" : 993,
     "question" : "对京东的了解",
@@ -6353,14 +6355,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T17:37:09.428717",
     "createTime" : "2026-08-24T15:32:50.93659",
-    "updateTime" : "2026-08-24T15:32:50.936592"
+    "updateTime" : "2026-08-24T17:37:09.431303"
   }, {
     "id" : 995,
     "question" : "为什么想来京东",
@@ -6382,14 +6385,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T17:07:29.395302",
     "createTime" : "2026-08-24T15:32:51.241699",
-    "updateTime" : "2026-08-24T15:32:51.241701"
+    "updateTime" : "2026-08-24T17:07:29.398616"
   }, {
     "id" : 997,
     "question" : "你认为你有哪些优点？",
@@ -6440,14 +6444,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T17:27:37.526813",
     "createTime" : "2026-08-24T15:32:51.853755",
-    "updateTime" : "2026-08-24T15:32:51.853758"
+    "updateTime" : "2026-08-24T17:27:37.529484"
   }, {
     "id" : 1001,
     "question" : "人生遇到过什么挫折吗？",
@@ -6529,14 +6534,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T17:33:41.458565",
     "createTime" : "2026-08-24T15:32:52.770902",
-    "updateTime" : "2026-08-24T15:32:52.770904"
+    "updateTime" : "2026-08-24T17:33:41.461537"
   }, {
     "id" : 1007,
     "question" : "你刚来北京时，对城市和自己的认知？",
@@ -6588,14 +6594,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T17:10:58.528105",
     "createTime" : "2026-08-24T15:32:53.381251",
-    "updateTime" : "2026-08-24T15:32:53.381254"
+    "updateTime" : "2026-08-24T17:10:58.530564"
   }, {
     "id" : 1011,
     "question" : "对未来职业发展和规划有什么期望？",
@@ -6616,14 +6623,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T17:15:18.854236",
     "createTime" : "2026-08-24T15:32:53.686804",
-    "updateTime" : "2026-08-24T15:32:53.686806"
+    "updateTime" : "2026-08-24T17:15:18.857113"
   }, {
     "id" : 1013,
     "question" : "什么工作氛围会让你觉得舒服？",
@@ -6705,14 +6713,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T17:09:23.539453",
     "createTime" : "2026-08-24T15:32:54.602207",
-    "updateTime" : "2026-08-24T15:32:54.602209"
+    "updateTime" : "2026-08-24T17:09:23.541799"
   }, {
     "id" : 1019,
     "question" : "参加项目的收获",
@@ -6734,14 +6743,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T17:36:30.87545",
     "createTime" : "2026-08-24T15:32:54.907639",
-    "updateTime" : "2026-08-24T15:32:54.907641"
+    "updateTime" : "2026-08-24T17:36:30.87869"
   }, {
     "id" : 1021,
     "question" : "其他同学的毕业走向？ 都去哪些大厂？ 有什么共同特点？",
@@ -6792,14 +6802,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T17:25:01.899313",
     "createTime" : "2026-08-24T15:32:55.517428",
-    "updateTime" : "2026-08-24T15:32:55.517431"
+    "updateTime" : "2026-08-24T17:25:01.901488"
   }, {
     "id" : 1025,
     "question" : "你有什么好的学习方法",
@@ -6820,14 +6831,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T17:13:16.381849",
     "createTime" : "2026-08-24T15:32:55.822867",
-    "updateTime" : "2026-08-24T15:32:55.82287"
+    "updateTime" : "2026-08-24T17:13:16.385261"
   }, {
     "id" : 1027,
     "question" : "对AI的关注，最近比较关注的AI产品",
@@ -6878,14 +6890,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 10,
+    "weight" : 8,
     "wrongCount" : 0,
-    "correctCount" : 0,
-    "reviewCount" : 0,
+    "correctCount" : 1,
+    "reviewCount" : 1,
+    "lastReviewTime" : "2026-08-24T17:25:47.178716",
     "createTime" : "2026-08-24T15:32:56.433357",
-    "updateTime" : "2026-08-24T15:32:56.433359"
+    "updateTime" : "2026-08-24T17:25:47.181186"
   }, {
     "id" : 1031,
     "question" : "父母带给你最宝贵的品质",

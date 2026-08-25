@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-08-25T10:52:25.098226082",
+  "exportedAt" : "2026-08-25T11:22:25.450108596",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -6267,15 +6267,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 28,
+    "weight" : 26,
     "wrongCount" : 2,
-    "correctCount" : 0,
-    "reviewCount" : 2,
-    "lastReviewTime" : "2026-08-25T10:23:34.633189",
+    "correctCount" : 1,
+    "reviewCount" : 3,
+    "lastReviewTime" : "2026-08-25T10:56:30.817432",
     "createTime" : "2026-08-24T15:32:50.020488",
-    "updateTime" : "2026-08-25T10:23:34.635594"
+    "updateTime" : "2026-08-25T10:56:30.840677"
   }, {
     "id" : 989,
     "question" : "为什么选择做后端",
@@ -6374,13 +6374,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:25:28.869827",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:21:52.805191",
     "createTime" : "2026-08-24T15:32:51.089127",
-    "updateTime" : "2026-08-24T16:25:28.872727"
+    "updateTime" : "2026-08-25T11:21:52.80839"
   }, {
     "id" : 996,
     "question" : "经过业务面，有没有对我们部门有更深刻的了解？结合过往经验，说说自身与岗位的契合点。",
@@ -6389,13 +6389,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:07:29.395302",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:06:42.50144",
     "createTime" : "2026-08-24T15:32:51.241699",
-    "updateTime" : "2026-08-24T17:07:29.398616"
+    "updateTime" : "2026-08-25T11:06:42.504346"
   }, {
     "id" : 997,
     "question" : "你认为你有哪些优点？",
@@ -6449,13 +6449,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:27:37.526813",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:16:18.441561",
     "createTime" : "2026-08-24T15:32:51.853755",
-    "updateTime" : "2026-08-24T17:27:37.529484"
+    "updateTime" : "2026-08-25T11:16:18.445498"
   }, {
     "id" : 1001,
     "question" : "人生遇到过什么挫折吗？",
@@ -6464,13 +6464,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:41:29.819466",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:13:01.275931",
     "createTime" : "2026-08-24T15:32:52.006752",
-    "updateTime" : "2026-08-24T16:41:29.822248"
+    "updateTime" : "2026-08-25T11:13:01.280261"
   }, {
     "id" : 1002,
     "question" : "你是怎么看待加班的？",
@@ -6494,13 +6494,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:18:57.001969",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:19:41.407274",
     "createTime" : "2026-08-24T15:32:52.312345",
-    "updateTime" : "2026-08-24T16:18:57.00468"
+    "updateTime" : "2026-08-25T11:19:41.410068"
   }, {
     "id" : 1004,
     "question" : "你是如何看待压力的，你是如何处理的?",
@@ -6524,13 +6524,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T15:54:21.643447",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T10:59:59.825073",
     "createTime" : "2026-08-24T15:32:52.61817",
-    "updateTime" : "2026-08-24T15:54:21.646676"
+    "updateTime" : "2026-08-25T10:59:59.828683"
   }, {
     "id" : 1006,
     "question" : "你最骄傲的一件事",
@@ -6599,13 +6599,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:10:58.528105",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:01:17.2767",
     "createTime" : "2026-08-24T15:32:53.381251",
-    "updateTime" : "2026-08-24T17:10:58.530564"
+    "updateTime" : "2026-08-25T11:01:17.280069"
   }, {
     "id" : 1011,
     "question" : "对未来职业发展和规划有什么期望？",
@@ -6674,13 +6674,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:28:48.886157",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:04:30.203425",
     "createTime" : "2026-08-24T15:32:54.144628",
-    "updateTime" : "2026-08-24T16:28:48.889047"
+    "updateTime" : "2026-08-25T11:04:30.206069"
   }, {
     "id" : 1016,
     "question" : "有什么兴趣爱好，喜欢的书籍",
@@ -6704,13 +6704,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:02:55.686353",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:20:26.810304",
     "createTime" : "2026-08-24T15:32:54.449706",
-    "updateTime" : "2026-08-24T17:02:55.689114"
+    "updateTime" : "2026-08-25T11:20:26.813737"
   }, {
     "id" : 1018,
     "question" : "看到你本科学的通信专业，为什么转计算机/互联网方向？",
@@ -6884,13 +6884,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T15:49:18.310479",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:09:59.854466",
     "createTime" : "2026-08-24T15:32:56.280861",
-    "updateTime" : "2026-08-24T15:49:18.314488"
+    "updateTime" : "2026-08-25T11:09:59.85824"
   }, {
     "id" : 1030,
     "question" : "你为了参加京东的面试做了哪些特殊的准备吗",
@@ -6929,13 +6929,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:41:33.344542",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:07:05.023661",
     "createTime" : "2026-08-24T15:32:56.738282",
-    "updateTime" : "2026-08-24T17:41:33.346759"
+    "updateTime" : "2026-08-25T11:07:05.026245"
   }, {
     "id" : 1033,
     "question" : "有没有遇到自己的方案被否定的情况？如何复盘？",

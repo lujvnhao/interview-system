@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-08-25T11:22:25.450108596",
+  "exportedAt" : "2026-08-25T11:52:25.48808654",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -6299,13 +6299,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:40:51.398055",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:49:59.938532",
     "createTime" : "2026-08-24T15:32:50.3258",
-    "updateTime" : "2026-08-24T17:40:51.400939"
+    "updateTime" : "2026-08-25T11:49:59.940939"
   }, {
     "id" : 991,
     "question" : "你从你的简历里面挑一个项目给我详细介绍一下",
@@ -6314,13 +6314,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:40:54.960555",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:49:28.03654",
     "createTime" : "2026-08-24T15:32:50.478851",
-    "updateTime" : "2026-08-24T17:40:54.962762"
+    "updateTime" : "2026-08-25T11:49:28.039054"
   }, {
     "id" : 992,
     "question" : "了解京东的企业文化吗",
@@ -6329,13 +6329,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:31:17.975774",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:47:45.348502",
     "createTime" : "2026-08-24T15:32:50.631513",
-    "updateTime" : "2026-08-24T17:31:17.978357"
+    "updateTime" : "2026-08-25T11:47:45.352102"
   }, {
     "id" : 993,
     "question" : "对京东的了解",
@@ -6344,13 +6344,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:01:27.041084",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:30:54.118151",
     "createTime" : "2026-08-24T15:32:50.784039",
-    "updateTime" : "2026-08-24T16:01:27.043395"
+    "updateTime" : "2026-08-25T11:30:54.12072"
   }, {
     "id" : 994,
     "question" : "对京东科技的了解",
@@ -6359,13 +6359,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:37:09.428717",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:44:09.874334",
     "createTime" : "2026-08-24T15:32:50.93659",
-    "updateTime" : "2026-08-24T17:37:09.431303"
+    "updateTime" : "2026-08-25T11:44:09.877105"
   }, {
     "id" : 995,
     "question" : "为什么想来京东",
@@ -6404,13 +6404,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:45:36.832006",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:50:48.587471",
     "createTime" : "2026-08-24T15:32:51.39419",
-    "updateTime" : "2026-08-24T16:45:36.835027"
+    "updateTime" : "2026-08-25T11:50:48.589624"
   }, {
     "id" : 998,
     "question" : "你有什么缺点？",
@@ -6419,13 +6419,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:39:09.094483",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:50:03.088008",
     "createTime" : "2026-08-24T15:32:51.54824",
-    "updateTime" : "2026-08-24T17:39:09.096705"
+    "updateTime" : "2026-08-25T11:50:03.091209"
   }, {
     "id" : 999,
     "question" : "在项目中遇到什么问题和怎么解决，解决成果如何",
@@ -6434,13 +6434,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T15:56:08.708133",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:50:26.853362",
     "createTime" : "2026-08-24T15:32:51.700994",
-    "updateTime" : "2026-08-24T15:56:08.711084"
+    "updateTime" : "2026-08-25T11:50:26.85604"
   }, {
     "id" : 1000,
     "question" : "遇到问题你是怎么解决的",
@@ -6479,13 +6479,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T15:57:59.081531",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:22:55.482255",
     "createTime" : "2026-08-24T15:32:52.15955",
-    "updateTime" : "2026-08-24T15:57:59.08496"
+    "updateTime" : "2026-08-25T11:22:55.486632"
   }, {
     "id" : 1003,
     "question" : "你是如何处理加班中的情绪问题呢？",
@@ -6509,13 +6509,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T15:44:08.862642",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:39:19.637723",
     "createTime" : "2026-08-24T15:32:52.465244",
-    "updateTime" : "2026-08-24T15:44:08.873913"
+    "updateTime" : "2026-08-25T11:39:19.640273"
   }, {
     "id" : 1005,
     "question" : "你坚持最长的一件事是什么？",
@@ -6539,13 +6539,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:33:41.458565",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:50:05.504273",
     "createTime" : "2026-08-24T15:32:52.770902",
-    "updateTime" : "2026-08-24T17:33:41.461537"
+    "updateTime" : "2026-08-25T11:50:05.50677"
   }, {
     "id" : 1007,
     "question" : "你刚来北京时，对城市和自己的认知？",
@@ -6569,13 +6569,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:38:03.276233",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:50:15.786043",
     "createTime" : "2026-08-24T15:32:53.076015",
-    "updateTime" : "2026-08-24T16:38:03.279161"
+    "updateTime" : "2026-08-25T11:50:15.788218"
   }, {
     "id" : 1009,
     "question" : "想成为怎样的人？",
@@ -6584,13 +6584,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T15:45:55.533383",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:49:25.877939",
     "createTime" : "2026-08-24T15:32:53.228582",
-    "updateTime" : "2026-08-24T15:45:55.536757"
+    "updateTime" : "2026-08-25T11:49:25.880616"
   }, {
     "id" : 1010,
     "question" : "做到什么程度才会让自己满意？",
@@ -6614,13 +6614,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:43:17.544082",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:37:20.305588",
     "createTime" : "2026-08-24T15:32:53.534048",
-    "updateTime" : "2026-08-24T17:43:17.546784"
+    "updateTime" : "2026-08-25T11:37:20.30794"
   }, {
     "id" : 1012,
     "question" : "你的性格怎么样？",
@@ -6629,13 +6629,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:15:18.854236",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:50:34.006063",
     "createTime" : "2026-08-24T15:32:53.686804",
-    "updateTime" : "2026-08-24T17:15:18.857113"
+    "updateTime" : "2026-08-25T11:50:34.008281"
   }, {
     "id" : 1013,
     "question" : "什么工作氛围会让你觉得舒服？",
@@ -6644,13 +6644,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:51:40.140481",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:33:25.521904",
     "createTime" : "2026-08-24T15:32:53.839571",
-    "updateTime" : "2026-08-24T16:51:40.143504"
+    "updateTime" : "2026-08-25T11:33:25.526194"
   }, {
     "id" : 1014,
     "question" : "你认为自己学习能力强吗，举例",
@@ -6659,13 +6659,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:38:36.017147",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:47:53.370802",
     "createTime" : "2026-08-24T15:32:53.992165",
-    "updateTime" : "2026-08-24T16:38:36.019486"
+    "updateTime" : "2026-08-25T11:47:53.373336"
   }, {
     "id" : 1015,
     "question" : "身边朋友怎么评价你",
@@ -6689,13 +6689,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:50:02.178155",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:35:09.670189",
     "createTime" : "2026-08-24T15:32:54.297128",
-    "updateTime" : "2026-08-24T16:50:02.180768"
+    "updateTime" : "2026-08-25T11:35:09.673052"
   }, {
     "id" : 1017,
     "question" : "你选择工作的时候最看重什么",
@@ -6719,13 +6719,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:09:23.539453",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:47:42.504779",
     "createTime" : "2026-08-24T15:32:54.602207",
-    "updateTime" : "2026-08-24T17:09:23.541799"
+    "updateTime" : "2026-08-25T11:47:42.506949"
   }, {
     "id" : 1019,
     "question" : "参加项目的收获",
@@ -6749,13 +6749,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:36:30.87545",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:28:35.523925",
     "createTime" : "2026-08-24T15:32:54.907639",
-    "updateTime" : "2026-08-24T17:36:30.87869"
+    "updateTime" : "2026-08-25T11:28:35.527761"
   }, {
     "id" : 1021,
     "question" : "其他同学的毕业走向？ 都去哪些大厂？ 有什么共同特点？",
@@ -6764,13 +6764,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:18:00.984787",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:24:20.138235",
     "createTime" : "2026-08-24T15:32:55.060066",
-    "updateTime" : "2026-08-24T16:18:00.988147"
+    "updateTime" : "2026-08-25T11:24:20.141355"
   }, {
     "id" : 1022,
     "question" : "有没有了解过一个项目的完整流程",
@@ -6779,13 +6779,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:03:26.180888",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:49:29.654841",
     "createTime" : "2026-08-24T15:32:55.212565",
-    "updateTime" : "2026-08-24T17:03:26.183819"
+    "updateTime" : "2026-08-25T11:49:29.657962"
   }, {
     "id" : 1023,
     "question" : "对后端开发了解如何。希望走什么方向？",
@@ -6794,13 +6794,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:41:29.593634",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:50:30.786657",
     "createTime" : "2026-08-24T15:32:55.365014",
-    "updateTime" : "2026-08-24T17:41:29.596006"
+    "updateTime" : "2026-08-25T11:50:30.789028"
   }, {
     "id" : 1024,
     "question" : "AI浪潮下怎么看待后端开发",
@@ -6809,13 +6809,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:25:01.899313",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:43:27.739253",
     "createTime" : "2026-08-24T15:32:55.517428",
-    "updateTime" : "2026-08-24T17:25:01.901488"
+    "updateTime" : "2026-08-25T11:43:27.741493"
   }, {
     "id" : 1025,
     "question" : "你有什么好的学习方法",
@@ -6824,13 +6824,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:39:02.594369",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:50:28.576436",
     "createTime" : "2026-08-24T15:32:55.670143",
-    "updateTime" : "2026-08-24T17:39:02.596633"
+    "updateTime" : "2026-08-25T11:50:28.579148"
   }, {
     "id" : 1026,
     "question" : "介绍一下你的校园活动？",
@@ -6839,13 +6839,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:13:16.381849",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:27:58.184122",
     "createTime" : "2026-08-24T15:32:55.822867",
-    "updateTime" : "2026-08-24T17:13:16.385261"
+    "updateTime" : "2026-08-25T11:27:58.187576"
   }, {
     "id" : 1027,
     "question" : "对AI的关注，最近比较关注的AI产品",
@@ -6854,13 +6854,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:15:13.885153",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:50:46.8206",
     "createTime" : "2026-08-24T15:32:55.97542",
-    "updateTime" : "2026-08-24T16:15:13.887761"
+    "updateTime" : "2026-08-25T11:50:46.823583"
   }, {
     "id" : 1028,
     "question" : "对AI软硬件的看法",
@@ -6869,13 +6869,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:39:05.411876",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:50:06.920417",
     "createTime" : "2026-08-24T15:32:56.128169",
-    "updateTime" : "2026-08-24T17:39:05.415006"
+    "updateTime" : "2026-08-25T11:50:06.922883"
   }, {
     "id" : 1029,
     "question" : "有什么人对你影响最大吗，他们给了你什么样的建议",
@@ -6899,13 +6899,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:25:47.178716",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:50:22.136311",
     "createTime" : "2026-08-24T15:32:56.433357",
-    "updateTime" : "2026-08-24T17:25:47.181186"
+    "updateTime" : "2026-08-25T11:50:22.139024"
   }, {
     "id" : 1031,
     "question" : "父母带给你最宝贵的品质",
@@ -6944,13 +6944,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:48:06.16584",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:47:47.572999",
     "createTime" : "2026-08-24T15:32:56.890813",
-    "updateTime" : "2026-08-24T16:48:06.168799"
+    "updateTime" : "2026-08-25T11:47:47.576166"
   }, {
     "id" : 1034,
     "question" : "对你来说最重要的人生转折点是什么？",
@@ -6959,13 +6959,13 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:21:25.772398",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:45:37.287084",
     "createTime" : "2026-08-24T15:32:57.043234",
-    "updateTime" : "2026-08-24T16:21:25.775442"
+    "updateTime" : "2026-08-25T11:45:37.289894"
   }, {
     "id" : 1035,
     "question" : "你是如何制定学习和成长目标的？",
@@ -6974,12 +6974,12 @@
     "tags" : "",
     "mastered" : true,
     "favorite" : false,
-    "weight" : 8,
+    "weight" : 5,
     "wrongCount" : 0,
-    "correctCount" : 1,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:02:56.271159",
+    "correctCount" : 2,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T11:50:10.20293",
     "createTime" : "2026-08-24T15:32:57.195799",
-    "updateTime" : "2026-08-24T16:02:56.274783"
+    "updateTime" : "2026-08-25T11:50:10.20515"
   } ]
 }

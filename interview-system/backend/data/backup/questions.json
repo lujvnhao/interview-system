@@ -1,6 +1,6 @@
 {
   "version" : 1,
-  "exportedAt" : "2026-08-25T10:07:23.434378219",
+  "exportedAt" : "2026-08-25T10:52:25.098226082",
   "questions" : [ {
     "id" : 26,
     "question" : "快速排序和归并排序的原理和时间复杂度？",
@@ -6269,28 +6269,28 @@
     "tags" : "",
     "mastered" : false,
     "favorite" : false,
-    "weight" : 18,
-    "wrongCount" : 1,
+    "weight" : 28,
+    "wrongCount" : 2,
     "correctCount" : 0,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:05:40.394837",
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T10:23:34.633189",
     "createTime" : "2026-08-24T15:32:50.020488",
-    "updateTime" : "2026-08-24T16:05:40.397256"
+    "updateTime" : "2026-08-25T10:23:34.635594"
   }, {
     "id" : 989,
     "question" : "为什么选择做后端",
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 18,
+    "weight" : 16,
     "wrongCount" : 1,
-    "correctCount" : 0,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:23:27.197683",
+    "correctCount" : 1,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T10:26:57.433513",
     "createTime" : "2026-08-24T15:32:50.173186",
-    "updateTime" : "2026-08-24T17:23:27.200061"
+    "updateTime" : "2026-08-25T10:26:57.435781"
   }, {
     "id" : 990,
     "question" : "你为什么会想学习AI技术呢？",
@@ -6552,15 +6552,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 18,
+    "weight" : 16,
     "wrongCount" : 1,
-    "correctCount" : 0,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T17:00:14.558565",
+    "correctCount" : 1,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T10:28:36.007521",
     "createTime" : "2026-08-24T15:32:52.923551",
-    "updateTime" : "2026-08-24T17:00:14.561208"
+    "updateTime" : "2026-08-25T10:28:36.009885"
   }, {
     "id" : 1008,
     "question" : "如何评价现在的自己？",
@@ -6732,15 +6732,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 18,
+    "weight" : 16,
     "wrongCount" : 1,
-    "correctCount" : 0,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:54:15.031388",
+    "correctCount" : 1,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T10:30:34.3647",
     "createTime" : "2026-08-24T15:32:54.755017",
-    "updateTime" : "2026-08-24T16:54:15.034504"
+    "updateTime" : "2026-08-25T10:30:34.366547"
   }, {
     "id" : 1020,
     "question" : "沟通能力",
@@ -6912,15 +6912,15 @@
     "answer" : "",
     "category" : "HR面",
     "tags" : "",
-    "mastered" : false,
+    "mastered" : true,
     "favorite" : false,
-    "weight" : 18,
+    "weight" : 16,
     "wrongCount" : 1,
-    "correctCount" : 0,
-    "reviewCount" : 1,
-    "lastReviewTime" : "2026-08-24T16:53:03.607885",
+    "correctCount" : 1,
+    "reviewCount" : 2,
+    "lastReviewTime" : "2026-08-25T10:31:16.73475",
     "createTime" : "2026-08-24T15:32:56.585825",
-    "updateTime" : "2026-08-24T16:53:03.610131"
+    "updateTime" : "2026-08-25T10:31:16.736503"
   }, {
     "id" : 1032,
     "question" : "如何看待重复开发（方案对比实现）这种方式？",
